@@ -268,6 +268,11 @@ class CI_Form_validation {
 		return $str;
 	}
 
+	public function errors()
+	{
+		return $this->_error_array;
+	}
+
 	// --------------------------------------------------------------------
 
 	/**

@@ -304,6 +304,12 @@ class CI_Output {
 		return $this;
 	}
 
+	function json($data)
+	{
+		header('Content-Type: application/json');
+		echo json_encode($data);
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
