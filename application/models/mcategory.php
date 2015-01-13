@@ -5,7 +5,7 @@ require_once('ICRUD.php');
 class Mcategory extends CI_Model implements ICrud
 {
 	
-	private $accountTable = 'articles';
+	private $accountTable = 'category';
 	
 	public function __construct()
 	{

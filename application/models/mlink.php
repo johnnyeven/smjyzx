@@ -2,10 +2,10 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 require_once('ICRUD.php');
 
-class Marticle extends CI_Model implements ICrud
+class Mlink extends CI_Model implements ICrud
 {
 	
-	private $accountTable = 'articles';
+	private $accountTable = 'links';
 	
 	public function __construct()
 	{
@@ -58,10 +58,6 @@ class Marticle extends CI_Model implements ICrud
 		}
 		if(!empty($extension))
 		{
-			if(!empty($extension['order_by']))
-			{
-				$this->db->order_by($extension['order_by'][0], $extension['order_by'][1]);
-			}
 		}
 		if($limit==0 && $offset==0) {
 			$query = $this->db->get($this->accountTable);
