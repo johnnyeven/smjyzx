@@ -41,6 +41,46 @@ class Index extends CI_Controller
 			)
 		), 6);
 
+		//横幅
+		$banner_result = $this->marticle->read(array(
+			'category_id'	=>	27
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 1);
+
+		//建设工程 招标公告
+		$part1_1_result = $this->marticle->read(array(
+			'category_id'	=>	9
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//建设工程 更正公告
+		$part1_2_result = $this->marticle->read(array(
+			'category_id'	=>	10
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//建设工程 中标结果
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	11
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
 		// $this->load->view('index', $data);
 	}
 }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-01-13 11:56:44
+Date: 2015-01-14 14:40:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `articles` (
   `content` text NOT NULL,
   `pic` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of articles
@@ -43,7 +43,7 @@ CREATE TABLE `category` (
   `name` varchar(255) NOT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of category
@@ -73,3 +73,36 @@ INSERT INTO `category` VALUES ('22', '出让公告', '21');
 INSERT INTO `category` VALUES ('23', '变更公告', '21');
 INSERT INTO `category` VALUES ('24', '出让结果', '21');
 INSERT INTO `category` VALUES ('25', '图片快讯', '0');
+INSERT INTO `category` VALUES ('26', '开标安排', '0');
+INSERT INTO `category` VALUES ('27', '横幅', '0');
+
+-- ----------------------------
+-- Table structure for download
+-- ----------------------------
+DROP TABLE IF EXISTS `download`;
+CREATE TABLE `download` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `filepath` varchar(255) NOT NULL,
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of download
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for links
+-- ----------------------------
+DROP TABLE IF EXISTS `links`;
+CREATE TABLE `links` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of links
+-- ----------------------------
