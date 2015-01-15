@@ -81,7 +81,137 @@ class Index extends CI_Controller
 			)
 		), 6);
 
-		// $this->load->view('index', $data);
+		//政府采购 采购预公告
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	13
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//政府采购 采购公告
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	14
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//政府采购 更正公告
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	15
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//政府采购 中标结果
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	16
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//产权交易 交易信息
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	18
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//产权交易 更正信息
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	19
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//产权交易 成交信息
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	20
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//土地出让 出让公告
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	22
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//土地出让 更正公告
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	23
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//土地出让 出让结果
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	24
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//图片快讯
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	25
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 10);
+
+		//场地预约
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	3
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		//开标安排
+		$part1_3_result = $this->marticle->read(array(
+			'category_id'	=>	26
+		), array(
+			'order_by'		=>	array(
+				'time',
+				'desc'
+			)
+		), 6);
+
+		$this->load->view('index', $data);
 	}
 }
 
