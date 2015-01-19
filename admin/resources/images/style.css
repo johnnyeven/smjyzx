@@ -1,0 +1,13 @@
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dt,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0}
+body{ font-size:12px; font-family:Î¢ÈíÑÅºÚ;}
+a{color:#2d374b;text-decoration:none}
+a:hover{color:#cd0200;text-decoration:underline}
+em{font-style:normal}
+li{list-style:none}
+img{border:0;vertical-align:middle}
+table{ border:none; table-layout:fixed; border-collapse:collapse;}
+table td{ border:none;}
+p{word-wrap:break-word}
+.tc{ text-align:center;}
+
+.c999{ color:#999999;}

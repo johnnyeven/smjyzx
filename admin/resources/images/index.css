@@ -1,0 +1,29 @@
+body{ width:100%; background:url(bg1.jpg) repeat-x #FFF;}
+
+#weibo{ width:1004px; height:28px; background:url(header_bg.jpg) repeat-x; margin:0 auto; padding:5px 0 0 0;}
+	#weibo .p1{ width:825px; float:left; text-align:right;}
+	#weibo .p2{ width:175px; float:left; padding:2px 0 0 0;}
+
+	#weibo a{ color:#ADAEB3;}
+	#weibo a.a7{ margin:0 20px 0 10px;}
+
+#header{ width:1004px; height:119px; background:#FFF; clear:both; margin:0 auto;}
+	#header .co1{ width:349px; height:119px; float:left; overflow:hidden;}
+	#header .co2{ width:655px; height:119px; float:left; overflow:hidden;}
+		#header .co2 p{ padding:50px 0 0 50px;}
+		#header .co2 a{ font-size:15px; font-weight:800; margin:0 0 0 80px;}
+		
+#banner{ width:1004px; height:396px; clear:both; margin:0 auto; background:#8D8F8E;}
+
+
+
+
+#main{ width:1004px; height:439px; background:url(home_bg.jpg) repeat-x; clear:both; margin:0 auto; overflow:hidden;}
+	#main ul{ padding:45px 0 0 0; width:1004px; height:335px; margin:0 auto; clear:both; overflow:hidden;}
+	#main ul li{ width:334px; height:335px; float:left; text-align:center;}
+	
+#bot_logo{ width:1004px; height:221px; margin:0 auto; padding:7px 0 0 0; text-align:center;}
+	
+#footer{ width:1004px; height:69px; border-top:1px solid #D2D2D2; clear:both; margin:0 auto; overflow:hidden;}
+	#footer p{ margin:25px 0 0 0; text-align:center; color:#555555;}
+	

@@ -1,0 +1,85 @@
+body{ width:100%; background:url(bg3.jpg) repeat #FFF; color:#4A4A4A; font-family:Î¢ÈíÑÅºÚ;}
+#cps{ background:url(bg2.jpg) repeat-x;}
+
+
+#weibo{ width:1004px; height:28px; background:url(header_bg.jpg) repeat-x; margin:0 auto; padding:5px 0 0 0;}
+	#weibo p{ text-align:right; padding-right:35px;}
+	#weibo a{ color:#ADAEB3;}
+	#weibo a.a7{ margin:0 20px 0 10px;}
+
+#header{ width:1004px; height:119px; background:#FFF; clear:both; margin:0 auto;}
+	#header .co1{ width:349px; height:119px; float:left; overflow:hidden;}
+	#header .co2{ width:655px; height:119px; float:left; overflow:hidden;}
+		#header .co2 p{ padding:50px 0 0 50px;}
+		#header .co2 a{ font-size:15px; font-weight:800; margin:0 0 0 80px;}
+		
+#banner{ width:1004px; height:103px; clear:both; margin:0 auto;}
+
+#banner_bot{ width:1004px; height:10px; font-size:0px; clear:both; margin:0 auto;}
+
+
+#main{ width:1004px; height:auto; background:url(bg3.jpg) repeat; padding:65px 0; clear:both; margin:0 auto; overflow:hidden;}
+	
+	#main .pos{ width:940px; height:46px; margin:0 auto; clear:both;}
+	#main .content{ width:940px; min-height:500px; height:auto!important; height:500px; overflow:visible; background:url(bg4.jpg) 243px 0 repeat-y; margin:0 auto; clear:both;}
+		#main .content .left{ width:265px; height:auto; float:left; overflow:hidden;}
+			#main .content .left div{ width:245px; height:80px; clear:both; overflow:hidden;}
+			#main .content .left ul li{ width:245px; height:28px; line-height:28px; font-weight:600;}
+			#main .content .left ul li a{ color:#464646;}
+			#main .content .left ul li a.cur{ color:#01AEF0;}
+		
+		#main .content .right{ width:670px; height:auto; float:left; overflow:hidden;}
+			#main .content .right .tit{ width:100%; height:38px; background:#D7D7D7; color:#464646; font-size:18px; font-weight:800; text-align:center; padding:17px 0 0 0;}
+			#main .content .right .article{ width:100%; line-height:24px; margin:25px 0 0; font-size:14px;}
+			#main .content .right .share{ height:25px; margin:15px 0;}
+			
+	
+#bot_logo{ width:100%; height:221px; margin:0 auto; border-top:1px solid #D2D2D2; background:#FFF; padding:7px 0 0 0; text-align:center;}
+	
+#footer{ width:1004px; height:69px; border-top:1px solid #D2D2D2; clear:both; margin:0 auto; overflow:hidden;}
+	#footer p{ margin:25px 0 0 0; text-align:center; color:#555555;}
+	
+	/**/
+	#main .pos_about{ width:940px; height:46px; margin:0 auto; clear:both;}
+	
+	#main .about_content{ width:703px; min-height:235px; height:auto!important; height:235px; overflow:visible; background:url(about_bg1.jpg) right 0 no-repeat; margin:0 0 0 32px; padding:0 250px 0 0; clear:both; text-indent:28px; line-height:29px; font-size:14px; font-weight:600;}
+	#main .about_img{ width:940px; height:219px; margin:0 auto; clear:both; overflow:hidden;}
+		#main .about_img .l1{ width:295px; height:219px; float:left; overflow:hidden;}
+		#main .about_img .l2{ width:366px; height:219px; float:left; overflow:hidden;}
+		#main .about_img .l3{ width:279px; height:219px; float:left; overflow:hidden;}
+	
+	
+	
+	#main .pos41{ width:940px; height:41px; margin:0 auto; clear:both;}
+	#main .join_content{ width:670px; min-height:185px; height:auto!important; height:185px; overflow:visible; background:url(join_bg1.jpg) right 0 no-repeat; margin:0 auto; padding:0 270px 0 0; clear:both; text-indent:28px; line-height:29px; font-size:14px; font-weight:600;}
+	#main .join_img{ width:960px; _width:975px; height:350px; margin:0 auto; clear:both; overflow:hidden;}
+		#main .join_img li{ width:219px; height:304px; float:left; overflow:hidden; margin:0 10px; position:relative;}
+			#main .join_img li .d1{ width:219px; height:304px; position:absolute; top:0; left:0;}
+			#main .join_img li .d2{ width:175px; height:130px; position:absolute; top:102px; left:17px; line-height:28px; font-weight:600;}
+				#main .join_img li .d2 a.cur{ color:#01AEF0;}
+				#main .join_img li .d2 a{ color:#959595;}
+			
+			#main .join_img li .d3{ width:110px; height:28px; position:absolute; bottom:19px; right:18px;}
+		
+	#main .contact{ width:940px; min-height:185px; height:auto!important; height:185px; overflow:visible;margin:0 auto; clear:both; line-height:29px; font-size:14px;}
+	
+	
+	
+	
+	#main .join_zpgw{ width:940px; margin:0 auto; background:url(line.jpg) 0 bottom no-repeat; clear:both; overflow:hidden; padding:15px 0 15px 0;}
+		#main .join_zpgw .l1{ width:240px; float:left;}
+		#main .join_zpgw .l2{ width:700px; float:left; line-height:24px;}
+			#main .join_zpgw .l2 a{ margin-right:10px;}
+			
+			
+	#main .honor_con{ width:940px; height:300px; background:url(line.jpg) 0 bottom no-repeat; margin:0 auto 50px; clear:both; position:relative;}
+		#main .honor_con .w1{ width:600px; height:170px; position:absolute; left:0; top:0; text-indent:28px; line-height:29px; font-size:14px;}
+		#main .honor_con .w2{ width:615px; height:83px; position:absolute; top:171px; left:0;}
+			#main .honor_con .w2 ul li{ width:152px; height:83px; float:left; overflow:hidden;}
+			#main .honor_con .w2 ul li img{ width:140px; height:81px; border:1px solid #D8D8D8;}
+		#main .honor_con .w3{ width:311px; height:252px; position:absolute; top:0; right:0;}
+	
+		#main .honor_more{ font-size:22px; font-weight:900; text-align:center;}
+	
+	
+	
