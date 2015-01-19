@@ -191,25 +191,26 @@ class Index extends CI_Controller
 			)
 		), 10);
 
+		$this->load->model('mbiao');
 		//场地预约
-		$part1_3_result = $this->marticle->read(array(
-			'category_id'	=>	3
+		$yuyue_result = $this->mbiao->read(array(
+			'parent_id'		=>	28
 		), array(
 			'order_by'		=>	array(
-				'time',
-				'desc'
+				'start_time',
+				'asc'
 			)
-		), 6);
+		));
 
 		//开标安排
-		$part1_3_result = $this->marticle->read(array(
-			'category_id'	=>	26
+		$kaibiao_result = $this->mbiao->read(array(
+			'parent_id'		=>	29
 		), array(
 			'order_by'		=>	array(
-				'time',
-				'desc'
+				'start_time',
+				'asc'
 			)
-		), 6);
+		));
 
 		$this->load->view('index', $data);
 	}
