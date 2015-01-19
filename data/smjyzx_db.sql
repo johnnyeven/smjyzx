@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-01-14 14:40:30
+Date: 2015-01-19 17:27:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,6 +35,54 @@ CREATE TABLE `articles` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for biao
+-- ----------------------------
+DROP TABLE IF EXISTS `biao`;
+CREATE TABLE `biao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL,
+  `number` varchar(32) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `category` int(11) NOT NULL,
+  `start_time` int(11) NOT NULL,
+  `location` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of biao
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for biao_category
+-- ----------------------------
+DROP TABLE IF EXISTS `biao_category`;
+CREATE TABLE `biao_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of biao_category
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for biao_location
+-- ----------------------------
+DROP TABLE IF EXISTS `biao_location`;
+CREATE TABLE `biao_location` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of biao_location
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
@@ -43,14 +91,14 @@ CREATE TABLE `category` (
   `name` varchar(255) NOT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
 INSERT INTO `category` VALUES ('1', '中心简介', '0');
 INSERT INTO `category` VALUES ('2', '政策法规', '0');
-INSERT INTO `category` VALUES ('3', '交易场地预约', '0');
+INSERT INTO `category` VALUES ('29', '开标安排', '-1');
 INSERT INTO `category` VALUES ('4', '服务指南', '0');
 INSERT INTO `category` VALUES ('5', '滚动图片', '0');
 INSERT INTO `category` VALUES ('6', '中心动态', '0');
@@ -73,8 +121,7 @@ INSERT INTO `category` VALUES ('22', '出让公告', '21');
 INSERT INTO `category` VALUES ('23', '变更公告', '21');
 INSERT INTO `category` VALUES ('24', '出让结果', '21');
 INSERT INTO `category` VALUES ('25', '图片快讯', '0');
-INSERT INTO `category` VALUES ('26', '开标安排', '0');
-INSERT INTO `category` VALUES ('27', '横幅', '0');
+INSERT INTO `category` VALUES ('28', '场地预约', '-1');
 
 -- ----------------------------
 -- Table structure for download
