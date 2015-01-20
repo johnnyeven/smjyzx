@@ -1,9 +1,11 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-require_once('ICrud.php');
+require_once('ICRUD.php');
 
-class Marticle extends CI_Model implements ICrud {
-	private $accountTable = 'digisky_article';
+class Marticle extends CI_Model implements ICrud
+{
+	
+	private $accountTable = 'articles';
 	
 	public function __construct()
 	{
@@ -30,7 +32,14 @@ class Marticle extends CI_Model implements ICrud {
 	{
 		if(!empty($row))
 		{
-			return $this->db->insert($this->accountTable, $row);
+			if($this->db->insert($this->accountTable, $row))
+			{
+				return $this->db->insert_id();
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else
 		{
@@ -70,7 +79,17 @@ class Marticle extends CI_Model implements ICrud {
 	{
 		if(!empty($id) && !empty($row))
 		{
-			$this->db->where('article_id', $id);
+			if(is_array($id))
+			{
+				foreach($id as $key=>$value)
+				{
+					$this->db->where($key, $value);
+				}
+			}
+			else
+			{
+				$this->db->where('id', $id);
+			}
 			return $this->db->update($this->accountTable, $row);
 		}
 		else
@@ -83,13 +102,36 @@ class Marticle extends CI_Model implements ICrud {
 	{
 		if(!empty($id))
 		{
-			$this->db->where('article_id', $id);
+			if(is_array($id))
+			{
+				foreach($id as $key=>$value)
+				{
+					$this->db->where($key, $value);
+				}
+			}
+			else
+			{
+				$this->db->where('id', $id);
+			}
 			return $this->db->delete($this->accountTable);
 		}
 		else
 		{
 			return false;
 		}
+	}
+	
+	public function query($sql)
+	{
+		if(!empty($sql))
+		{
+			$query = $this->db->query($sql);
+			if($query->num_rows() > 0)
+			{
+				return $query->result();
+			}
+		}
+		return false;
 	}
 }
 

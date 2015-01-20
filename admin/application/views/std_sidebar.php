@@ -21,60 +21,108 @@
 				<hr />
 				
 				<ul id="main-nav" class="nav nav-tabs nav-stacked">
-                
-					<li<?php if($page_name=='config'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('config'); ?>">
-							<i class="icon-home"></i>
-							基本配置
-						</a>
-					</li>
-					
-					<li<?php if($page_name=='sliders'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('sliders'); ?>">
-							<i class="icon-home"></i>
-							首页幻灯管理
-						</a>
-					</li>
-                    
-					<li<?php if($page_name=='article_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('article_list'); ?>">
-							<i class="icon-th-list"></i>
-							新闻管理
-						</a>
-					</li>
-                    
-					<li<?php if($page_name=='product_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('product_list'); ?>">
-							<i class="icon-th-list"></i>
-							产品管理
-						</a>
-					</li>
-                    
-					<li<?php if($page_name=='product_add'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('product_add'); ?>">
-							<i class="icon-th-list"></i>
-							添加/修改产品
-						</a>
-					</li>
-                    
-					<li<?php if($page_name=='job_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('job_list'); ?>">
-							<i class="icon-th-list"></i>
-							职位列表
-						</a>
-					</li>
-					
-					<li<?php if($page_name=='job_add'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('job_add'); ?>">
-							<i class="icon-th-list"></i>
-							添加/修改职位
-						</a>
-					</li>
-					
 					<li<?php if($page_name=='account'): ?> class="active"<?php endif; ?>>
 						<a href="<?php echo site_url('account'); ?>">
+							<i class="icon-th-list"></i>
+							管理员管理
+						</a>
+					</li>
+
+					<li<?php if($page_name=='jianjie_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('jianjie_list'); ?>">
+							<i class="icon-th-list"></i>
+							中心简介
+						</a>
+					</li>
+                    
+					<li<?php if($page_name=='fagui_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('fagui_list'); ?>">
+							<i class="icon-th-list"></i>
+							政策法规
+						</a>
+					</li>
+                    
+					<li<?php if($page_name=='download_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('download_list/show'); ?>">
+							<i class="icon-th-list"></i>
+							资料下载
+						</a>
+					</li>
+                    
+					<li<?php if($page_name=='guide_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('guide_list'); ?>">
+							<i class="icon-th-list"></i>
+							服务指南
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='news_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('news_list'); ?>">
+							<i class="icon-th-list"></i>
+							中心动态
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='anouncement_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('anouncement_list'); ?>">
 							<i class="icon-user"></i>
-							管理员设置
+							通知公告
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='gongcheng_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('gongcheng_list'); ?>">
+							<i class="icon-user"></i>
+							建设工程
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='caigou_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('caigou_list'); ?>">
+							<i class="icon-user"></i>
+							政府采购
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='chanquan_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('chanquan_list'); ?>">
+							<i class="icon-user"></i>
+							产权交易
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='tudi_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('tudi_list'); ?>">
+							<i class="icon-user"></i>
+							土地出让
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='yuyue_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('yuyue_list'); ?>">
+							<i class="icon-user"></i>
+							场地预约
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='anpai_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('anpai_list'); ?>">
+							<i class="icon-user"></i>
+							开标安排
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='pic_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('pic_list'); ?>">
+							<i class="icon-user"></i>
+							图片快讯
+						</a>
+					</li>
+					
+					<li<?php if($page_name=='link_list'): ?> class="active"<?php endif; ?>>
+						<a href="<?php echo site_url('link_list'); ?>">
+							<i class="icon-user"></i>
+							友情链接
 						</a>
 					</li>
 					

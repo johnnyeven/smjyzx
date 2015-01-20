@@ -87,7 +87,7 @@ class Account extends CI_Controller
 			}
 			$this->admin->delete($adminId);
 		}
-		redirect('account');
+		showMessage(MESSAGE_TYPE_SUCCESS, 'USER_DELETE_SUCCESS', '', 'account', true, 5);
 	}
 	
 	public function submit()
@@ -111,8 +111,7 @@ class Account extends CI_Controller
 		}
 		
 		$row = array(
-			'admin_account'		=>	$adminAccount,
-			'admin_starttime'	=>	time()
+			'admin_account'		=>	$adminAccount
 		);
 		
 		if(!empty($edit))
@@ -126,9 +125,10 @@ class Account extends CI_Controller
 		else
 		{
 			$row['admin_pass'] = encrypt_pass($adminPass);
+			$row['admin_starttime'] = time();
 			$this->admin->create($row);
 		}
-		redirect('account');
+		showMessage(MESSAGE_TYPE_SUCCESS, 'USER_SUBMIT_SUCCESS', '', 'account', true, 5);
 	}
 }
 

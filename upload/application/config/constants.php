@@ -26,6 +26,8 @@ define('DIR_WRITE_MODE', 0777);
 | These modes are used when working with fopen()/popen()
 |
 */
+define('MESSAGE_TYPE_SUCCESS', 0xA001);
+define('MESSAGE_TYPE_ERROR', 0xA003);
 
 define('FOPEN_READ',							'rb');
 define('FOPEN_READ_WRITE',						'r+b');
