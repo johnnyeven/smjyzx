@@ -2,6 +2,7 @@
 
 class Download_list extends CI_Controller
 {
+	private $page_items = 20;
 	private $pageName = 'download_list';
 	private $user = null;
 	
@@ -15,19 +16,20 @@ class Download_list extends CI_Controller
 	
 	public function show($page = 1)
 	{
-		$this->load->helper('url');
-		$this->load->library('pagination');
-		$config['base_url'] = site_url('download_list/show');
-		$config['total_rows'] = 200;
-		$config['per_page'] = 20;
-		$config['use_page_numbers'] = TRUE;
-		$this->pagination->initialize($config);
-
 		$this->load->model('mdownload');
 		
 		$result = $this->mdownload->read(null, array(
 			'order_by'		=>	array('time', 'desc')
-		));
+		), $this->page_items, $this->page_items * (intval($page) - 1));
+
+		$this->load->helper('url');
+		$this->load->library('pagination');
+		$config['base_url'] = site_url('download_list/show');
+		$config['total_rows'] = count($result);
+		$config['per_page'] = $this->page_items;
+		$config['use_page_numbers'] = TRUE;
+		$this->pagination->initialize($config);
+
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
