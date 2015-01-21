@@ -2,7 +2,7 @@
 					<i class="icon-home"></i>
 					资料下载管理
 				</h1>
-                
+                <?php if(empty($edit)): ?>
 				<div class="widget widget-table">
 				
 					<div class="widget-header">
@@ -48,9 +48,6 @@
                             	<tr>
                                 	<td colspan="5">没有资料</td>
                                 </tr>
-                            	<tr>
-                                	<td style="text-align:right;" colspan="5"><?php echo $pagination; ?></td>
-                                </tr>
                             <?php endif; ?>
 							</tbody>
 						</table>
@@ -58,7 +55,7 @@
 					</div> <!-- /widget-content -->
 				
 				</div>
-                
+                <?php endif; ?>
 				<div class="widget">
                     
 					<div class="widget-header">
@@ -68,7 +65,7 @@
 					
 					<div class="widget-content">
 					
-						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('sliders/submit'); ?>" method="post" />
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('download_list/submit'); ?>" method="post" />
                                     <fieldset>
                                         <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
                                         <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
@@ -80,10 +77,10 @@
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
-                                            <label class="control-label" for="sliderUrl">上传图片</label>
+                                            <label class="control-label" for="sliderUrl">上传资料</label>
                                             <div class="controls">
                                                 <input name="picUpload" type="file" id="picUpload" size="20" class="input-medium" />
-                                                <input type="button" name="btnUpload" id="btnUpload" value="上传" onclick="javascript:contentPicUpload('picUpload', 'sliderPicPathContent', 'sliderPicPath')" class="btn btn-primary" />
+                                                <input type="button" name="btnUpload" id="btnUpload" value="上传" onclick="javascript:contentPicUpload('<?php echo site_url('utils/doPicUpload'); ?>', 'picUpload', 'sliderPicPathContent', 'downloadFilepath')" class="btn btn-primary" />
                                                 <input name="downloadFilepath" type="hidden" id="downloadFilepath" value="<?php echo $value->filepath; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->

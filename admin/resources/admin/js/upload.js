@@ -1,8 +1,8 @@
-function contentPicUpload(uploadId, contentId, valueId, mode, maxCount) {
+function contentPicUpload(url, uploadId, contentId, valueId, mode, maxCount) {
 	$.ajaxFileUpload
 	(
 		{
-			url:'utils/doPicUpload?el=' + uploadId,
+			url:url + '?el=' + uploadId,
 			secureuri:false,
 			fileElementId:uploadId,
 			dataType: 'json',
@@ -31,12 +31,12 @@ function contentPicUpload(uploadId, contentId, valueId, mode, maxCount) {
 								url.push(data.data);
 								$("#" + valueId).val(url.join(";"));
 							}
-							$("#" + contentId).prepend("<img src='" + data.data + "' />");
+							$("#" + contentId).prepend("<p>" + data.data + "</p>");
 						}
 						else
 						{
 							$("#" + contentId).empty();
-							$("#" + contentId).append("<img src='" + data.data + "' />");
+							$("#" + contentId).append("<p>" + data.data + "</p>");
 							$("#" + valueId).val(data.data);
 						}
 					}

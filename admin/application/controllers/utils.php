@@ -22,7 +22,7 @@ class Utils extends CI_Controller
 		$msg = "";
 	
 		$config['upload_path'] = $uploadStorePath;
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|png|xlsx|xls|doc|docx|ppt|pptx|zip|rar';
 		$config['encrypt_name'] = TRUE;
 	
 		$this->load->library('upload', $config);

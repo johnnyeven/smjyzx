@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-01-19 17:27:52
+Date: 2015-01-21 11:19:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -124,11 +124,30 @@ INSERT INTO `category` VALUES ('25', '图片快讯', '0');
 INSERT INTO `category` VALUES ('28', '场地预约', '-1');
 
 -- ----------------------------
+-- Table structure for digisky_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `digisky_admin`;
+CREATE TABLE `digisky_admin` (
+  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_account` char(32) NOT NULL,
+  `admin_pass` char(32) NOT NULL,
+  `admin_init` tinyint(4) NOT NULL DEFAULT '0',
+  `admin_starttime` int(11) NOT NULL,
+  `admin_lastlogin` int(11) NOT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of digisky_admin
+-- ----------------------------
+INSERT INTO `digisky_admin` VALUES ('1', 'admin', 'd93a5def7511da3d0f2d171d9c344e91', '1', '0', '1421741718');
+
+-- ----------------------------
 -- Table structure for download
 -- ----------------------------
 DROP TABLE IF EXISTS `download`;
 CREATE TABLE `download` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `filepath` varchar(255) NOT NULL,
   `time` int(11) NOT NULL,

@@ -618,7 +618,6 @@ class CI_Upload {
 		}
 
 		$mime = $this->mimes_types($ext);
-
 		if (is_array($mime))
 		{
 			if (in_array($this->file_type, $mime, TRUE))

@@ -12,6 +12,8 @@ class Download_list extends CI_Controller
 		$this->load->database('default');
 		$this->load->model('check_user', 'check');
 		$this->user = $this->check->validate();
+
+		$this->load->helper('url');
 	}
 	
 	public function show($page = 1)
@@ -21,11 +23,11 @@ class Download_list extends CI_Controller
 		$result = $this->mdownload->read(null, array(
 			'order_by'		=>	array('time', 'desc')
 		), $this->page_items, $this->page_items * (intval($page) - 1));
+		$count = $this->mdownload->count();
 
-		$this->load->helper('url');
 		$this->load->library('pagination');
 		$config['base_url'] = site_url('download_list/show');
-		$config['total_rows'] = count($result);
+		$config['total_rows'] = $count;
 		$config['per_page'] = $this->page_items;
 		$config['use_page_numbers'] = TRUE;
 		$this->pagination->initialize($config);
@@ -44,9 +46,9 @@ class Download_list extends CI_Controller
 	{
 		if(!empty($sliderId))
 		{
-			$this->load->model('slider');
-			$result = $this->slider->read(array(
-				'slider_id'		=>	$sliderId
+			$this->load->model('mdownload');
+			$result = $this->mdownload->read(array(
+				'id'		=>	$sliderId
 			));
 			if($result !== FALSE)
 			{
@@ -54,11 +56,11 @@ class Download_list extends CI_Controller
 			}
 			
 			$data = array(
-				'admin'					=>	$this->user,
+				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
-				'edit'						=>	'1',
-				'slider_id'				=>	$sliderId,
-				'value'					=>	$result
+				'edit'				=>	'1',
+				'id'				=>	$sliderId,
+				'value'				=>	$result
 			);
 			$this->load->model('render');
 			$this->render->render($this->pageName, $data);
@@ -69,43 +71,42 @@ class Download_list extends CI_Controller
 	{
 		if(!empty($sliderId))
 		{
-			$this->load->model('slider');
+			$this->load->model('mdownload');
 				
-			$this->slider->delete($sliderId);
+			$this->mdownload->delete($sliderId);
 		}
-		redirect('sliders');
+		showMessage(MESSAGE_TYPE_SUCCESS, 'DOWNLOAD_DELETE_SUCCESS', '', 'download_list/show', true, 5);
 	}
 	
 	public function submit()
 	{
-		$this->load->model('slider');
+		$this->load->model('mdownload');
 		
 		$edit = $this->input->post('edit', TRUE);
-		$sliderId = $this->input->post('sliderId', TRUE);
-		$sliderPicPath = $this->input->post('sliderPicPath', TRUE);
-		$sliderUrl = $this->input->post('sliderUrl', TRUE);
-		$sliderSort = $this->input->post('sliderSort', TRUE);
+		$sliderId = $this->input->post('id', TRUE);
+		$download_name = $this->input->post('downloadName', TRUE);
+		$download_filepath = $this->input->post('downloadFilepath', TRUE);
 
-		if(empty($sliderPicPath))
+		if(empty($download_name) || empty($download_filepath))
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'sliders', true, 5);
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'download_list/show', true, 5);
 		}
 		
 		$row = array(
-			'slider_pic_path'			=>	$sliderPicPath,
-			'slider_url'				=>	$sliderUrl,
-			'slider_sort'				=>	$sliderSort
+			'name'			=>	$download_name,
+			'filepath'		=>	$download_filepath
 		);
 		
 		if(!empty($edit))
 		{
-			$this->slider->update($sliderId, $row);
+			$this->mdownload->update($sliderId, $row);
 		}
 		else
 		{
-			$this->slider->create($row);
+			$row['time'] = time();
+			$this->mdownload->create($row);
 		}
-		redirect('sliders');
+		showMessage(MESSAGE_TYPE_SUCCESS, 'DOWNLOAD_SUBMIT_SUCCESS', '', 'download_list/show', true, 5);
 	}
 }
 
