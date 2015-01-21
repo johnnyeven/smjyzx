@@ -57,70 +57,70 @@
 					</li>
 					
 					<li<?php if($page_name=='news_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('news_list'); ?>">
+						<a href="<?php echo site_url('news_list/show'); ?>">
 							<i class="icon-th-list"></i>
 							中心动态
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='anouncement_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('anouncement_list'); ?>">
+						<a href="<?php echo site_url('anouncement_list/show'); ?>">
 							<i class="icon-user"></i>
 							通知公告
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='gongcheng_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('gongcheng_list'); ?>">
+						<a href="<?php echo site_url('gongcheng_list/show'); ?>">
 							<i class="icon-user"></i>
 							建设工程
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='caigou_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('caigou_list'); ?>">
+						<a href="<?php echo site_url('caigou_list/show'); ?>">
 							<i class="icon-user"></i>
 							政府采购
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='chanquan_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('chanquan_list'); ?>">
+						<a href="<?php echo site_url('chanquan_list/show'); ?>">
 							<i class="icon-user"></i>
 							产权交易
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='tudi_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('tudi_list'); ?>">
+						<a href="<?php echo site_url('tudi_list/show'); ?>">
 							<i class="icon-user"></i>
 							土地出让
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='yuyue_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('yuyue_list'); ?>">
+						<a href="<?php echo site_url('yuyue_list/show'); ?>">
 							<i class="icon-user"></i>
 							场地预约
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='anpai_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('anpai_list'); ?>">
+						<a href="<?php echo site_url('anpai_list/show'); ?>">
 							<i class="icon-user"></i>
 							开标安排
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='pic_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('pic_list'); ?>">
+						<a href="<?php echo site_url('pic_list/show'); ?>">
 							<i class="icon-user"></i>
 							图片快讯
 						</a>
 					</li>
 					
 					<li<?php if($page_name=='link_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('link_list'); ?>">
+						<a href="<?php echo site_url('link_list/show'); ?>">
 							<i class="icon-user"></i>
 							友情链接
 						</a>

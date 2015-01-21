@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class news_list extends CI_Controller
+class News_list extends CI_Controller
 {
+	private $category_id = 6;
 	private $page_items = 20;
 	private $pageName = 'news_list';
 	private $user = null;
@@ -18,12 +19,20 @@ class news_list extends CI_Controller
 	
 	public function show($page = 1)
 	{
-		$this->load->model('mdownload');
+		$this->load->model('marticle');
+		$this->load->model('mcategory');
 		
-		$result = $this->mdownload->read(null, array(
+		$category_result = $this->mcategory->read(array(
+			'parent_id'		=>	$this->category_id
+		));
+		$result = $this->marticle->read_from_view(array(
+			'category_id'	=>	$this->category_id
+		), array(
 			'order_by'		=>	array('time', 'desc')
 		), $this->page_items, $this->page_items * (intval($page) - 1));
-		$count = $this->mdownload->count();
+		$count = $this->marticle->count(array(
+			'category_id'	=>	$this->category_id
+		));
 
 		$this->load->library('pagination');
 		$config['base_url'] = site_url('news_list/show');
@@ -35,6 +44,7 @@ class news_list extends CI_Controller
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
+			'categories'		=>	$$category_result,
 			'result'			=>	$result,
 			'pagination'		=>	$this->pagination->create_links()
 		);
@@ -46,8 +56,13 @@ class news_list extends CI_Controller
 	{
 		if(!empty($sliderId))
 		{
-			$this->load->model('mdownload');
-			$result = $this->mdownload->read(array(
+			$this->load->model('marticle');
+			$this->load->model('mcategory');
+
+			$category_result = $this->mcategory->read(array(
+				'parent_id'		=>	$this->category_id
+			));
+			$result = $this->marticle->read(array(
 				'id'		=>	$sliderId
 			));
 			if($result !== FALSE)
@@ -58,6 +73,7 @@ class news_list extends CI_Controller
 			$data = array(
 				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
+				'categories'		=>	$$category_result,
 				'edit'				=>	'1',
 				'id'				=>	$sliderId,
 				'value'				=>	$result
@@ -71,42 +87,49 @@ class news_list extends CI_Controller
 	{
 		if(!empty($sliderId))
 		{
-			$this->load->model('mdownload');
+			$this->load->model('marticle');
 				
-			$this->mdownload->delete($sliderId);
+			$this->marticle->delete($sliderId);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'DOWNLOAD_DELETE_SUCCESS', '', 'news_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_DELETE_SUCCESS', '', 'news_list/show', true, 5);
 	}
 	
 	public function submit()
 	{
-		$this->load->model('mdownload');
+		$this->load->model('marticle');
 		
 		$edit = $this->input->post('edit', TRUE);
 		$sliderId = $this->input->post('id', TRUE);
-		$download_name = $this->input->post('downloadName', TRUE);
-		$download_filepath = $this->input->post('downloadFilepath', TRUE);
+		$name = $this->input->post('newsName', TRUE);
+		$category = $this->input->post('newsCategory', TRUE);
+		$refer = $this->input->post('newsRefer', TRUE);
+		$time = $this->input->post('articleTime', TRUE);
+		$content = $this->input->post('wysiwyg', TRUE);
 
-		if(empty($download_name) || empty($download_filepath))
+		if(empty($name) || empty($content))
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'news_list/show', true, 5);
 		}
+		$refer = empty($refer) ? '' : $refer;
+		$time = empty($time) ? time() : strtotime($time);
 		
 		$row = array(
-			'name'			=>	$download_name,
-			'filepath'		=>	$download_filepath
+			'category_id'	=>	empty($category) ? $this->category_id : intval($category),
+			'name'			=>	$name,
+			'refer'			=>	$refer,
+			'time'			=>	$time,
+			'content'		=>	$content
 		);
 		
 		if(!empty($edit))
 		{
-			$this->mdownload->update($sliderId, $row);
+			$this->marticle->update($sliderId, $row);
 		}
 		else
 		{
-			$row['time'] = time();
-			$this->mdownload->create($row);
+			$this->marticle->create($row);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'DOWNLOAD_SUBMIT_SUCCESS', '', 'news_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_SUBMIT_SUCCESS', '', 'news_list/show', true, 5);
 	}
 }
 

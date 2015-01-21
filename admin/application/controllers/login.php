@@ -22,7 +22,7 @@ class Login extends CI_Controller
 			}
 			else
 			{
-				redirect('job_list');
+				redirect('account');
 			}
 		}
 		else
@@ -83,7 +83,7 @@ class Login extends CI_Controller
 	            		'admin_lastlogin'	=>	time()
 	            ));
 	            
-				$redirectUrl = empty($redirectUrl) ? 'job_list' : $redirectUrl;
+				$redirectUrl = empty($redirectUrl) ? 'account' : $redirectUrl;
 				showMessage(MESSAGE_TYPE_SUCCESS, 'USER_LOGIN_SUCCESS', $result, $redirectUrl, true, 5);
 			}
 		}

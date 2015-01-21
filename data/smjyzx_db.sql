@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-01-21 11:19:29
+Date: 2015-01-21 17:26:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -172,3 +172,20 @@ CREATE TABLE `links` (
 -- ----------------------------
 -- Records of links
 -- ----------------------------
+
+-- ----------------------------
+-- View structure for article_category
+-- ----------------------------
+DROP VIEW IF EXISTS `article_category`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `article_category` AS SELECT
+articles.id,
+articles.category_id,
+articles.`name`,
+articles.refer,
+articles.time,
+articles.content,
+articles.pic,
+category.`name` AS category_name
+FROM
+articles
+INNER JOIN category ON articles.category_id = category.id ;

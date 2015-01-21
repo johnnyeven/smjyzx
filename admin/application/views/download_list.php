@@ -100,9 +100,3 @@
 				</div>
                 <script src="<?php echo base_url('resources/admin/js/uploader/ajaxfileupload.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/upload.js'); ?>" language="javascript"></script>
-                <script src="<?php echo base_url('resources/admin/js/jquery.resizeimg.js'); ?>" language="javascript"></script>
-                <script language="javascript">
-				$(function() {
-					$("#imgTable img").resizeImg({w: 300, h: 150});
-				});
-				</script>
