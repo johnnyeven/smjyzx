@@ -114,7 +114,7 @@ class Yuyue_list extends CI_Controller
 		$start_second = $this->input->post('startSeconds', TRUE);
 		$content = $this->input->post('wysiwyg', TRUE);
 
-		if(empty($name) || empty($content))
+		if(empty($name) || empty($content) || empty($category) || empty($location))
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'yuyue_list/show', true, 5);
 		}

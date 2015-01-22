@@ -93,7 +93,7 @@
                                                     <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
                                                 <?php endforeach; ?>
                                                 </select>
-                                                <a href="#" target="_blank">项目类别管理</a>
+                                                <a href="<?php echo site_url('biao_category_list/show'); ?>" target="_blank">项目类别管理</a>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
@@ -105,6 +105,7 @@
                                                     <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
                                                 <?php endforeach; ?>
                                                 </select>
+                                                <a href="<?php echo site_url('biao_location_list/show'); ?>" target="_blank">开标室管理</a>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
