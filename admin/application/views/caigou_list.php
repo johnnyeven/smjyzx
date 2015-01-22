@@ -1,7 +1,7 @@
 				<link rel="stylesheet" href="<?php echo base_url('resources/admin/css/jquery-ui.css'); ?>" type="text/css" />
 				<h1 class="page-title">
 					<i class="icon-home"></i>
-					建设工程管理
+					政府采购管理
 				</h1>
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">
@@ -33,10 +33,10 @@
 									<td><?php echo $row->category_name; ?></td>
 									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
 									<td class="action-td">
-										<a href="<?php echo site_url('gongcheng_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+										<a href="<?php echo site_url('caigou_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
 											<i class="icon-edit"></i>								
 										</a>					
-										<a href="<?php echo site_url('gongcheng_list/delete/' . $row->id); ?>" class="btn btn-small">
+										<a href="<?php echo site_url('caigou_list/delete/' . $row->id); ?>" class="btn btn-small">
 											<i class="icon-remove"></i>						
 										</a>
 									</td>
@@ -66,7 +66,7 @@
 					
 					<div class="widget-content">
 					
-						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('gongcheng_list/submit'); ?>" method="post" />
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('caigou_list/submit'); ?>" method="post" />
                                     <fieldset>
                                         <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
                                         <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />

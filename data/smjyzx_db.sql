@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-01-21 17:26:48
+Date: 2015-01-22 14:23:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,6 +47,7 @@ CREATE TABLE `biao` (
   `start_time` int(11) NOT NULL,
   `location` int(11) NOT NULL,
   `time` int(11) NOT NULL,
+  `content` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -189,3 +190,24 @@ category.`name` AS category_name
 FROM
 articles
 INNER JOIN category ON articles.category_id = category.id ;
+
+-- ----------------------------
+-- View structure for biao_category_location
+-- ----------------------------
+DROP VIEW IF EXISTS `biao_category_location`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `biao_category_location` AS SELECT
+biao.id,
+biao.parent_id,
+biao.number,
+biao.`name`,
+biao.category,
+biao.start_time,
+biao.location,
+biao.time,
+biao_category.`name` AS category_name,
+biao_location.`name` AS location_name,
+biao.content
+FROM
+biao
+INNER JOIN biao_category ON biao.category = biao_category.id
+INNER JOIN biao_location ON biao.location = biao_location.id ;

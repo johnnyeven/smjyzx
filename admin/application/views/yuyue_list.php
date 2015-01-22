@@ -1,7 +1,7 @@
 				<link rel="stylesheet" href="<?php echo base_url('resources/admin/css/jquery-ui.css'); ?>" type="text/css" />
 				<h1 class="page-title">
 					<i class="icon-home"></i>
-					建设工程管理
+					场地预约管理
 				</h1>
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">
@@ -17,9 +17,10 @@
 							<thead>
 								<tr>
 									<th>编号</th>
-									<th>标题</th>
-									<th>分类</th>
-									<th>发布时间</th>
+									<th>项目名称</th>
+									<th>项目类别</th>
+									<th>开标时间</th>
+									<th>开标室</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -28,15 +29,16 @@
                             <?php if(!empty($result)): ?>
                             	<?php foreach($result as $row): ?>
 								<tr>
-									<td><?php echo $row->id; ?></td>
+									<td><?php echo $row->number; ?></td>
 									<td><?php echo $row->name; ?></td>
 									<td><?php echo $row->category_name; ?></td>
-									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
+									<td><?php echo date('Y-m-d H:i:s', $row->start_time); ?></td>
+									<td><?php echo $row->location_name; ?></td>
 									<td class="action-td">
-										<a href="<?php echo site_url('gongcheng_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+										<a href="<?php echo site_url('yuyue_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
 											<i class="icon-edit"></i>								
 										</a>					
-										<a href="<?php echo site_url('gongcheng_list/delete/' . $row->id); ?>" class="btn btn-small">
+										<a href="<?php echo site_url('yuyue_list/delete/' . $row->id); ?>" class="btn btn-small">
 											<i class="icon-remove"></i>						
 										</a>
 									</td>
@@ -47,7 +49,7 @@
                                 </tr>
                             <?php else: ?>
                             	<tr>
-                                	<td colspan="5">没有文章</td>
+                                	<td colspan="6">没有文章</td>
                                 </tr>
                             <?php endif; ?>
 							</tbody>
@@ -66,44 +68,106 @@
 					
 					<div class="widget-content">
 					
-						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('gongcheng_list/submit'); ?>" method="post" />
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('yuyue_list/submit'); ?>" method="post" />
                                     <fieldset>
                                         <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
                                         <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
                                         <div class="control-group">											
-                                            <label class="control-label" for="newsName">名称</label>
+                                            <label class="control-label" for="newsName">项目编号</label>
                                             <div class="controls">
                                                 <input type="text" class="input-medium" id="newsName" name="newsName" value="<?php echo $value->name; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
-                                        <?php if(!empty($categories)): ?>
                                         <div class="control-group">											
-                                            <label class="control-label" for="newsCategory">分类</label>
+                                            <label class="control-label" for="newsName">项目名称</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium" id="newsName" name="newsName" value="<?php echo $value->name; ?>" />
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
+                                            <label class="control-label" for="newsCategory">项目类别</label>
                                             <div class="controls">
                                                 <select class="input-medium" id="newsCategory" name="newsCategory">
                                                 <?php foreach($categories as $category): ?>
                                                     <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
                                                 <?php endforeach; ?>
                                                 </select>
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        <?php endif; ?>
-                                        <div class="control-group">											
-                                            <label class="control-label" for="newsRefer">来源</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-medium" id="newsRefer" name="newsRefer" value="<?php echo $value->refer; ?>" />
+                                                <a href="#" target="_blank">项目类别管理</a>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
-                                            <label class="control-label" for="articleTime">发布时间</label>
+                                            <label class="control-label" for="newsCategory">开标室</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d H:i:s', $value->time); else echo date('Y-m-d H:i:s') ?>" />
-                                            </div> <!-- /controls -->				
+                                                <select class="input-medium" id="newsCategory" name="newsCategory">
+                                                <?php foreach($locations as $category): ?>
+                                                    <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
+                                                <?php endforeach; ?>
+                                                </select>
+                                            </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
-                                            <label class="control-label" for="wysisyg">新闻内容</label>
+                                            <label class="control-label" for="articleTime">开标时间</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d', $value->time); else echo date('Y-m-d', $time) ?>" />
+                                            </div> <!-- /controls -->	
+				                            <div class="controls">
+				                            	<select id="startHours" name="startHours" style="width:60px;">
+				                                <?php
+				                                if(empty($value->time)) $value->time = $time;
+												for($i = 0; $i<24; $i++)
+												{
+													if($value->time != '0' && intval(date('H', $value->time)) == $i)
+													{
+														echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
+													}
+													else
+													{
+														echo "<option value=\"{$i}\">{$i}</option>";
+													}
+												}
+												?>
+				                                </select>
+				                            	时
+				                            	<select id="startMinutes" name="startMinutes" style="width:60px;">
+				                                <?php
+												for($i = 0; $i<60; $i++)
+												{
+													if($value->time != '0' && intval(date('i', $value->time)) == $i)
+													{
+														echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
+													}
+													else
+													{
+														echo "<option value=\"{$i}\">{$i}</option>";
+													}
+												}
+												?>
+				                                </select>
+				                                分
+				                            	<select id="startSeconds" name="startSeconds" style="width:60px;">
+				                                <?php
+												for($i = 0; $i<60; $i++)
+												{
+													if($value->time != '0' && intval(date('s', $value->time)) == $i)
+													{
+														echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
+													}
+													else
+													{
+														echo "<option value=\"{$i}\">{$i}</option>";
+													}
+												}
+												?>
+				                                </select>
+				                                秒
+				                            </div>
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
+                                            <label class="control-label" for="wysisyg">内容介绍</label>
                                             <div class="controls">
                                                 <textarea id="wysiwyg" name="wysiwyg" cols="50" rows="20" class="wysiwyg"><?php echo $value->content; ?></textarea>
                                             </div> <!-- /controls -->				

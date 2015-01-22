@@ -24,7 +24,10 @@ class Marticle extends CI_Model implements ICrud
 		}
 		if(!empty($extension))
 		{
-			
+			if(!empty($extension['where_in']))
+			{
+				$this->db->where_in($extension['where_in'][0], $extension['where_in'][1]);
+			}
 		}
 		return $this->db->count_all_results($this->accountTable);
 	}
@@ -63,6 +66,10 @@ class Marticle extends CI_Model implements ICrud
 			{
 				$this->db->order_by($extension['order_by'][0], $extension['order_by'][1]);
 			}
+			if(!empty($extension['where_in']))
+			{
+				$this->db->where_in($extension['where_in'][0], $extension['where_in'][1]);
+			}
 		}
 		if($limit==0 && $offset==0) {
 			$query = $this->db->get($this->accountTable);
@@ -90,6 +97,10 @@ class Marticle extends CI_Model implements ICrud
 			if(!empty($extension['order_by']))
 			{
 				$this->db->order_by($extension['order_by'][0], $extension['order_by'][1]);
+			}
+			if(!empty($extension['where_in']))
+			{
+				$this->db->where_in($extension['where_in'][0], $extension['where_in'][1]);
 			}
 		}
 		if($limit==0 && $offset==0) {

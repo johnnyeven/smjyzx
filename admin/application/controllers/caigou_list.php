@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Gongcheng_list extends CI_Controller
+class Caigou_list extends CI_Controller
 {
-	private $category_id = 8;
+	private $category_id = 12;
 	private $page_items = 20;
-	private $pageName = 'gongcheng_list';
+	private $pageName = 'caigou_list';
 	private $user = null;
 	
 	public function __construct()
@@ -53,7 +53,7 @@ class Gongcheng_list extends CI_Controller
 		}
 
 		$this->load->library('pagination');
-		$config['base_url'] = site_url('gongcheng_list/show');
+		$config['base_url'] = site_url('caigou_list/show');
 		$config['total_rows'] = $count;
 		$config['per_page'] = $this->page_items;
 		$config['use_page_numbers'] = TRUE;
@@ -109,7 +109,7 @@ class Gongcheng_list extends CI_Controller
 				
 			$this->marticle->delete($sliderId);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_DELETE_SUCCESS', '', 'gongcheng_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_DELETE_SUCCESS', '', 'caigou_list/show', true, 5);
 	}
 	
 	public function submit()
@@ -126,7 +126,7 @@ class Gongcheng_list extends CI_Controller
 
 		if(empty($name) || empty($content))
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'gongcheng_list/show', true, 5);
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'caigou_list/show', true, 5);
 		}
 		$refer = empty($refer) ? '' : $refer;
 		$time = empty($time) ? time() : strtotime($time);
@@ -147,7 +147,7 @@ class Gongcheng_list extends CI_Controller
 		{
 			$this->marticle->create($row);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_SUBMIT_SUCCESS', '', 'gongcheng_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_SUBMIT_SUCCESS', '', 'caigou_list/show', true, 5);
 	}
 }
 
