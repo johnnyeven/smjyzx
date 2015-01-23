@@ -1,7 +1,7 @@
 				<link rel="stylesheet" href="<?php echo base_url('resources/admin/css/jquery-ui.css'); ?>" type="text/css" />
 				<h1 class="page-title">
 					<i class="icon-home"></i>
-					场地预约管理
+					开标安排管理
 				</h1>
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">

@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class News_list extends CI_Controller
+class Pic_list extends CI_Controller
 {
-	private $category_id = 6;
+	private $category_id = 25;
 	private $page_items = 20;
-	private $pageName = 'news_list';
+	private $pageName = 'pic_list';
 	private $user = null;
 	
 	public function __construct()
@@ -20,12 +20,8 @@ class News_list extends CI_Controller
 	public function show($page = 1)
 	{
 		$this->load->model('marticle');
-		$this->load->model('mcategory');
 		
-		$category_result = $this->mcategory->read(array(
-			'parent_id'		=>	$this->category_id
-		));
-		$result = $this->marticle->read_from_view(array(
+		$result = $this->marticle->read(array(
 			'category_id'	=>	$this->category_id
 		), array(
 			'order_by'		=>	array('time', 'desc')
@@ -35,7 +31,7 @@ class News_list extends CI_Controller
 		));
 
 		$this->load->library('pagination');
-		$config['base_url'] = site_url('news_list/show');
+		$config['base_url'] = site_url('pic_list/show');
 		$config['total_rows'] = $count;
 		$config['per_page'] = $this->page_items;
 		$config['use_page_numbers'] = TRUE;
@@ -44,7 +40,6 @@ class News_list extends CI_Controller
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
-			'categories'		=>	$$category_result,
 			'result'			=>	$result,
 			'pagination'		=>	$this->pagination->create_links()
 		);
@@ -57,11 +52,6 @@ class News_list extends CI_Controller
 		if(!empty($sliderId))
 		{
 			$this->load->model('marticle');
-			$this->load->model('mcategory');
-
-			$category_result = $this->mcategory->read(array(
-				'parent_id'		=>	$this->category_id
-			));
 			$result = $this->marticle->read(array(
 				'id'		=>	$sliderId
 			));
@@ -73,7 +63,6 @@ class News_list extends CI_Controller
 			$data = array(
 				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
-				'categories'		=>	$$category_result,
 				'edit'				=>	'1',
 				'id'				=>	$sliderId,
 				'value'				=>	$result
@@ -91,7 +80,7 @@ class News_list extends CI_Controller
 				
 			$this->marticle->delete($sliderId);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_DELETE_SUCCESS', '', 'news_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_DELETE_SUCCESS', '', 'pic_list/show', true, 5);
 	}
 	
 	public function submit()
@@ -105,19 +94,22 @@ class News_list extends CI_Controller
 		$refer = $this->input->post('newsRefer', TRUE);
 		$time = $this->input->post('articleTime', TRUE);
 		$content = $this->input->post('wysiwyg', TRUE);
+		$pic = $this->input->post('newsPicFilepath', TRUE);
 
-		if(empty($name) || empty($content))
+		if(empty($name) || empty($pic))
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'news_list/show', true, 5);
 		}
 		$refer = empty($refer) ? '' : $refer;
 		$time = empty($time) ? time() : strtotime($time);
+		$content = empty($content) ? '' : $content;
 		
 		$row = array(
 			'category_id'	=>	empty($category) ? $this->category_id : intval($category),
 			'name'			=>	$name,
 			'refer'			=>	$refer,
-			'content'		=>	$content
+			'content'		=>	$content,
+			'pic'			=>	$pic
 		);
 		
 		if(!empty($edit))
@@ -129,7 +121,7 @@ class News_list extends CI_Controller
 			$row['time'] = $time;
 			$this->marticle->create($row);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_SUBMIT_SUCCESS', '', 'news_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_SUBMIT_SUCCESS', '', 'pic_list/show', true, 5);
 	}
 }
 

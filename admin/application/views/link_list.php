@@ -1,13 +1,14 @@
+				<link rel="stylesheet" href="<?php echo base_url('resources/admin/css/jquery-ui.css'); ?>" type="text/css" />
 				<h1 class="page-title">
 					<i class="icon-home"></i>
-					资料下载管理
+					友情链接管理
 				</h1>
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">
 				
 					<div class="widget-header">
 						<i class="icon-th-list"></i>
-						<h3>资料列表</h3>
+						<h3>链接列表</h3>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
@@ -16,9 +17,8 @@
 							<thead>
 								<tr>
 									<th>编号</th>
-									<th>名称</th>
-									<th>文件路径</th>
-									<th>发布时间</th>
+									<th>名字</th>
+									<th>链接</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -29,13 +29,12 @@
 								<tr>
 									<td><?php echo $row->id; ?></td>
 									<td><?php echo $row->name; ?></td>
-									<td><a href="<?php echo $row->filepath; ?>" target="_blank"><?php echo $row->filepath; ?></a></td>
-									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
+									<td><?php echo $row->link; ?></td>
 									<td class="action-td">
-										<a href="<?php echo site_url('download_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+										<a href="<?php echo site_url('link_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
 											<i class="icon-edit"></i>								
 										</a>					
-										<a href="<?php echo site_url('download_list/delete/' . $row->id); ?>" class="btn btn-small">
+										<a href="<?php echo site_url('link_list/delete/' . $row->id); ?>" class="btn btn-small">
 											<i class="icon-remove"></i>						
 										</a>
 									</td>
@@ -46,7 +45,7 @@
                                 </tr>
                             <?php else: ?>
                             	<tr>
-                                	<td colspan="5">没有资料</td>
+                                	<td colspan="5">没有链接</td>
                                 </tr>
                             <?php endif; ?>
 							</tbody>
@@ -60,37 +59,33 @@
                     
 					<div class="widget-header">
 						<i class="icon-th-list"></i>
-						<h3><?php if(empty($edit)): ?>添加<?php else: ?>修改<?php endif; ?>资料</h3>
+						<h3><?php if(empty($edit)): ?>添加<?php else: ?>修改<?php endif; ?>链接</h3>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
 					
-						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('download_list/submit'); ?>" method="post" />
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('link_list/submit'); ?>" method="post" />
                                     <fieldset>
                                         <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
                                         <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
                                         <div class="control-group">											
-                                            <label class="control-label" for="downloadName">名称</label>
+                                            <label class="control-label" for="linkName">名称</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium" id="downloadName" name="downloadName" value="<?php echo $value->name; ?>" />
+                                                <input type="text" class="input-medium" id="linkName" name="linkName" value="<?php echo $value->name; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
-                                        
                                         <div class="control-group">											
-                                            <label class="control-label" for="sliderUrl">上传资料</label>
+                                            <label class="control-label" for="linkUrl">链接</label>
                                             <div class="controls">
-                                                <input name="picUpload" type="file" id="picUpload" size="20" class="input-medium" />
-                                                <input type="button" name="btnUpload" id="btnUpload" value="上传" onclick="javascript:contentFileUpload('<?php echo site_url('utils/doFileUpload'); ?>', 'picUpload', 'sliderPicPathContent', 'downloadFilepath')" class="btn btn-primary" />
-                                                <input name="downloadFilepath" type="hidden" id="downloadFilepath" value="<?php echo $value->filepath; ?>" />
+                                                <input type="text" class="input-xlarge" id="linkUrl" name="linkUrl" value="<?php echo $value->link; ?>" />
+                                                <p class="help-block">请在链接开头带上"http://"</p>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
-                                        
-                                        <div id="sliderPicPathContent" class="control-group"></div>
                                         
                                         <br />
                                         
                                         <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary">提交</button>
+                                            <button id="btnSubmit" type="submit" class="btn btn-primary">提交</button>
                                         </div> <!-- /form-actions -->
                                     </fieldset>
                                 </form>
@@ -98,5 +93,24 @@
 					</div> <!-- /widget-content -->
 				
 				</div>
-                <script src="<?php echo base_url('resources/admin/js/uploader/ajaxfileupload.js'); ?>" language="javascript"></script>
-                <script src="<?php echo base_url('resources/admin/js/upload.js'); ?>" language="javascript"></script>
+				<script type="text/javascript">
+				function IsURL(str_url) {
+					var strRegex = "^https?://(.*\.)+([A-Za-z0-9])+\/?$"; 
+					var re=new RegExp(strRegex); 
+					//re.test()
+					if (re.test(str_url)) {
+						return (true); 
+					} else { 
+						return (false); 
+					}
+				}
+				$(function() {
+					$("#btnSubmit").click(function() {
+						var url = $("#linkUrl").val();
+						if(!IsURL(url)) {
+							alert('链接格式不正确，请确保链接以http://或者是https://开头');
+							return false;
+						}
+					});
+				});
+				</script>

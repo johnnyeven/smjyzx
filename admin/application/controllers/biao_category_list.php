@@ -65,7 +65,7 @@ class biao_category_list extends CI_Controller
 				
 			$this->mbiao_category->delete($sliderId);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_DELETE_SUCCESS', '', 'biao_category_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'DELETE_SUCCESS', '', 'biao_category_list/show', true, 5);
 	}
 	
 	public function submit()
@@ -95,7 +95,7 @@ class biao_category_list extends CI_Controller
 		{
 			$this->mbiao_category->create($row);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_SUBMIT_SUCCESS', '', 'biao_category_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'SUBMIT_SUCCESS', '', 'biao_category_list/show', true, 5);
 	}
 }
 

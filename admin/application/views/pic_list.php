@@ -1,7 +1,7 @@
 				<link rel="stylesheet" href="<?php echo base_url('resources/admin/css/jquery-ui.css'); ?>" type="text/css" />
 				<h1 class="page-title">
 					<i class="icon-home"></i>
-					场地预约管理
+					图片快讯管理
 				</h1>
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">
@@ -17,10 +17,9 @@
 							<thead>
 								<tr>
 									<th>编号</th>
-									<th>项目名称</th>
-									<th>项目类别</th>
-									<th>开标时间</th>
-									<th>开标室</th>
+									<th>标题</th>
+									<th>图片</th>
+									<th>发布时间</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -29,16 +28,18 @@
                             <?php if(!empty($result)): ?>
                             	<?php foreach($result as $row): ?>
 								<tr>
-									<td><?php echo $row->number; ?></td>
+									<td><?php echo $row->id; ?></td>
 									<td><?php echo $row->name; ?></td>
-									<td><?php echo $row->category_name; ?></td>
-									<td><?php echo date('Y-m-d H:i:s', $row->start_time); ?></td>
-									<td><?php echo $row->location_name; ?></td>
+									<?php
+									$picArray = explode(';', $row->pic);
+									?>
+									<td><img src="<?php echo $picArray[0]; ?>" /></td>
+									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
 									<td class="action-td">
-										<a href="<?php echo site_url('yuyue_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+										<a href="<?php echo site_url('pic_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
 											<i class="icon-edit"></i>								
 										</a>					
-										<a href="<?php echo site_url('yuyue_list/delete/' . $row->id); ?>" class="btn btn-small">
+										<a href="<?php echo site_url('pic_list/delete/' . $row->id); ?>" class="btn btn-small">
 											<i class="icon-remove"></i>						
 										</a>
 									</td>
@@ -49,7 +50,7 @@
                                 </tr>
                             <?php else: ?>
                             	<tr>
-                                	<td colspan="6">没有文章</td>
+                                	<td colspan="5">没有文章</td>
                                 </tr>
                             <?php endif; ?>
 							</tbody>
@@ -68,107 +69,52 @@
 					
 					<div class="widget-content">
 					
-						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('yuyue_list/submit'); ?>" method="post" />
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('pic_list/submit'); ?>" method="post" />
                                     <fieldset>
                                         <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
                                         <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
                                         <div class="control-group">											
-                                            <label class="control-label" for="biaoNumber">项目编号</label>
+                                            <label class="control-label" for="newsName">名称</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium" id="biaoNumber" name="biaoNumber" value="<?php echo $value->number; ?>" />
+                                                <input type="text" class="input-medium" id="newsName" name="newsName" value="<?php echo $value->name; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         <div class="control-group">											
-                                            <label class="control-label" for="biaoName">项目名称</label>
+                                            <label class="control-label" for="newsRefer">来源</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium" id="biaoName" name="biaoName" value="<?php echo $value->name; ?>" />
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        
-                                        <div class="control-group">											
-                                            <label class="control-label" for="biaoCategory">项目类别</label>
-                                            <div class="controls">
-                                                <select class="input-medium" id="biaoCategory" name="biaoCategory">
-                                                <?php foreach($categories as $category): ?>
-                                                    <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
-                                                <?php endforeach; ?>
-                                                </select>
-                                                <a href="<?php echo site_url('biao_category_list/show'); ?>" target="_blank">项目类别管理</a>
+                                                <input type="text" class="input-medium" id="newsRefer" name="newsRefer" value="<?php echo $value->refer; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
-                                            <label class="control-label" for="biaoLocation">开标室</label>
+                                            <label class="control-label" for="articleTime">发布时间</label>
                                             <div class="controls">
-                                                <select class="input-medium" id="biaoLocation" name="biaoLocation">
-                                                <?php foreach($locations as $category): ?>
-                                                    <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
-                                                <?php endforeach; ?>
-                                                </select>
-                                                <a href="<?php echo site_url('biao_location_list/show'); ?>" target="_blank">开标室管理</a>
+                                                <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d H:i:s', $value->time); else echo date('Y-m-d H:i:s') ?>" />
+                                            </div> <!-- /controls -->				
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
+                                            <label class="control-label" for="sliderUrl">上传图片</label>
+                                            <div class="controls">
+                                                <input name="picUpload" type="file" id="picUpload" size="20" class="input-medium" />
+                                                <input type="button" name="btnUpload" id="btnUpload" value="上传" onclick="javascript:contentPicUpload('<?php echo site_url('utils/doPicUpload'); ?>', 'picUpload', 'newsPicPathContent', 'newsPicFilepath', 'append', 5)" class="btn btn-primary" />
+                                                <input name="newsPicFilepath" type="hidden" id="newsPicFilepath" value="<?php echo $value->pic; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
+                                        <div id="newsPicPathContent" class="control-group">
+										<?php if(!empty($edit)): ?>
+										<?php
+										$picArray = explode(';', $value->pic);
+										foreach($picArray as $path)
+										{
+											if(!empty($path)) echo "<div style='padding:10px;border:#CCC 1px solid;width:200px;height:200px;float:left;margin-right:10px;'><img src='" . $path . "' /><a href='#'>删除</a></div>";
+										}
+										?>
+										<?php endif; ?>
+                                        </div>
                                         
                                         <div class="control-group">											
-                                            <label class="control-label" for="articleTime">开标时间</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d', $value->time); else echo date('Y-m-d', $time) ?>" />
-                                            </div> <!-- /controls -->	
-				                            <div class="controls">
-				                            	<select id="startHours" name="startHours" style="width:60px;">
-				                                <?php
-				                                if(empty($value->time)) $value->time = $time;
-												for($i = 0; $i<24; $i++)
-												{
-													if($value->time != '0' && intval(date('H', $value->time)) == $i)
-													{
-														echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
-													}
-													else
-													{
-														echo "<option value=\"{$i}\">{$i}</option>";
-													}
-												}
-												?>
-				                                </select>
-				                            	时
-				                            	<select id="startMinutes" name="startMinutes" style="width:60px;">
-				                                <?php
-												for($i = 0; $i<60; $i++)
-												{
-													if($value->time != '0' && intval(date('i', $value->time)) == $i)
-													{
-														echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
-													}
-													else
-													{
-														echo "<option value=\"{$i}\">{$i}</option>";
-													}
-												}
-												?>
-				                                </select>
-				                                分
-				                            	<select id="startSeconds" name="startSeconds" style="width:60px;">
-				                                <?php
-												for($i = 0; $i<60; $i++)
-												{
-													if($value->time != '0' && intval(date('s', $value->time)) == $i)
-													{
-														echo "<option value=\"{$i}\" selected=\"selected\">{$i}</option>";
-													}
-													else
-													{
-														echo "<option value=\"{$i}\">{$i}</option>";
-													}
-												}
-												?>
-				                                </select>
-				                                秒
-				                            </div>
-                                        </div> <!-- /control-group -->
-                                        
-                                        <div class="control-group">											
-                                            <label class="control-label" for="wysisyg">内容介绍</label>
+                                            <label class="control-label" for="wysisyg">新闻内容</label>
                                             <div class="controls">
                                                 <textarea id="wysiwyg" name="wysiwyg" cols="50" rows="20" class="wysiwyg"><?php echo $value->content; ?></textarea>
                                             </div> <!-- /controls -->				
@@ -187,6 +133,9 @@
 				</div>
                 <script src="<?php echo base_url('resources/js/ckeditor/ckeditor.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/jquery-ui.js'); ?>" language="javascript"></script>
+                <script src="<?php echo base_url('resources/admin/js/jquery.resizeimg.js'); ?>" language="javascript"></script>
+                <script src="<?php echo base_url('resources/admin/js/uploader/ajaxfileupload.js'); ?>" language="javascript"></script>
+                <script src="<?php echo base_url('resources/admin/js/upload.js'); ?>" language="javascript"></script>
                 <script language="javascript">
 				$(function() {
 					CKEDITOR.replace( 'wysiwyg' );
@@ -223,5 +172,13 @@
 					};
 					$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 					$("#articleTime").datepicker();
+					$("#imgTable img").resizeImg({w: 300, h: 150});
+					$("#newsPicPathContent img").resizeImg({w: 200, h: 200});
+					$("#newsPicPathContent a").click(function() {
+						var path = $(this).prev().attr('src');
+						var value = $("#newsPicFilepath").val();
+						$("#newsPicFilepath").val(value.replace(path + ";", ""));
+						$(this).parent().remove();
+					});
 				});
 				</script>

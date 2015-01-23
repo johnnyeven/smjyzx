@@ -22,6 +22,39 @@ class Utils extends CI_Controller
 		$msg = "";
 	
 		$config['upload_path'] = $uploadStorePath;
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['encrypt_name'] = TRUE;
+	
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload($fileElementName)) {
+			$error = $this->upload->display_errors('', '');
+		} else {
+			$data = $this->upload->data();
+			$msg = '上传成功！';
+			$error = 'null';
+			$fileName = base_url($uploadDir . '/' . $data['file_name']);
+		}
+	
+		$ret = '{';
+		$ret .= "	error:\"{$error}\",";
+		$ret .= "	msg:\"{$msg}\",";
+		$ret .= "	data:\"{$fileName}\"";
+		$ret .= '}';
+		echo $ret;
+	}
+	
+	public function doFileUpload() {
+		$uploadDir = $this->config->item('upload_dir');
+		$fileElementName = 'fileUpload';
+		$el = $this->input->get('el', TRUE);
+		if($el) {
+			$fileElementName = $el;
+		}
+		$uploadStorePath = $uploadDir;
+		$error = "";
+		$msg = "";
+	
+		$config['upload_path'] = $uploadStorePath;
 		$config['allowed_types'] = 'gif|jpg|png|xlsx|xls|doc|docx|ppt|pptx|zip|rar';
 		$config['encrypt_name'] = TRUE;
 	

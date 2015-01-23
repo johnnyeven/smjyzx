@@ -1,10 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class biao_location_list extends CI_Controller
+class link_list extends CI_Controller
 {
-	private $category_id = 6;
 	private $page_items = 20;
-	private $pageName = 'biao_location_list';
+	private $pageName = 'link_list';
 	private $user = null;
 	
 	public function __construct()
@@ -19,14 +18,23 @@ class biao_location_list extends CI_Controller
 	
 	public function show($page = 1)
 	{
-		$this->load->model('mbiao_location');
+		$this->load->model('mlink');
 		
-		$result = $this->mbiao_location->read();
+		$result = $this->mlink->read();
+		$count = $this->mlink->count();
+
+		$this->load->library('pagination');
+		$config['base_url'] = site_url('link_list/show');
+		$config['total_rows'] = $count;
+		$config['per_page'] = $this->page_items;
+		$config['use_page_numbers'] = TRUE;
+		$this->pagination->initialize($config);
 
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
-			'result'			=>	$result
+			'result'			=>	$result,
+			'pagination'		=>	$this->pagination->create_links()
 		);
 		$this->load->model('render');
 		$this->render->render($this->pageName, $data);
@@ -36,8 +44,9 @@ class biao_location_list extends CI_Controller
 	{
 		if(!empty($sliderId))
 		{
-			$this->load->model('mbiao_location');
-			$result = $this->mbiao_location->read(array(
+			$this->load->model('mlink');
+
+			$result = $this->mlink->read(array(
 				'id'		=>	$sliderId
 			));
 			if($result !== FALSE)
@@ -61,41 +70,41 @@ class biao_location_list extends CI_Controller
 	{
 		if(!empty($sliderId))
 		{
-			$this->load->model('mbiao_location');
+			$this->load->model('mlink');
 				
-			$this->mbiao_location->delete($sliderId);
+			$this->mlink->delete($sliderId);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'DELETE_SUCCESS', '', 'biao_location_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'LINK_DELETE_SUCCESS', '', 'link_list/show', true, 5);
 	}
 	
 	public function submit()
 	{
-		$this->load->model('mbiao_location');
+		$this->load->model('mlink');
 		
 		$edit = $this->input->post('edit', TRUE);
 		$sliderId = $this->input->post('id', TRUE);
-		$name = $this->input->post('newsName', TRUE);
+		$name = $this->input->post('linkName', TRUE);
+		$link = $this->input->post('linkUrl', TRUE);
 
-		if(empty($name))
+		if(empty($name) || empty($link))
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'biao_location_list/show', true, 5);
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'link_list/show', true, 5);
 		}
-		$refer = empty($refer) ? '' : $refer;
-		$time = empty($time) ? time() : strtotime($time);
 		
 		$row = array(
-			'name'	=>	$name
+			'name'			=>	$name,
+			'link'			=>	$link,
 		);
 		
 		if(!empty($edit))
 		{
-			$this->mbiao_location->update($sliderId, $row);
+			$this->mlink->update($sliderId, $row);
 		}
 		else
 		{
-			$this->mbiao_location->create($row);
+			$this->mlink->create($row);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'SUBMIT_SUCCESS', '', 'biao_location_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'LINK_SUBMIT_SUCCESS', '', 'link_list/show', true, 5);
 	}
 }
 

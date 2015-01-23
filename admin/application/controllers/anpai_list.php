@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Yuyue_list extends CI_Controller
+class Anpai_list extends CI_Controller
 {
-	private $category_id = 28;
+	private $category_id = 29;
 	private $page_items = 20;
-	private $pageName = 'yuyue_list';
+	private $pageName = 'anpai_list';
 	private $user = null;
 	
 	public function __construct()
@@ -37,7 +37,7 @@ class Yuyue_list extends CI_Controller
 		));
 
 		$this->load->library('pagination');
-		$config['base_url'] = site_url('yuyue_list/show');
+		$config['base_url'] = site_url('anpai_list/show');
 		$config['total_rows'] = $count;
 		$config['per_page'] = $this->page_items;
 		$config['use_page_numbers'] = TRUE;
@@ -97,7 +97,7 @@ class Yuyue_list extends CI_Controller
 				
 			$this->mbiao->delete($sliderId);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_DELETE_SUCCESS', '', 'yuyue_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_DELETE_SUCCESS', '', 'anpai_list/show', true, 5);
 	}
 	
 	public function submit()
@@ -118,7 +118,7 @@ class Yuyue_list extends CI_Controller
 
 		if(empty($name) || empty($content) || empty($category) || empty($location))
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'yuyue_list/show', true, 5);
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'anpai_list/show', true, 5);
 		}
 		$number = empty($number) ? '' : $number;
 		$time = time();
@@ -146,7 +146,7 @@ class Yuyue_list extends CI_Controller
 			$row['time'] = $time;
 			$this->mbiao->create($row);
 		}
-		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_SUBMIT_SUCCESS', '', 'yuyue_list/show', true, 5);
+		showMessage(MESSAGE_TYPE_SUCCESS, 'ARTICLE_SUBMIT_SUCCESS', '', 'anpai_list/show', true, 5);
 	}
 }
 
