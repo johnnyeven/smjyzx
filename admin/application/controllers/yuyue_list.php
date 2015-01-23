@@ -108,9 +108,6 @@ class Yuyue_list extends CI_Controller
 		$sliderId = $this->input->post('id', TRUE);
 		$number = $this->input->post('biaoNumber', TRUE);
 		$name = $this->input->post('biaoName', TRUE);
-		$category = $this->input->post('biaoCategory', TRUE);
-		$location = $this->input->post('biaoLocation', TRUE);
-		$start_time = $this->input->post('articleTime', TRUE);
 		$start_hour = $this->input->post('startHours', TRUE);
 		$start_minute = $this->input->post('startMinutes', TRUE);
 		$start_second = $this->input->post('startSeconds', TRUE);
