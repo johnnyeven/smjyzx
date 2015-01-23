@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-01-22 14:23:41
+Date: 2015-01-23 13:52:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -141,7 +141,7 @@ CREATE TABLE `digisky_admin` (
 -- ----------------------------
 -- Records of digisky_admin
 -- ----------------------------
-INSERT INTO `digisky_admin` VALUES ('1', 'admin', 'd93a5def7511da3d0f2d171d9c344e91', '1', '0', '1421741718');
+INSERT INTO `digisky_admin` VALUES ('1', 'admin', 'd93a5def7511da3d0f2d171d9c344e91', '1', '0', '1421917698');
 
 -- ----------------------------
 -- Table structure for download
@@ -164,7 +164,7 @@ CREATE TABLE `download` (
 -- ----------------------------
 DROP TABLE IF EXISTS `links`;
 CREATE TABLE `links` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
