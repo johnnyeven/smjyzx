@@ -1,3 +1,11 @@
 .slider {width:328px;height:248px;border:#000 1px solid;}
 .news {width:338px;height:248px;}
 .announcement {width:268px;height:248px;}
+.banner {width:960px;height:75px;}
+.main-block {width:473px;height:248px;}
+.pictures {width:958px;height:143px;}
+	.verticle-item-head {width:34px;height:143px;border-left:#bebebe 1px solid;float:right;}
+	.verticle-item-body {float:left;width:923px;height:143px;}
+.links {width:958px;height:138px;}
+	.links-item {float:left;background:url(../images/list_item_icon.png) left no-repeat;padding-left:10px;line-height:30px;width:300px;}
+		.links-item a, .links-item a:visited {color:#5f5f5f;font-weight:bold;};
