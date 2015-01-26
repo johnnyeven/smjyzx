@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>一流素材网-flash图片轮播</title>
+<script type="text/javascript" src="js/swfobject.js"></script>
+<style type="text/css">
+body{font-size:12px}
+#focus{ width:600px; height:164px; margin:0px auto;}
+</style>
+</head>
+<body>
+<div id="focus">
+<p><strong>Welcome to yoursite.com</strong></p>
+<p>We have detected that you do not have the Flash 7 player installed.</p>
+<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">Click Here</a>
+to download the Flash plugin.</p>
+</div>
+<script type="text/javascript">
+var so = new SWFObject("focus.swf", "focus", "600", "164", "7", "#ffffff");
+so.addParam('wmode','transparent');
+so.addVariable("picurl","img/1.jpg,img/2.jpg,img/3.jpg");
+so.addVariable("pictext","abcd,werwb");
+so.addVariable("piclink","http://www.16sucai.com,http://www.16sucai.com,http://www.16sucai.com");
+so.addVariable("pictime","5");
+so.addVariable("borderwidth","600");
+so.addVariable("borderheight","164");
+so.addVariable("borderw","false");
+so.addVariable("buttondisplay","true");
+so.addVariable("textheight","20");
+so.write("focus");
+</script>
+<p style="text-align:center">一流素材网收集整理 <a href="www.16sucai.com" target="_blank">www.16sucai.com</a></p>
+</body>
+</html>

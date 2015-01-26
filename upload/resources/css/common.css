@@ -1,0 +1,15 @@
+body, p, h1, h2, h3, h4, h5, h6 {padding:0;margin:0;font:12px;}
+body {background-color:#e4e4e4;}
+.clear {clear:both;}
+a, a:visited {text-decoration: none;}
+a:hover {text-decoration: underline;}
+
+.out_wrapper {width:1000px;margin:0 auto;background:url(../images/index_27.png) repeat-y;}
+.wrapper {width:980px;margin:0 auto;}
+.top {width:980px;height:250px;}
+.top-menu {width:960px;padding-left:20px;font-size:14px;font-weight:bold;color:#FFF;height:40px;line-height:40px;background:url(../images/index_05.png) repeat-x;margin-bottom:10px;}
+	.top-menu a, .top-menu a:visited {color:#FFF;}
+	.top-menu .datetime {float:right;line-height: 40px;padding-right:10px;}
+.row {padding:0 10px 10px 10px;}
+.row-item {float:left;margin-right:10px;border:#bebebe 1px solid;}
+.last-item {margin-right:0;}
