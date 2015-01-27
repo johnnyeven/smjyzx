@@ -95,6 +95,7 @@ class Pic_list extends CI_Controller
 		$time = $this->input->post('articleTime', TRUE);
 		$content = $this->input->post('wysiwyg', TRUE);
 		$pic = $this->input->post('newsPicFilepath', TRUE);
+		$indexShow = $this->input->post('indexShow', TRUE);
 
 		if(empty($name) || empty($pic))
 		{
@@ -109,7 +110,8 @@ class Pic_list extends CI_Controller
 			'name'			=>	$name,
 			'refer'			=>	$refer,
 			'content'		=>	$content,
-			'pic'			=>	$pic
+			'pic'			=>	$pic,
+			'show_in_index'	=>	!empty($indexShow) ? 1 : 0
 		);
 		
 		if(!empty($edit))

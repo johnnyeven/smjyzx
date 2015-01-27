@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-01-23 13:52:13
+Date: 2015-01-27 15:06:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,6 +27,7 @@ CREATE TABLE `articles` (
   `time` int(11) NOT NULL,
   `content` text NOT NULL,
   `pic` varchar(255) NOT NULL DEFAULT '',
+  `show_in_index` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -189,7 +190,7 @@ articles.pic,
 category.`name` AS category_name
 FROM
 articles
-INNER JOIN category ON articles.category_id = category.id ;
+INNER JOIN category ON articles.category_id = category.id ; ;
 
 -- ----------------------------
 -- View structure for biao_category_location

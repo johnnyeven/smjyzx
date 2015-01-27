@@ -114,6 +114,13 @@
                                         </div>
                                         
                                         <div class="control-group">											
+                                            <label class="control-label" for="sliderUrl">固定展示</label>
+                                            <div class="controls">
+                                                <input type="checkbox" name="indexShow" value="1" /> 是
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+
+                                        <div class="control-group">											
                                             <label class="control-label" for="wysisyg">新闻内容</label>
                                             <div class="controls">
                                                 <textarea id="wysiwyg" name="wysiwyg" cols="50" rows="20" class="wysiwyg"><?php echo $value->content; ?></textarea>

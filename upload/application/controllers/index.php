@@ -13,7 +13,7 @@ class Index extends CI_Controller
 
 		//滚动图片
 		$slider_result = $this->marticle->read(array(
-			'category_id'	=>	5
+			'show_in_index'	=>	1
 		), array(
 			'order_by'		=>	array(
 				'time',
@@ -190,7 +190,7 @@ class Index extends CI_Controller
 				'start_time',
 				'asc'
 			)
-		));
+		), 3);
 
 		//开标安排
 		$kaibiao_result = $this->mbiao->read(array(
@@ -200,7 +200,16 @@ class Index extends CI_Controller
 				'start_time',
 				'asc'
 			)
-		));
+		), 3);
+
+		$this->load->model('mlink');
+		//友情链接
+		$link_result = $this->mlink->read(null, array(
+			'order_by'		=>	array(
+				'id',
+				'desc'
+			)
+		), 9);
 
 		$data = array(
 			'slider_result'			=>	$slider_result,
@@ -221,10 +230,12 @@ class Index extends CI_Controller
 			'part4_3_result'		=>	$part4_3_result,
 			'part5_result'			=>	$part5_result,
 			'yuyue_result'			=>	$yuyue_result,
-			'kaibiao_result'		=>	$kaibiao_result
+			'kaibiao_result'		=>	$kaibiao_result,
+			'link_result'			=>	$link_result
 		);
 
-		$this->load->view('index', $data);
+		$this->load->model('render');
+		$this->render->render('index', $data);
 	}
 }
 
