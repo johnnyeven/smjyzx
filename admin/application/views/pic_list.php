@@ -116,7 +116,7 @@
                                         <div class="control-group">											
                                             <label class="control-label" for="sliderUrl">固定展示</label>
                                             <div class="controls">
-                                                <input type="checkbox" name="indexShow" value="1" /> 是
+                                                <input type="checkbox" name="indexShow" value="1" <?php if($value->show_in_index == '1'): ?>checked="checked"<?php endif; ?> /> 是
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
 
