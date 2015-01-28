@@ -43,11 +43,11 @@
 								</tr>
                                 <?php endforeach; ?>
                             	<tr>
-                                	<td style="text-align:right;" colspan="5"><?php echo $pagination; ?></td>
+                                	<td style="text-align:right;" colspan="6"><?php echo $pagination; ?></td>
                                 </tr>
                             <?php else: ?>
                             	<tr>
-                                	<td colspan="5">没有文章</td>
+                                	<td colspan="6">没有文章</td>
                                 </tr>
                             <?php endif; ?>
 							</tbody>

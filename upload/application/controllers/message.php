@@ -38,7 +38,7 @@ class Message extends CI_Controller
 			$returnContent = "系统将在{$autoDelay}秒内自动跳转，或者您也可以点<a href=\"$redirect\">这里</a>\n";
 		} else {
 			$metaData = '';
-			$returnContent = $redirect;
+			$returnContent = '<a href="' . $redirect . '">点击返回</a>';
 		}
 		
 		$this->load->helper('language');
@@ -54,7 +54,8 @@ class Message extends CI_Controller
 			'autoDelay'		=>	$autoDelay
 		);
 		
-		$this->load->view($this->pageName, $parameter);
+		$this->load->model('render');
+		$this->render->render($this->pageName, $parameter);
 	}
 }
 ?>

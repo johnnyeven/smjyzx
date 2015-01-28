@@ -25,10 +25,10 @@
           </object>
         </div>
         <div class="top-menu">
-            <a href="#">网站首页</a> | 
-            <a href="#">中心简介</a> | 
-            <a href="#">政策法规</a> | 
-            <a href="#">资料下载</a> | 
-            <a href="#">服务指南</a>
-            <p class="datetime">今天是2015年1月10日 星期六</p>
+            <a href="<?php echo site_url('index'); ?>">网站首页</a> | 
+            <a href="<?php echo site_url('article/single/1'); ?>">中心简介</a> | 
+            <a href="<?php echo site_url('article/single/2'); ?>">政策法规</a> | 
+            <a href="<?php echo site_url('download/show'); ?>">资料下载</a> | 
+            <a href="<?php echo site_url('article/single/4'); ?>">服务指南</a>
+            <p class="datetime">今天是<?php echo $date; ?></p>
         </div>

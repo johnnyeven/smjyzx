@@ -330,7 +330,6 @@ class CI_Pagination {
 
 		// Add the wrapper HTML if exists
 		$output = $this->full_tag_open.$output.$this->full_tag_close;
-
 		return $output;
 	}
 }

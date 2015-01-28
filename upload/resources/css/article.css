@@ -1,0 +1,11 @@
+.content {padding:50px;}
+	.content h1 {font-size:20px;text-align:center;}
+	.content .meta {padding:20px 0;}
+	.content .meta span {display:inline-block;width:33%;text-align: center;}
+	.content .pic {text-align: center;}
+		.content .pic .pic-item {padding:20px 0;}
+		.content .pic .pic-item img {max-width:900px;}
+	.content .content-table {margin-top:30px;background:#bebebe;border-collapse:collapse;border:#bebebe 1px solid;}
+	.content .content-table th {padding:5px;text-align:left;}
+	.content .content-table td {background:#fff;padding:5px;}
+	.content .content-table tfoot {text-align:right;}

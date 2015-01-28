@@ -19,6 +19,12 @@ class Render extends CI_Model
 	
 	public function render($pageName = null, $data = null)
 	{
+		$time = time();
+		$date = date('Y年m月d日', $time);
+		$this->load->helper('language');
+		$this->lang->load('date');
+		$date .= ' ' . lang('DAY' . date('w', $time));
+		$data['date'] = $date;
 		$header = $this->load->view('std_head', $data, true);
 		$top = $this->load->view('std_top', $data, true);
 		$content = $this->load->view("{$pageName}", $data, true);

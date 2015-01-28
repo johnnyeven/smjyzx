@@ -1,3 +1,4 @@
+        <link href="<?php echo base_url('resources/css/index.css'); ?>" rel="stylesheet" type="text/css" />
         <div class="row">
         	<div class="row-item slider" id="slider">
         		<p>没有可以显示的内容</p>
@@ -8,7 +9,7 @@
                         <img src="<?php echo base_url('resources/images/index_11.png'); ?>" />
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('article/lists/6') ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -34,7 +35,7 @@
                         <img src="<?php echo base_url('resources/images/index_16.png'); ?>" />
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('article/lists/7') ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -374,13 +375,13 @@
             <div class="clear"></div>
         </div>
         <div class="row">
-            <div class="row-item main-block">
+            <div class="row-item second-block">
                 <div class="row-item-head">
                     <div class="row-item-head-title">
                         <img src="<?php echo base_url('resources/images/index_45.png'); ?>" />
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('bid/lists/28'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -389,9 +390,9 @@
                     <ul>
                         <?php for($i=0; $i < count($yuyue_result); $i++): ?>
                         <?php if($i != count($yuyue_result) - 1): ?>
-                        <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $yuyue_result[$i]->id) ?>"><?php echo $yuyue_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $yuyue_result[$i]->time); ?></span></li>
+                        <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('bid/show/' . $yuyue_result[$i]->id); ?>"><?php echo $yuyue_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $yuyue_result[$i]->time); ?></span></li>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $yuyue_result[$i]->id) ?>"><?php echo $yuyue_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $yuyue_result[$i]->time); ?></span></li>
+                        <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('bid/show/' . $yuyue_result[$i]->id); ?>"><?php echo $yuyue_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $yuyue_result[$i]->time); ?></span></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -400,13 +401,13 @@
                     <?php endif; ?>
                 </div>
             </div>
-            <div class="row-item last-item main-block">
+            <div class="row-item last-item second-block">
                 <div class="row-item-head">
                     <div class="row-item-head-title">
                         <img src="<?php echo base_url('resources/images/index_46.png'); ?>" />
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('bid/lists/29'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -442,7 +443,7 @@
                                 <?php
                                 $pic_array = explode(';', $part5_result[$i]->pic);
                                 ?>
-                                <img class="pictures-container" src="<?php echo $pic_array[0]; ?>" />
+                                <a href="<?php echo site_url('article/show/' . $part5_result[$i]->id); ?>"><img class="pictures-container" src="<?php echo $pic_array[0]; ?>" /></a>
                             </div>
                         <?php endfor; ?>
                             <div class="clear"></div>
@@ -463,7 +464,7 @@
                         <img src="<?php echo base_url('resources/images/index_55.png'); ?>" />
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('link/show'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>

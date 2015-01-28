@@ -45,7 +45,7 @@
 								</tr>
                                 <?php endforeach; ?>
                             	<tr>
-                                	<td style="text-align:right;" colspan="5"><?php echo $pagination; ?></td>
+                                	<td style="text-align:right;" colspan="6"><?php echo $pagination; ?></td>
                                 </tr>
                             <?php else: ?>
                             	<tr>
