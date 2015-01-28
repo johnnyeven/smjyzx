@@ -434,7 +434,23 @@
                     <img src="<?php echo base_url('resources/images/index_50.png'); ?>" />
                 </div>
                 <div class="verticle-item-body">
-
+                    <div id="picture_wrapper" class="pictures-wrapper">
+                    <?php if(!empty($part5_result)): ?>
+                        <div id="picture_slider" class="pictures-slider">
+                        <?php for($i=0; $i<count($part5_result); $i++): ?>
+                            <div class="pictures-item">
+                                <?php
+                                $pic_array = explode(';', $part5_result[$i]->pic);
+                                ?>
+                                <img class="pictures-container" src="<?php echo $pic_array[0]; ?>" />
+                            </div>
+                        <?php endfor; ?>
+                            <div class="clear"></div>
+                        </div>
+                    <?php else: ?>
+                        <p>没有可以显示的内容</p>
+                    <?php endif; ?>
+                    </div>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -513,6 +529,32 @@
                 var tab = $(this).parent().parent().parent().next().find('div.tab-item');
                 tab.hide();
                 tab.eq(index).show();
+            });
+
+            var items = $("#picture_slider > div.pictures-item");
+            var width = (items.outerWidth() + 10) * items.length;
+            $("#picture_slider").width(width);
+
+            var autoSlide = function() {
+                var l = $("#picture_slider").position().left;
+                console.log(l);
+                if(l <= -width) {
+                    $("#picture_slider").css({
+                        left: 903
+                    });
+                } else {
+                    $("#picture_slider").css({
+                        left: l - 1
+                    });
+                }
+            }
+
+            var timer = setInterval(autoSlide, 20);
+
+            $("#picture_wrapper").mouseover(function() {
+                clearInterval(timer);
+            }).mouseout(function() {
+                timer = setInterval(autoSlide, 20);
             });
         });
         </script>

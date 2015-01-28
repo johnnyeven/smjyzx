@@ -6,6 +6,10 @@
 .pictures {width:958px;height:143px;}
 	.verticle-item-head {width:34px;height:143px;border-left:#bebebe 1px solid;float:right;}
 	.verticle-item-body {float:left;width:923px;height:143px;}
+		.pictures-wrapper {margin:10px;width:903px;height:123px;overflow:hidden;position:relative;}
+		.pictures-slider {position:absolute;}
+		.pictures-item {padding:10px;border:#eee 1px solid;float:left;margin-right:10px;}
+		.pictures-container {width:200px;height:100px;}
 .links {width:958px;height:138px;}
 	.links-item {float:left;background:url(../images/list_item_icon.png) left no-repeat;padding-left:10px;line-height:30px;width:300px;}
-		.links-item a, .links-item a:visited {color:#5f5f5f;font-weight:bold;};
+		.links-item a, .links-item a:visited {color:#5f5f5f;font-weight:bold;}
