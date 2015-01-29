@@ -97,7 +97,9 @@
                         </ul>
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('article/lists/9'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/10'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/11'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -165,7 +167,10 @@
                         </ul>
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('article/lists/13'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/14'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/15'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/16'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -251,7 +256,9 @@
                         </ul>
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('article/lists/18'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/19'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/20'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -318,7 +325,9 @@
                         </ul>
                     </div>
                     <div class="row-item-head-more">
-                        <a href=""><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('article/lists/22'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/23'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a style="display:none;" href="<?php echo site_url('article/lists/24'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -530,6 +539,10 @@
                 var tab = $(this).parent().parent().parent().next().find('div.tab-item');
                 tab.hide();
                 tab.eq(index).show();
+
+                var button = $(this).parent().parent().next().find('a');
+                button.hide();
+                button.eq(index).show();
             });
 
             var items = $("#picture_slider > div.pictures-item");
@@ -538,7 +551,6 @@
 
             var autoSlide = function() {
                 var l = $("#picture_slider").position().left;
-                console.log(l);
                 if(l <= -width) {
                     $("#picture_slider").css({
                         left: 903
