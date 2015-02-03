@@ -9,4 +9,12 @@ function showMessage($type, $info, $message, $redirect = '', $auteRedirect = fal
 	redirect(site_url("message?type={$type}&info={$info}&message={$message}&redirect={$redirect}&auto_redirect={$auteRedirect}&auto_delay={$delay}"));
 }
 
+function out_url($url)
+{
+	$base_url = "http://www.smjyzx.com:8080/";
+	// $base_url = "/smjyzx/upload/";
+	$suffix = ".html";
+	return $base_url . $url . $suffix;
+}
+
 ?>

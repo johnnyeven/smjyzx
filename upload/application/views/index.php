@@ -160,10 +160,10 @@
                     </div>
                     <div class="row-item-head-tab">
                         <ul>
-                            <li class="current" rel="0">采购预公告</li>
-                            <li rel="1">采购公告</li>
-                            <li rel="2">更正公告</li>
-                            <li rel="3">中标结果</li>
+                            <!--<li rel="0">采购预公告</li>-->
+                            <li class="current" rel="0">采购公告</li>
+                            <li rel="1">更正公告</li>
+                            <li rel="2">中标结果</li>
                         </ul>
                     </div>
                     <div class="row-item-head-more">
@@ -175,6 +175,7 @@
                     <div class="clear"></div>
                 </div>
                 <div class="row-item-body">
+                    <!--
                     <div class="tab-item">
                         <?php if(!empty($part2_1_result)): ?>
                         <ul>
@@ -190,8 +191,9 @@
                         <p>没有可以显示的内容</p>
                         <?php endif; ?>
                     </div>
+                    -->
 
-                    <div class="tab-item" style="display:none;">
+                    <div class="tab-item">
                         <?php if(!empty($part2_2_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part2_2_result); $i++): ?>

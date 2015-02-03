@@ -30,15 +30,15 @@
                             	<?php foreach($result as $row): ?>
 								<tr>
 									<td><?php echo $row->number; ?></td>
-									<td><?php echo $row->name; ?></td>
+									<td><a href="<?php echo out_url("bid/show/" . $row->id); ?>" target="_blank"><?php echo $row->name; ?></a></td>
 									<td><?php echo $row->category_name; ?></td>
 									<td><?php echo date('Y-m-d H:i:s', $row->start_time); ?></td>
 									<td><?php echo $row->location_name; ?></td>
 									<td class="action-td">
-										<a href="<?php echo site_url('yuyue_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+										<a href="<?php echo site_url('anpai_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
 											<i class="icon-edit"></i>								
 										</a>					
-										<a href="<?php echo site_url('yuyue_list/delete/' . $row->id); ?>" class="btn btn-small">
+										<a href="<?php echo site_url('anpai_list/delete/' . $row->id); ?>" class="btn btn-small">
 											<i class="icon-remove"></i>						
 										</a>
 									</td>
@@ -68,7 +68,7 @@
 					
 					<div class="widget-content">
 					
-						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('yuyue_list/submit'); ?>" method="post" />
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('anpai_list/submit'); ?>" method="post" />
                                     <fieldset>
                                         <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
                                         <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />

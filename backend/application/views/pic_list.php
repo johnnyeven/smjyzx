@@ -29,7 +29,7 @@
                             	<?php foreach($result as $row): ?>
 								<tr>
 									<td><?php echo $row->id; ?></td>
-									<td><?php echo $row->name; ?></td>
+									<td><a href="<?php echo out_url("article/show/" . $row->id); ?>" target="_blank"><?php echo $row->name; ?></a></td>
 									<?php
 									$picArray = explode(';', $row->pic);
 									?>
@@ -117,6 +117,7 @@
                                             <label class="control-label" for="sliderUrl">固定展示</label>
                                             <div class="controls">
                                                 <input type="checkbox" name="indexShow" value="1" <?php if($value->show_in_index == '1'): ?>checked="checked"<?php endif; ?> /> 是
+                                                <p class="help_block">勾选此项，表示将图片显示在首页左上方Flash动态展示里<p>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
 

@@ -30,7 +30,7 @@
                             	<?php foreach($result as $row): ?>
 								<tr>
 									<td><?php echo $row->number; ?></td>
-									<td><?php echo $row->name; ?></td>
+									<td><a href="<?php echo out_url("bid/show/" . $row->id); ?>" target="_blank"><?php echo $row->name; ?></a></td>
 									<td><?php echo $row->category_name; ?></td>
 									<td><?php echo date('Y-m-d H:i:s', $row->start_time); ?></td>
 									<td><?php echo $row->location_name; ?></td>

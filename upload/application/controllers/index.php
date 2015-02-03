@@ -72,14 +72,14 @@ class Index extends CI_Controller
 		), 6);
 
 		//政府采购 采购预公告
-		$part2_1_result = $this->marticle->read(array(
-			'category_id'	=>	13
-		), array(
-			'order_by'		=>	array(
-				'time',
-				'desc'
-			)
-		), 6);
+		// $part2_1_result = $this->marticle->read(array(
+		// 	'category_id'	=>	13
+		// ), array(
+		// 	'order_by'		=>	array(
+		// 		'time',
+		// 		'desc'
+		// 	)
+		// ), 6);
 
 		//政府采购 采购公告
 		$part2_2_result = $this->marticle->read(array(
