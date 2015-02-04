@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-01-27 15:06:07
+Date: 2015-02-04 15:13:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,11 +23,12 @@ CREATE TABLE `articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
-  `refer` varchar(255) NOT NULL,
+  `refer` int(11) NOT NULL,
   `time` int(11) NOT NULL,
   `content` text NOT NULL,
   `pic` varchar(255) NOT NULL DEFAULT '',
   `show_in_index` tinyint(4) NOT NULL DEFAULT '0',
+  `url` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -49,6 +50,7 @@ CREATE TABLE `biao` (
   `location` int(11) NOT NULL,
   `time` int(11) NOT NULL,
   `content` text NOT NULL,
+  `url` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -110,7 +112,6 @@ INSERT INTO `category` VALUES ('9', '招标公告', '8');
 INSERT INTO `category` VALUES ('10', '更正公告', '8');
 INSERT INTO `category` VALUES ('11', '中标结果', '8');
 INSERT INTO `category` VALUES ('12', '政府采购', '0');
-INSERT INTO `category` VALUES ('13', '采购预公告', '12');
 INSERT INTO `category` VALUES ('14', '采购公告', '12');
 INSERT INTO `category` VALUES ('15', '变更公告', '12');
 INSERT INTO `category` VALUES ('16', '中标结果', '12');
@@ -176,10 +177,24 @@ CREATE TABLE `links` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for refer
+-- ----------------------------
+DROP TABLE IF EXISTS `refer`;
+CREATE TABLE `refer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of refer
+-- ----------------------------
+
+-- ----------------------------
 -- View structure for article_category
 -- ----------------------------
 DROP VIEW IF EXISTS `article_category`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost`  VIEW `article_category` AS SELECT
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `article_category` AS SELECT
 articles.id,
 articles.category_id,
 articles.`name`,
@@ -187,10 +202,14 @@ articles.refer,
 articles.time,
 articles.content,
 articles.pic,
-category.`name` AS category_name
+category.`name` AS category_name,
+articles.show_in_index,
+articles.url,
+refer.`name` AS refer_name
 FROM
 articles
-INNER JOIN category ON articles.category_id = category.id ; ;
+INNER JOIN category ON articles.category_id = category.id
+INNER JOIN refer ON articles.refer = refer.id ;
 
 -- ----------------------------
 -- View structure for biao_category_location
@@ -207,7 +226,8 @@ biao.location,
 biao.time,
 biao_category.`name` AS category_name,
 biao_location.`name` AS location_name,
-biao.content
+biao.content,
+biao.url
 FROM
 biao
 INNER JOIN biao_category ON biao.category = biao_category.id

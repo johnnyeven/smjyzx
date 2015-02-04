@@ -21,7 +21,9 @@ class Caigou_list extends CI_Controller
 	{
 		$this->load->model('marticle');
 		$this->load->model('mcategory');
+		$this->load->model('mrefer');
 		
+		$refer_result = $this->mrefer->read();
 		$category_result = $this->mcategory->read(array(
 			'parent_id'		=>	$this->category_id
 		));
@@ -63,6 +65,7 @@ class Caigou_list extends CI_Controller
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
 			'categories'		=>	$category_result,
+			'refers'			=>	$refer_result,
 			'result'			=>	$result,
 			'pagination'		=>	$this->pagination->create_links()
 		);
@@ -76,7 +79,9 @@ class Caigou_list extends CI_Controller
 		{
 			$this->load->model('marticle');
 			$this->load->model('mcategory');
+			$this->load->model('mrefer');
 
+			$refer_result = $this->mrefer->read();
 			$category_result = $this->mcategory->read(array(
 				'parent_id'		=>	$this->category_id
 			));
@@ -92,6 +97,7 @@ class Caigou_list extends CI_Controller
 				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
 				'categories'		=>	$category_result,
+				'refers'			=>	$refer_result,
 				'edit'				=>	'1',
 				'id'				=>	$sliderId,
 				'value'				=>	$result
@@ -122,21 +128,24 @@ class Caigou_list extends CI_Controller
 		$category = $this->input->post('newsCategory', TRUE);
 		$refer = $this->input->post('newsRefer', TRUE);
 		$time = $this->input->post('articleTime', TRUE);
+		$url = $this->input->post('articleUrl', TRUE);
 		$content = $this->input->post('wysiwyg', TRUE);
 
-		if(empty($name) || empty($content))
+		if(empty($name))
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'caigou_list/show', true, 5);
 		}
 		$refer = empty($refer) ? '' : $refer;
 		$time = empty($time) ? time() : strtotime($time);
+		$url = empty($url) ? '' : $url;
 		
 		$row = array(
 			'category_id'	=>	empty($category) ? $this->category_id : intval($category),
 			'name'			=>	$name,
 			'refer'			=>	$refer,
 			'time'			=>	$time,
-			'content'		=>	$content
+			'content'		=>	$content,
+			'url'			=>	$url
 		);
 		
 		if(!empty($edit))

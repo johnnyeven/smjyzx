@@ -17,10 +17,22 @@
                     <?php if(!empty($news_result)): ?>
                     <ul>
                         <?php for($i=0; $i < count($news_result); $i++): ?>
+                        <?php
+                        if(!empty($news_result[$i]->url))
+                        {
+                            $url = $news_result[$i]->url;
+                            $target = '_blank';
+                        }
+                        else
+                        {
+                            $url = site_url('article/show/' . $news_result[$i]->id);
+                            $target = '_self';
+                        }
+                        ?>
                         <?php if($i != count($news_result) - 1): ?>
-                        <li><span class="list-title" style="width:270px;"><a href="<?php echo site_url('article/show/' . $news_result[$i]->id) ?>"><?php echo $news_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                        <li><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $news_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:270px;"><a href="<?php echo site_url('article/show/' . $news_result[$i]->id) ?>"><?php echo $news_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                        <li class="list-last"><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $news_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -43,10 +55,22 @@
                     <?php if(!empty($notification_result)): ?>
                     <ul>
                         <?php for($i=0; $i < count($notification_result); $i++): ?>
+                        <?php
+                        if(!empty($notification_result[$i]->url))
+                        {
+                            $url = $notification_result[$i]->url;
+                            $target = '_blank';
+                        }
+                        else
+                        {
+                            $url = site_url('article/show/' . $notification_result[$i]->id);
+                            $target = '_self';
+                        }
+                        ?>
                         <?php if($i != count($notification_result) - 1): ?>
-                        <li><span class="list-title" style="width:200px;"><a href="<?php echo site_url('article/show/' . $notification_result[$i]->id) ?>"><?php echo $notification_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                        <li><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $notification_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:200px;"><a href="<?php echo site_url('article/show/' . $notification_result[$i]->id) ?>"><?php echo $notification_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                        <li class="list-last"><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $notification_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -108,10 +132,22 @@
                         <?php if(!empty($part1_1_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part1_1_result); $i++): ?>
+                            <?php
+                            if(!empty($part1_1_result[$i]->url))
+                            {
+                                $url = $part1_1_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part1_1_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part1_1_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part1_1_result[$i]->id) ?>"><?php echo $part1_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_1_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<a href="<?php echo $url; ?>" target="<?php echo $target; ?>">"><?php echo $part1_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_1_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part1_1_result[$i]->id) ?>"><?php echo $part1_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_1_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part1_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_1_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -124,10 +160,22 @@
                         <?php if(!empty($part1_2_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part1_2_result); $i++): ?>
+                            <?php
+                            if(!empty($part1_2_result[$i]->url))
+                            {
+                                $url = $part1_2_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part1_2_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part1_2_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part1_2_result[$i]->id) ?>"><?php echo $part1_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_2_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part1_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_2_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part1_2_result[$i]->id) ?>"><?php echo $part1_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_2_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part1_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_2_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -140,10 +188,22 @@
                         <?php if(!empty($part1_3_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part1_3_result); $i++): ?>
+                            <?php
+                            if(!empty($part1_3_result[$i]->url))
+                            {
+                                $url = $part1_3_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part1_3_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part1_3_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part1_3_result[$i]->id) ?>"><?php echo $part1_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_3_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part1_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_3_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part1_3_result[$i]->id) ?>"><?php echo $part1_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_3_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part1_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_3_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -197,10 +257,22 @@
                         <?php if(!empty($part2_2_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part2_2_result); $i++): ?>
+                            <?php
+                            if(!empty($part2_2_result[$i]->url))
+                            {
+                                $url = $part2_2_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part2_2_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part2_2_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part2_2_result[$i]->id) ?>"><?php echo $part2_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_2_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part2_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_2_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part2_2_result[$i]->id) ?>"><?php echo $part2_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_2_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part2_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_2_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -213,10 +285,22 @@
                         <?php if(!empty($part2_3_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part2_3_result); $i++): ?>
+                            <?php
+                            if(!empty($part2_3_result[$i]->url))
+                            {
+                                $url = $part2_3_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part2_3_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part2_3_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part2_3_result[$i]->id) ?>"><?php echo $part2_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_3_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part2_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_3_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part2_3_result[$i]->id) ?>"><?php echo $part2_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_3_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part2_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_3_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -229,10 +313,22 @@
                         <?php if(!empty($part2_4_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part2_4_result); $i++): ?>
+                            <?php
+                            if(!empty($part2_4_result[$i]->url))
+                            {
+                                $url = $part2_4_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part2_4_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part2_4_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part2_4_result[$i]->id) ?>"><?php echo $part2_4_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_4_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part2_4_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_4_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part2_4_result[$i]->id) ?>"><?php echo $part2_4_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_4_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part2_4_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part2_4_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -269,10 +365,22 @@
                         <?php if(!empty($part3_1_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part3_1_result); $i++): ?>
+                            <?php
+                            if(!empty($part3_1_result[$i]->url))
+                            {
+                                $url = $part3_1_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part3_1_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part3_1_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part3_1_result[$i]->id) ?>"><?php echo $part3_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_1_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part3_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_1_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part3_1_result[$i]->id) ?>"><?php echo $part3_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_1_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part3_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_1_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -285,10 +393,22 @@
                         <?php if(!empty($part3_2_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part3_2_result); $i++): ?>
+                            <?php
+                            if(!empty($part3_2_result[$i]->url))
+                            {
+                                $url = $part3_2_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part3_2_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part3_2_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part3_2_result[$i]->id) ?>"><?php echo $part3_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_2_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part3_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_2_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part3_2_result[$i]->id) ?>"><?php echo $part3_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_2_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part3_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_2_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -301,10 +421,22 @@
                         <?php if(!empty($part1_3_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part3_3_result); $i++): ?>
+                            <?php
+                            if(!empty($part3_3_result[$i]->url))
+                            {
+                                $url = $part3_3_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part3_3_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part3_3_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part3_3_result[$i]->id) ?>"><?php echo $part3_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_3_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part3_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_3_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part3_3_result[$i]->id) ?>"><?php echo $part3_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_3_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part3_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part3_3_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -338,10 +470,22 @@
                         <?php if(!empty($part4_1_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part4_1_result); $i++): ?>
+                            <?php
+                            if(!empty($part4_1_result[$i]->url))
+                            {
+                                $url = $part4_1_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part4_1_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part4_1_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part4_1_result[$i]->id) ?>"><?php echo $part4_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_1_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part4_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_1_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part4_1_result[$i]->id) ?>"><?php echo $part4_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_1_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part4_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_1_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -354,10 +498,22 @@
                         <?php if(!empty($part4_2_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part4_2_result); $i++): ?>
+                            <?php
+                            if(!empty($part4_2_result[$i]->url))
+                            {
+                                $url = $part4_2_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part4_2_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part4_2_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part4_2_result[$i]->id) ?>"><?php echo $part4_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_2_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part4_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_2_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part4_2_result[$i]->id) ?>"><?php echo $part4_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_2_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part4_2_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_2_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -367,13 +523,25 @@
                     </div>
 
                     <div class="tab-item" style="display:none;">
-                        <?php if(!empty($part1_3_result)): ?>
+                        <?php if(!empty($part4_3_result)): ?>
                         <ul>
                             <?php for($i=0; $i < count($part4_3_result); $i++): ?>
+                            <?php
+                            if(!empty($part4_3_result[$i]->url))
+                            {
+                                $url = $part4_3_result[$i]->url;
+                                $target = '_blank';
+                            }
+                            else
+                            {
+                                $url = site_url('article/show/' . $part4_3_result[$i]->id);
+                                $target = '_self';
+                            }
+                            ?>
                             <?php if($i != count($part4_3_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part4_3_result[$i]->id) ?>"><?php echo $part4_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_3_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part4_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_3_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $part4_3_result[$i]->id) ?>"><?php echo $part4_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_3_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part4_3_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part4_3_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -400,10 +568,22 @@
                     <?php if(!empty($yuyue_result)): ?>
                     <ul>
                         <?php for($i=0; $i < count($yuyue_result); $i++): ?>
+                        <?php
+                        if(!empty($yuyue_result[$i]->url))
+                        {
+                            $url = $yuyue_result[$i]->url;
+                            $target = '_blank';
+                        }
+                        else
+                        {
+                            $url = site_url('bid/show/' . $yuyue_result[$i]->id);
+                            $target = '_self';
+                        }
+                        ?>
                         <?php if($i != count($yuyue_result) - 1): ?>
-                        <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('bid/show/' . $yuyue_result[$i]->id); ?>"><?php echo $yuyue_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $yuyue_result[$i]->time); ?></span></li>
+                        <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $yuyue_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $yuyue_result[$i]->time); ?></span></li>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('bid/show/' . $yuyue_result[$i]->id); ?>"><?php echo $yuyue_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $yuyue_result[$i]->time); ?></span></li>
+                        <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $yuyue_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $yuyue_result[$i]->time); ?></span></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -426,10 +606,22 @@
                     <?php if(!empty($kaibiao_result)): ?>
                     <ul>
                         <?php for($i=0; $i < count($kaibiao_result); $i++): ?>
+                        <?php
+                        if(!empty($kaibiao_result[$i]->url))
+                        {
+                            $url = $kaibiao_result[$i]->url;
+                            $target = '_blank';
+                        }
+                        else
+                        {
+                            $url = site_url('bid/show/' . $kaibiao_result[$i]->id);
+                            $target = '_self';
+                        }
+                        ?>
                         <?php if($i != count($kaibiao_result) - 1): ?>
-                        <li><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $kaibiao_result[$i]->id) ?>"><?php echo $kaibiao_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $kaibiao_result[$i]->time); ?></span></li>
+                        <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $kaibiao_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $kaibiao_result[$i]->time); ?></span></li>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo site_url('article/show/' . $kaibiao_result[$i]->id) ?>"><?php echo $kaibiao_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $kaibiao_result[$i]->time); ?></span></li>
+                        <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $kaibiao_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $kaibiao_result[$i]->time); ?></span></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -472,7 +664,7 @@
             <div class="row-item last-item links">
                 <div class="row-item-head">
                     <div class="row-item-head-title">
-                        <img src="<?php echo base_url('resources/images/index_55.png'); ?>" />
+                        <img src="<?php echo base_url('resources/images/index_55.png'); ?>" style="margin-left:430px;" />
                     </div>
                     <div class="row-item-head-more">
                         <a href="<?php echo site_url('link/show'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>

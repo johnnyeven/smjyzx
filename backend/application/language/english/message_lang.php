@@ -16,4 +16,6 @@ $lang['DOWNLOAD_DELETE_SUCCESS']		=	'资料已成功删除';
 $lang['DOWNLOAD_SUBMIT_SUCCESS']		=	'资料已提交';
 $lang['LINK_DELETE_SUCCESS']		=	'友情链接已成功删除';
 $lang['LINK_SUBMIT_SUCCESS']		=	'友情链接已提交';
+$lang['REFER_DELETE_SUCCESS']		=	'来源已成功删除';
+$lang['REFER_SUBMIT_SUCCESS']		=	'来源已提交';
 ?>

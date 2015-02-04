@@ -29,7 +29,17 @@
                             	<?php foreach($result as $row): ?>
 								<tr>
 									<td><?php echo $row->id; ?></td>
-									<td><?php echo $row->name; ?></td>
+									<?php
+									if(!empty($row->url))
+									{
+										$url = $row->url;
+									}
+									else
+									{
+										$url = out_url("article/show/" . $row->id);
+									}
+									?>
+									<td><a href="<?php echo $url; ?>" target="_blank"><?php echo $row->name; ?></a></td>
 									<td><?php echo $row->category_name; ?></td>
 									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
 									<td class="action-td">
@@ -91,7 +101,12 @@
                                         <div class="control-group">											
                                             <label class="control-label" for="newsRefer">来源</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium" id="newsRefer" name="newsRefer" value="<?php echo $value->refer; ?>" />
+                                                <select class="input-medium" id="newsRefer" name="newsRefer">
+                                                <?php foreach($refers as $refer): ?>
+                                                    <option value="<?php echo $refer->id; ?>"<?php if($value->refer == $refer->id): ?> selected="selected"<?php endif; ?>><?php echo $refer->name; ?></option>
+                                                <?php endforeach; ?>
+                                                </select>
+                                                <a href="<?php echo site_url('refer_list/show'); ?>" target="_blank">来源管理</a>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
@@ -99,6 +114,14 @@
                                             <label class="control-label" for="articleTime">发布时间</label>
                                             <div class="controls">
                                                 <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d H:i:s', $value->time); else echo date('Y-m-d H:i:s') ?>" />
+                                            </div> <!-- /controls -->				
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
+                                            <label class="control-label" for="articleUrl">外部链接</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-xxlarge" id="articleUrl" name="articleUrl" value="<?php echo $value->url ?>" />
+                                                <p class="help-block">一旦填写外部链接，则点击新闻标题直接跳转至外部链接</p>
                                             </div> <!-- /controls -->				
                                         </div> <!-- /control-group -->
                                         
@@ -112,7 +135,7 @@
                                         <br />
                                         
                                         <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary">提交</button>
+                                            <button id="btnSubmit" type="submit" class="btn btn-primary">提交</button>
                                         </div> <!-- /form-actions -->
                                     </fieldset>
                                 </form>
@@ -123,6 +146,17 @@
                 <script src="<?php echo base_url('resources/js/ckeditor/ckeditor.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/jquery-ui.js'); ?>" language="javascript"></script>
                 <script language="javascript">
+				function IsURL(str_url) {
+					var strRegex = "^https?://(.*\.)+([A-Za-z0-9])+\/?$"; 
+					var re=new RegExp(strRegex); 
+					//re.test()
+					if (re.test(str_url)) {
+						return (true); 
+					} else { 
+						return (false); 
+					}
+				}
+
 				$(function() {
 					CKEDITOR.replace( 'wysiwyg' );
 					$.datepicker.regional['zh-CN'] = {
@@ -158,5 +192,13 @@
 					};
 					$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 					$("#articleTime").datepicker();
+
+					$("#btnSubmit").click(function() {
+						var url = $("#articleUrl").val();
+						if(url && !IsURL(url)) {
+							alert('链接格式不正确，请确保链接以http://或者是https://开头');
+							return false;
+						}
+					});
 				});
 				</script>

@@ -30,7 +30,17 @@
                             	<?php foreach($result as $row): ?>
 								<tr>
 									<td><?php echo $row->number; ?></td>
-									<td><a href="<?php echo out_url("bid/show/" . $row->id); ?>" target="_blank"><?php echo $row->name; ?></a></td>
+									<?php
+									if(!empty($row->url))
+									{
+										$url = $row->url;
+									}
+									else
+									{
+										$url = out_url("bid/show/" . $row->id);
+									}
+									?>
+									<td><a href="<?php echo $url; ?>" target="_blank"><?php echo $row->name; ?></a></td>
 									<td><?php echo $row->category_name; ?></td>
 									<td><?php echo date('Y-m-d H:i:s', $row->start_time); ?></td>
 									<td><?php echo $row->location_name; ?></td>
@@ -168,6 +178,14 @@
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
+                                            <label class="control-label" for="articleUrl">外部链接</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-xxlarge" id="articleUrl" name="articleUrl" value="<?php echo $value->url ?>" />
+                                                <p class="help-block">一旦填写外部链接，则点击新闻标题直接跳转至外部链接</p>
+                                            </div> <!-- /controls -->				
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
                                             <label class="control-label" for="wysisyg">内容介绍</label>
                                             <div class="controls">
                                                 <textarea id="wysiwyg" name="wysiwyg" cols="50" rows="20" class="wysiwyg"><?php echo $value->content; ?></textarea>
@@ -177,7 +195,7 @@
                                         <br />
                                         
                                         <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary">提交</button>
+                                            <button id="btnSubmit" type="submit" class="btn btn-primary">提交</button>
                                         </div> <!-- /form-actions -->
                                     </fieldset>
                                 </form>
@@ -188,6 +206,17 @@
                 <script src="<?php echo base_url('resources/js/ckeditor/ckeditor.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/jquery-ui.js'); ?>" language="javascript"></script>
                 <script language="javascript">
+				function IsURL(str_url) {
+					var strRegex = "^https?://(.*\.)+([A-Za-z0-9])+\/?$"; 
+					var re=new RegExp(strRegex); 
+					//re.test()
+					if (re.test(str_url)) {
+						return (true); 
+					} else { 
+						return (false); 
+					}
+				}
+
 				$(function() {
 					CKEDITOR.replace( 'wysiwyg' );
 					$.datepicker.regional['zh-CN'] = {
@@ -223,5 +252,13 @@
 					};
 					$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 					$("#articleTime").datepicker();
+
+					$("#btnSubmit").click(function() {
+						var url = $("#articleUrl").val();
+						if(url && !IsURL(url)) {
+							alert('链接格式不正确，请确保链接以http://或者是https://开头');
+							return false;
+						}
+					});
 				});
 				</script>

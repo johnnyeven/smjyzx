@@ -115,13 +115,15 @@ class Yuyue_list extends CI_Controller
 		$start_minute = $this->input->post('startMinutes', TRUE);
 		$start_second = $this->input->post('startSeconds', TRUE);
 		$content = $this->input->post('wysiwyg', TRUE);
+		$url = $this->input->post('articleUrl', TRUE);
 
-		if(empty($name) || empty($content) || empty($category) || empty($location))
+		if(empty($name) || empty($category) || empty($location))
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'yuyue_list/show', true, 5);
 		}
 		$number = empty($number) ? '' : $number;
 		$time = time();
+		$url = empty($url) ? '' : $url;
 		$start_hour = empty($start_hour) ? '00' : $start_hour;
 		$start_minute = empty($start_minute) ? '00' : $start_minute;
 		$start_second = empty($start_second) ? '00' : $start_second;
@@ -134,7 +136,8 @@ class Yuyue_list extends CI_Controller
 			'category'		=>	$category,
 			'location'		=>	$location,
 			'start_time'	=>	$start_time,
-			'content'		=>	$content
+			'content'		=>	$content,
+			'url'			=>	$url
 		);
 		
 		if(!empty($edit))
