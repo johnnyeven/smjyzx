@@ -3,7 +3,7 @@
 class Chanquan_list extends CI_Controller
 {
 	private $category_id = 17;
-	private $page_items = 20;
+	private $page_items = 10;
 	private $pageName = 'chanquan_list';
 	private $user = null;
 	

@@ -3,7 +3,7 @@
 class biao_location_list extends CI_Controller
 {
 	private $category_id = 6;
-	private $page_items = 20;
+	private $page_items = 10;
 	private $pageName = 'biao_location_list';
 	private $user = null;
 	

@@ -2,7 +2,7 @@
 
 class link_list extends CI_Controller
 {
-	private $page_items = 20;
+	private $page_items = 10;
 	private $pageName = 'link_list';
 	private $user = null;
 	

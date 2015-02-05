@@ -3,7 +3,7 @@
 class Yuyue_list extends CI_Controller
 {
 	private $category_id = 28;
-	private $page_items = 20;
+	private $page_items = 10;
 	private $pageName = 'yuyue_list';
 	private $user = null;
 	

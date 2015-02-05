@@ -145,9 +145,9 @@
                             }
                             ?>
                             <?php if($i != count($part1_1_result) - 1): ?>
-                            <li><span class="list-title" style="width:400px;"><a href="<a href="<?php echo $url; ?>" target="<?php echo $target; ?>">"><?php echo $part1_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_1_result[$i]->time); ?></span></li>
+                            <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($part1_1_result[$i]->name); ?></a></span><span class="list-date"><?php echo date('m-d', $part1_1_result[$i]->time); ?></span></li>
                             <?php else: ?>
-                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $part1_1_result[$i]->name; ?></a></span><span class="list-date"><?php echo date('m-d', $part1_1_result[$i]->time); ?></span></li>
+                            <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($part1_1_result[$i]->name); ?></a></span><span class="list-date"><?php echo date('m-d', $part1_1_result[$i]->time); ?></span></li>
                             <?php endif; ?>
                             <?php endfor; ?>
                         </ul>
@@ -227,7 +227,7 @@
                         </ul>
                     </div>
                     <div class="row-item-head-more">
-                        <a href="<?php echo site_url('article/lists/13'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <!--<a href="<?php echo site_url('article/lists/13'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>-->
                         <a style="display:none;" href="<?php echo site_url('article/lists/14'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                         <a style="display:none;" href="<?php echo site_url('article/lists/15'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                         <a style="display:none;" href="<?php echo site_url('article/lists/16'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>

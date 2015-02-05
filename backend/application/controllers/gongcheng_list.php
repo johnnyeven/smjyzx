@@ -3,7 +3,7 @@
 class Gongcheng_list extends CI_Controller
 {
 	private $category_id = 8;
-	private $page_items = 20;
+	private $page_items = 10;
 	private $pageName = 'gongcheng_list';
 	private $user = null;
 	

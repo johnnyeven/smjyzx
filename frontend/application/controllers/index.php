@@ -9,6 +9,7 @@ class Index extends CI_Controller
 	
 	public function index()
 	{
+		$this->load->helper('string');
 		$this->load->model('marticle');
 
 		//滚动图片
