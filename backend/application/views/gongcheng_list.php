@@ -3,70 +3,6 @@
 					<i class="icon-home"></i>
 					建设工程管理
 				</h1>
-                <?php if(empty($edit)): ?>
-				<div class="widget widget-table">
-				
-					<div class="widget-header">
-						<i class="icon-th-list"></i>
-						<h3>文章列表</h3>
-					</div> <!-- /widget-header -->
-					
-					<div class="widget-content">
-					
-						<table class="table table-striped table-bordered" id="imgTable">
-							<thead>
-								<tr>
-									<th>编号</th>
-									<th>标题</th>
-									<th>分类</th>
-									<th>发布时间</th>
-									<th>&nbsp;</th>
-								</tr>
-							</thead>
-							
-							<tbody>
-                            <?php if(!empty($result)): ?>
-                            	<?php foreach($result as $row): ?>
-								<tr>
-									<td><?php echo $row->id; ?></td>
-									<?php
-									if(!empty($row->url))
-									{
-										$url = $row->url;
-									}
-									else
-									{
-										$url = out_url("article/show/" . $row->id);
-									}
-									?>
-									<td><a href="<?php echo $url; ?>" target="_blank"><?php echo $row->name; ?></a></td>
-									<td><?php echo $row->category_name; ?></td>
-									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
-									<td class="action-td">
-										<a href="<?php echo site_url('gongcheng_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
-											<i class="icon-edit"></i>								
-										</a>					
-										<a href="<?php echo site_url('gongcheng_list/delete/' . $row->id); ?>" class="btn btn-small">
-											<i class="icon-remove"></i>						
-										</a>
-									</td>
-								</tr>
-                                <?php endforeach; ?>
-                            	<tr>
-                                	<td style="text-align:right;" colspan="5"><?php echo $pagination; ?></td>
-                                </tr>
-                            <?php else: ?>
-                            	<tr>
-                                	<td colspan="5">没有文章</td>
-                                </tr>
-                            <?php endif; ?>
-							</tbody>
-						</table>
-					
-					</div> <!-- /widget-content -->
-				
-				</div>
-                <?php endif; ?>
 				<div class="widget">
                     
 					<div class="widget-header">
@@ -143,6 +79,71 @@
 					</div> <!-- /widget-content -->
 				
 				</div>
+				
+                <?php if(empty($edit)): ?>
+				<div class="widget widget-table">
+				
+					<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3>文章列表</h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content">
+					
+						<table class="table table-striped table-bordered" id="imgTable">
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>标题</th>
+									<th>分类</th>
+									<th>发布时间</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+                            <?php if(!empty($result)): ?>
+                            	<?php foreach($result as $row): ?>
+								<tr>
+									<td><?php echo $row->id; ?></td>
+									<?php
+									if(!empty($row->url))
+									{
+										$url = $row->url;
+									}
+									else
+									{
+										$url = out_url("article/show/" . $row->id);
+									}
+									?>
+									<td><a href="<?php echo $url; ?>" target="_blank"><?php echo $row->name; ?></a></td>
+									<td><?php echo $row->category_name; ?></td>
+									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
+									<td class="action-td">
+										<a href="<?php echo site_url('gongcheng_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+											<i class="icon-edit"></i>								
+										</a>					
+										<a href="<?php echo site_url('gongcheng_list/delete/' . $row->id); ?>" class="btn btn-small">
+											<i class="icon-remove"></i>						
+										</a>
+									</td>
+								</tr>
+                                <?php endforeach; ?>
+                            	<tr>
+                                	<td style="text-align:right;" colspan="5"><?php echo $pagination; ?></td>
+                                </tr>
+                            <?php else: ?>
+                            	<tr>
+                                	<td colspan="5">没有文章</td>
+                                </tr>
+                            <?php endif; ?>
+							</tbody>
+						</table>
+					
+					</div> <!-- /widget-content -->
+				
+				</div>
+                <?php endif; ?>
                 <script src="<?php echo base_url('resources/js/ckeditor/ckeditor.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/jquery-ui.js'); ?>" language="javascript"></script>
                 <script language="javascript">

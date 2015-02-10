@@ -3,6 +3,45 @@
 					<i class="icon-home"></i>
 					友情链接管理
 				</h1>
+				<div class="widget">
+                    
+					<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3><?php if(empty($edit)): ?>添加<?php else: ?>修改<?php endif; ?>链接</h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content">
+					
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('link_list/submit'); ?>" method="post" />
+                                    <fieldset>
+                                        <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
+                                        <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
+                                        <div class="control-group">											
+                                            <label class="control-label" for="linkName">名称</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium" id="linkName" name="linkName" value="<?php echo $value->name; ?>" />
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+                                        <div class="control-group">											
+                                            <label class="control-label" for="linkUrl">链接</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-xlarge" id="linkUrl" name="linkUrl" value="<?php echo $value->link; ?>" />
+                                                <p class="help-block">请在链接开头带上"http://"</p>
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+                                        
+                                        <br />
+                                        
+                                        <div class="form-actions">
+                                            <button id="btnSubmit" type="submit" class="btn btn-primary">提交</button>
+                                        </div> <!-- /form-actions -->
+                                    </fieldset>
+                                </form>
+					
+					</div> <!-- /widget-content -->
+				
+				</div>
+				
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">
 				
@@ -55,44 +94,6 @@
 				
 				</div>
                 <?php endif; ?>
-				<div class="widget">
-                    
-					<div class="widget-header">
-						<i class="icon-th-list"></i>
-						<h3><?php if(empty($edit)): ?>添加<?php else: ?>修改<?php endif; ?>链接</h3>
-					</div> <!-- /widget-header -->
-					
-					<div class="widget-content">
-					
-						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('link_list/submit'); ?>" method="post" />
-                                    <fieldset>
-                                        <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
-                                        <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
-                                        <div class="control-group">											
-                                            <label class="control-label" for="linkName">名称</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-medium" id="linkName" name="linkName" value="<?php echo $value->name; ?>" />
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        <div class="control-group">											
-                                            <label class="control-label" for="linkUrl">链接</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge" id="linkUrl" name="linkUrl" value="<?php echo $value->link; ?>" />
-                                                <p class="help-block">请在链接开头带上"http://"</p>
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        
-                                        <br />
-                                        
-                                        <div class="form-actions">
-                                            <button id="btnSubmit" type="submit" class="btn btn-primary">提交</button>
-                                        </div> <!-- /form-actions -->
-                                    </fieldset>
-                                </form>
-					
-					</div> <!-- /widget-content -->
-				
-				</div>
 				<script type="text/javascript">
 				function IsURL(str_url) {
 					var strRegex = "^https?://(.*\.)+([A-Za-z0-9])+\/?$"; 

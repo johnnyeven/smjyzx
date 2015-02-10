@@ -2,6 +2,49 @@
 					<i class="icon-home"></i>
 					资料下载管理
 				</h1>
+				<div class="widget">
+                    
+					<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3><?php if(empty($edit)): ?>添加<?php else: ?>修改<?php endif; ?>资料</h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content">
+					
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('download_list/submit'); ?>" method="post" />
+                                    <fieldset>
+                                        <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
+                                        <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
+                                        <div class="control-group">											
+                                            <label class="control-label" for="downloadName">名称</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium" id="downloadName" name="downloadName" value="<?php echo $value->name; ?>" />
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
+                                            <label class="control-label" for="sliderUrl">上传资料</label>
+                                            <div class="controls">
+                                                <input name="picUpload" type="file" id="picUpload" size="20" class="input-medium" />
+                                                <input type="button" name="btnUpload" id="btnUpload" value="上传" onclick="javascript:contentFileUpload('<?php echo site_url('utils/doFileUpload'); ?>', 'picUpload', 'sliderPicPathContent', 'downloadFilepath')" class="btn btn-primary" />
+                                                <input name="downloadFilepath" type="hidden" id="downloadFilepath" value="<?php echo $value->filepath; ?>" />
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div id="sliderPicPathContent" class="control-group"></div>
+                                        
+                                        <br />
+                                        
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn btn-primary">提交</button>
+                                        </div> <!-- /form-actions -->
+                                    </fieldset>
+                                </form>
+					
+					</div> <!-- /widget-content -->
+				
+				</div>
+				
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">
 				
@@ -56,47 +99,5 @@
 				
 				</div>
                 <?php endif; ?>
-				<div class="widget">
-                    
-					<div class="widget-header">
-						<i class="icon-th-list"></i>
-						<h3><?php if(empty($edit)): ?>添加<?php else: ?>修改<?php endif; ?>资料</h3>
-					</div> <!-- /widget-header -->
-					
-					<div class="widget-content">
-					
-						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('download_list/submit'); ?>" method="post" />
-                                    <fieldset>
-                                        <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
-                                        <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
-                                        <div class="control-group">											
-                                            <label class="control-label" for="downloadName">名称</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-medium" id="downloadName" name="downloadName" value="<?php echo $value->name; ?>" />
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        
-                                        <div class="control-group">											
-                                            <label class="control-label" for="sliderUrl">上传资料</label>
-                                            <div class="controls">
-                                                <input name="picUpload" type="file" id="picUpload" size="20" class="input-medium" />
-                                                <input type="button" name="btnUpload" id="btnUpload" value="上传" onclick="javascript:contentFileUpload('<?php echo site_url('utils/doFileUpload'); ?>', 'picUpload', 'sliderPicPathContent', 'downloadFilepath')" class="btn btn-primary" />
-                                                <input name="downloadFilepath" type="hidden" id="downloadFilepath" value="<?php echo $value->filepath; ?>" />
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        
-                                        <div id="sliderPicPathContent" class="control-group"></div>
-                                        
-                                        <br />
-                                        
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary">提交</button>
-                                        </div> <!-- /form-actions -->
-                                    </fieldset>
-                                </form>
-					
-					</div> <!-- /widget-content -->
-				
-				</div>
                 <script src="<?php echo base_url('resources/admin/js/uploader/ajaxfileupload.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/upload.js'); ?>" language="javascript"></script>
