@@ -3,7 +3,7 @@
 			<h1><?php echo $result->name; ?></h1>
 			<div class="meta">
 				<span>分类：<?php echo $result->category_name; ?></span>
-				<span>来源：<?php echo $result->refer; ?></span>
+				<span>来源：<?php echo $result->refer_name; ?></span>
 				<span>时间：<?php echo date('Y-m-d H:i:s', $result->time); ?></span>
 			</div>
 			<?php if(!empty($result->pic)): ?>

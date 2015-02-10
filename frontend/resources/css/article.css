@@ -1,7 +1,7 @@
 .content {padding:50px;}
 	.content h1 {font-size:20px;text-align:center;}
 	.content .meta {padding:20px 0;}
-	.content .meta span {display:inline-block;width:33%;text-align: center;font-weight:bold;}
+	.content .meta span {display:inline-block;width:32%;text-align: center;font-weight:bold;}
 	.content .pic {text-align: center;}
 		.content .pic .pic-item {padding:20px 0;}
 		.content .pic .pic-item img {max-width:900px;}

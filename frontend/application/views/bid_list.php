@@ -16,7 +16,7 @@
 					<?php foreach($result as $row): ?>
 					<tr>
 						<td><?php echo $row->number; ?></td>
-						<td><a href="<?php echo site_url('bid/show/' . $row->id); ?>"><?php echo $row->name; ?></a></td>
+						<td><a href="<?php echo site_url('bid/show/' . $row->id); ?>"><?php echo shorty_string($row->name, 40); ?></a></td>
 						<td><?php echo $row->category_name; ?></td>
 						<td><?php echo date('Y-m-d H:i:s', $row->start_time); ?></td>
 						<td><?php echo $row->location_name; ?></td>

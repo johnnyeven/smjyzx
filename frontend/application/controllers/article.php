@@ -12,6 +12,7 @@ class Article extends CI_Controller
 	{
 		if(!empty($category_id) && is_numeric($category_id))
 		{
+			$this->load->helper('string');
 			$this->load->model('marticle');
 			$this->load->model('mcategory');
 			$category_result = $this->mcategory->read(array(
