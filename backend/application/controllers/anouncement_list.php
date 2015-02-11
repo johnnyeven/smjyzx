@@ -19,9 +19,11 @@ class Anouncement_list extends CI_Controller
 	
 	public function show($page = 1)
 	{
+		$this->load->model('mrefer');
 		$this->load->model('marticle');
 		$this->load->model('mcategory');
 		
+		$refer_result = $this->mrefer->read();
 		$category_result = $this->mcategory->read(array(
 			'parent_id'		=>	$this->category_id
 		));
@@ -44,7 +46,8 @@ class Anouncement_list extends CI_Controller
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
-			'categories'		=>	$$category_result,
+			'refers'			=>	$refer_result,
+			'categories'		=>	$category_result,
 			'result'			=>	$result,
 			'pagination'		=>	$this->pagination->create_links()
 		);
@@ -56,9 +59,11 @@ class Anouncement_list extends CI_Controller
 	{
 		if(!empty($sliderId))
 		{
+			$this->load->model('mrefer');
 			$this->load->model('marticle');
 			$this->load->model('mcategory');
 
+			$refer_result = $this->mrefer->read();
 			$category_result = $this->mcategory->read(array(
 				'parent_id'		=>	$this->category_id
 			));
@@ -73,7 +78,8 @@ class Anouncement_list extends CI_Controller
 			$data = array(
 				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
-				'categories'		=>	$$category_result,
+				'refers'			=>	$refer_result,
+				'categories'		=>	$category_result,
 				'edit'				=>	'1',
 				'id'				=>	$sliderId,
 				'value'				=>	$result
@@ -110,7 +116,7 @@ class Anouncement_list extends CI_Controller
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'anouncement_list/show', true, 5);
 		}
-		$refer = empty($refer) ? '' : $refer;
+		$refer = empty($refer) ? 0 : intval($refer);
 		$time = empty($time) ? time() : strtotime($time);
 		
 		$row = array(

@@ -19,8 +19,10 @@ class Pic_list extends CI_Controller
 	
 	public function show($page = 1)
 	{
+		$this->load->model('mrefer');
 		$this->load->model('marticle');
 		
+		$refer_result = $this->mrefer->read();
 		$result = $this->marticle->read(array(
 			'category_id'	=>	$this->category_id
 		), array(
@@ -40,6 +42,7 @@ class Pic_list extends CI_Controller
 		$data = array(
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
+			'refers'			=>	$refer_result,
 			'result'			=>	$result,
 			'pagination'		=>	$this->pagination->create_links()
 		);
@@ -51,7 +54,10 @@ class Pic_list extends CI_Controller
 	{
 		if(!empty($sliderId))
 		{
+			$this->load->model('mrefer');
 			$this->load->model('marticle');
+			
+			$refer_result = $this->mrefer->read();
 			$result = $this->marticle->read(array(
 				'id'		=>	$sliderId
 			));
@@ -63,6 +69,7 @@ class Pic_list extends CI_Controller
 			$data = array(
 				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
+				'refers'			=>	$refer_result,
 				'edit'				=>	'1',
 				'id'				=>	$sliderId,
 				'value'				=>	$result
@@ -99,9 +106,9 @@ class Pic_list extends CI_Controller
 
 		if(empty($name) || empty($pic))
 		{
-			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'news_list/show', true, 5);
+			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'pic_list/show', true, 5);
 		}
-		$refer = empty($refer) ? '' : $refer;
+		$refer = empty($refer) ? 0 : intval($refer);
 		$time = empty($time) ? time() : strtotime($time);
 		$content = empty($content) ? '' : $content;
 		

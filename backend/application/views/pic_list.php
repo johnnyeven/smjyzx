@@ -25,7 +25,12 @@
                                         <div class="control-group">											
                                             <label class="control-label" for="newsRefer">来源</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium" id="newsRefer" name="newsRefer" value="<?php echo $value->refer; ?>" />
+                                                <select class="input-medium" id="newsRefer" name="newsRefer">
+                                                <?php foreach($refers as $refer): ?>
+                                                    <option value="<?php echo $refer->id; ?>"<?php if($value->refer == $refer->id): ?> selected="selected"<?php endif; ?>><?php echo $refer->name; ?></option>
+                                                <?php endforeach; ?>
+                                                </select>
+                                                <a href="<?php echo site_url('refer_list/show'); ?>" target="_blank">来源管理</a>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         

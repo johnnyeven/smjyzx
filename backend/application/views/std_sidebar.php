@@ -36,7 +36,7 @@
 					</li>
                     
 					<li<?php if($page_name=='fagui_list'): ?> class="active"<?php endif; ?>>
-						<a href="<?php echo site_url('fagui_list'); ?>">
+						<a href="<?php echo site_url('fagui_list/show'); ?>">
 							<i class="icon-th-list"></i>
 							政策法规
 						</a>

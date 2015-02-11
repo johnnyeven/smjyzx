@@ -30,9 +30,9 @@
                         }
                         ?>
                         <?php if($i != count($news_result) - 1): ?>
-                        <li><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($news_result[$i]->name); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                        <li><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($news_result[$i]->name, 32); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($news_result[$i]->name); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                        <li class="list-last"><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($news_result[$i]->name, 32); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -68,9 +68,9 @@
                         }
                         ?>
                         <?php if($i != count($notification_result) - 1): ?>
-                        <li><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($notification_result[$i]->name); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                        <li><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($notification_result[$i]->name, 24); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($notification_result[$i]->name); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                        <li class="list-last"><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($notification_result[$i]->name, 24); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>

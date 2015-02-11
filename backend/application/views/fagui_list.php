@@ -1,50 +1,62 @@
 				<link rel="stylesheet" href="<?php echo base_url('resources/admin/css/jquery-ui.css'); ?>" type="text/css" />
-                <h1 class="page-title">
-					<i class="icon-th-list"></i>
-					添加/编辑新闻
+				<h1 class="page-title">
+					<i class="icon-home"></i>
+					政策法规管理
 				</h1>
-                
-				<div class="widget widget-table">
-										
+				<div class="widget">
+                    
 					<div class="widget-header">
 						<i class="icon-th-list"></i>
-						<h3>新闻</h3>
+						<h3><?php if(empty($edit)): ?>添加<?php else: ?>修改<?php endif; ?>资料</h3>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
 					
-						<br />
-						<div class="tab-content">
-							<div class="tab-pane active">
-                                <form id="edit-profile" class="form-horizontal" action="<?php echo site_url('fagui_list/submit'); ?>" method="post" />
+						<form id="edit-profile" class="form-horizontal" action="<?php echo site_url('fagui_list/submit'); ?>" method="post" />
                                     <fieldset>
                                         <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
-                                        <input type="hidden" id="articleId" name="articleId" value="<?php echo $article_id; ?>" />
+                                        <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
                                         <div class="control-group">											
-                                            <label class="control-label" for="articleTitle">新闻标题</label>
+                                            <label class="control-label" for="newsName">名称</label>
                                             <div class="controls">
-                                                <input type="text" class="input-xlarge" id="articleTitle" name="articleTitle" value="<?php echo $row->name; ?>" />
+                                                <input type="text" class="input-medium" id="newsName" name="newsName" value="<?php echo $value->name; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
-
+                                        <?php if(!empty($categories)): ?>
                                         <div class="control-group">											
-                                            <label class="control-label" for="articleRefer">来源</label>
+                                            <label class="control-label" for="newsCategory">分类</label>
                                             <div class="controls">
-                                                <input type="text" class="input-xlarge" id="articleRefer" name="articleRefer" value="<?php echo $row->refer; ?>" />
+                                                <select class="input-medium" id="newsCategory" name="newsCategory">
+                                                <?php foreach($categories as $category): ?>
+                                                    <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
+                                                <?php endforeach; ?>
+                                                </select>
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+                                        <?php endif; ?>
+                                        <div class="control-group">											
+                                            <label class="control-label" for="newsRefer">来源</label>
+                                            <div class="controls">
+                                                <select class="input-medium" id="newsRefer" name="newsRefer">
+                                                <?php foreach($refers as $refer): ?>
+                                                    <option value="<?php echo $refer->id; ?>"<?php if($value->refer == $refer->id): ?> selected="selected"<?php endif; ?>><?php echo $refer->name; ?></option>
+                                                <?php endforeach; ?>
+                                                </select>
+                                                <a href="<?php echo site_url('refer_list/show'); ?>" target="_blank">来源管理</a>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
                                             <label class="control-label" for="articleTime">发布时间</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($row->time)) echo date('Y-m-d H:i:s', $row->time); else echo date('Y-m-d H:i:s') ?>" />
+                                                <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d H:i:s', $value->time); else echo date('Y-m-d H:i:s') ?>" />
                                             </div> <!-- /controls -->				
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
                                             <label class="control-label" for="wysisyg">新闻内容</label>
                                             <div class="controls">
-                                                <textarea id="wysiwyg" name="wysiwyg" cols="50" rows="20" class="wysiwyg"><?php echo $row->content; ?></textarea>
+                                                <textarea id="wysiwyg" name="wysiwyg" cols="50" rows="20" class="wysiwyg"><?php echo $value->content; ?></textarea>
                                             </div> <!-- /controls -->				
                                         </div> <!-- /control-group -->
                                         
@@ -55,12 +67,65 @@
                                         </div> <!-- /form-actions -->
                                     </fieldset>
                                 </form>
-                            </div>
-                        </div>
 					
 					</div> <!-- /widget-content -->
-					
+				
 				</div>
+				
+                <?php if(empty($edit)): ?>
+				<div class="widget widget-table">
+				
+					<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3>文章列表</h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content">
+					
+						<table class="table table-striped table-bordered" id="imgTable">
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>标题</th>
+									<th>分类</th>
+									<th>发布时间</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+                            <?php if(!empty($result)): ?>
+                            	<?php foreach($result as $row): ?>
+								<tr>
+									<td><?php echo $row->id; ?></td>
+									<td><a href="<?php echo out_url("article/show/" . $row->id); ?>" target="_blank"><?php echo $row->name; ?></a></td>
+									<td><?php echo $row->category_name; ?></td>
+									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
+									<td class="action-td">
+										<a href="<?php echo site_url('fagui_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+											<i class="icon-edit"></i>								
+										</a>					
+										<a href="<?php echo site_url('fagui_list/delete/' . $row->id); ?>" class="btn btn-small">
+											<i class="icon-remove"></i>						
+										</a>
+									</td>
+								</tr>
+                                <?php endforeach; ?>
+                            	<tr>
+                                	<td style="text-align:right;" colspan="5"><?php echo $pagination; ?></td>
+                                </tr>
+                            <?php else: ?>
+                            	<tr>
+                                	<td colspan="5">没有文章</td>
+                                </tr>
+                            <?php endif; ?>
+							</tbody>
+						</table>
+					
+					</div> <!-- /widget-content -->
+				
+				</div>
+                <?php endif; ?>
                 <script src="<?php echo base_url('resources/js/ckeditor/ckeditor.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/jquery-ui.js'); ?>" language="javascript"></script>
                 <script language="javascript">

@@ -16,7 +16,10 @@ class Jianjie_list extends CI_Controller
 	
 	public function index($articleId = 0)
 	{
+		$this->load->model('mrefer');
 		$this->load->model('marticle');
+
+		$refer_result = $this->mrefer->read();
 		if(!empty($articleId))
 		{
 			$result = $this->marticle->read(array(
@@ -35,11 +38,11 @@ class Jianjie_list extends CI_Controller
 		{
 			$result = $result[0];
 			$data = array(
-				'admin'					=>	$this->user,
+				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
-				'edit'						=>	'1',
-				'article_id'				=>	$result->id,
-				'row'						=>	$result
+				'edit'				=>	'1',
+				'article_id'		=>	$result->id,
+				'row'				=>	$result
 			);
 		}
 		else
@@ -49,6 +52,7 @@ class Jianjie_list extends CI_Controller
 				'page_name'			=>	$this->pageName
 			);
 		}
+		$data['refers'] = $refer_result;
 		$this->render->render($this->pageName, $data);
 	}
 	
@@ -67,7 +71,7 @@ class Jianjie_list extends CI_Controller
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'jianjie_list', true, 5);
 		}
-		$article_refer = empty($article_refer) ? '' : $article_refer;
+		$article_refer = empty($article_refer) ? 0 : intval($article_refer);
 		$article_time = empty($article_time) ? time() : strtotime($article_time);
 		
 		$row = array(

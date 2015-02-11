@@ -16,7 +16,10 @@ class Guide_list extends CI_Controller
 	
 	public function index($articleId = 0)
 	{
+		$this->load->model('mrefer');
 		$this->load->model('marticle');
+		
+		$refer_result = $this->mrefer->read();
 		if(!empty($articleId))
 		{
 			$result = $this->marticle->read(array(
@@ -49,6 +52,7 @@ class Guide_list extends CI_Controller
 				'page_name'			=>	$this->pageName
 			);
 		}
+		$data['refers'] = $refer_result;
 		$this->render->render($this->pageName, $data);
 	}
 	
@@ -67,7 +71,7 @@ class Guide_list extends CI_Controller
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'guide_list', true, 5);
 		}
-		$article_refer = empty($article_refer) ? '' : $article_refer;
+		$article_refer = empty($article_refer) ? 0 : intval($article_refer);
 		$article_time = empty($article_time) ? time() : strtotime($article_time);
 		
 		$row = array(
