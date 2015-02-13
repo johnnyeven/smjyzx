@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2015-02-04 15:13:19
+Date: 2015-02-13 14:31:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,6 +45,7 @@ CREATE TABLE `biao` (
   `parent_id` int(11) NOT NULL,
   `number` varchar(32) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `unit` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `start_time` int(11) NOT NULL,
   `location` int(11) NOT NULL,
@@ -84,6 +85,20 @@ CREATE TABLE `biao_location` (
 
 -- ----------------------------
 -- Records of biao_location
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for biao_unit
+-- ----------------------------
+DROP TABLE IF EXISTS `biao_unit`;
+CREATE TABLE `biao_unit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of biao_unit
 -- ----------------------------
 
 -- ----------------------------
@@ -143,7 +158,7 @@ CREATE TABLE `digisky_admin` (
 -- ----------------------------
 -- Records of digisky_admin
 -- ----------------------------
-INSERT INTO `digisky_admin` VALUES ('1', 'admin', 'd93a5def7511da3d0f2d171d9c344e91', '1', '0', '1421917698');
+INSERT INTO `digisky_admin` VALUES ('1', 'admin', 'd93a5def7511da3d0f2d171d9c344e91', '1', '0', '1423807720');
 
 -- ----------------------------
 -- Table structure for download
@@ -209,7 +224,7 @@ refer.`name` AS refer_name
 FROM
 articles
 INNER JOIN category ON articles.category_id = category.id
-INNER JOIN refer ON articles.refer = refer.id ;
+INNER JOIN refer ON articles.refer = refer.id ; ;
 
 -- ----------------------------
 -- View structure for biao_category_location
@@ -227,8 +242,11 @@ biao.time,
 biao_category.`name` AS category_name,
 biao_location.`name` AS location_name,
 biao.content,
-biao.url
+biao.url,
+biao_unit.`name` AS unit_name,
+biao.unit
 FROM
 biao
 INNER JOIN biao_category ON biao.category = biao_category.id
-INNER JOIN biao_location ON biao.location = biao_location.id ;
+INNER JOIN biao_location ON biao.location = biao_location.id
+INNER JOIN biao_unit ON biao.unit = biao_unit.id ;

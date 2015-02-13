@@ -598,7 +598,7 @@
                         <img src="<?php echo base_url('resources/images/index_46.png'); ?>" />
                     </div>
                     <div class="row-item-head-more">
-                        <a href="<?php echo site_url('bid/lists/29'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
+                        <a href="<?php echo site_url('arrangement/lists/29'); ?>"><img src="<?php echo base_url('resources/images/more.png'); ?>" /></a>
                     </div>
                     <div class="clear"></div>
                 </div>

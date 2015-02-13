@@ -41,8 +41,6 @@ class Message extends CI_Controller
 			$returnContent = "<a href=\"$redirect\">点击这里返回</a>\n";
 		}
 		
-		$this->load->helper('language');
-		
 		$parameter = array(
 			'meta_data'		=>	$metaData,
 			'return_content'	=>	$returnContent,
