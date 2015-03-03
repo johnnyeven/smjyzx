@@ -603,31 +603,25 @@
                     <div class="clear"></div>
                 </div>
                 <div class="row-item-body">
-                    <?php if(!empty($kaibiao_result)): ?>
+                    <?php $page = array(-1, 0, 1); ?>
                     <ul>
-                        <?php for($i=0; $i < count($kaibiao_result); $i++): ?>
+                        <?php for($i=0; $i < count($page); $i++): ?>
                         <?php
-                        if(!empty($kaibiao_result[$i]->url))
-                        {
-                            $url = $kaibiao_result[$i]->url;
-                            $target = '_blank';
-                        }
-                        else
-                        {
-                            $url = site_url('bid/show/' . $kaibiao_result[$i]->id);
-                            $target = '_self';
-                        }
+                        $time = time() + intval($page[$i]) * 7 * 86400;
+                        $day = intval(date('w', $time)) - 1;
+                        if($day < 0) $day = 6;
+
+                        $monday_start = date('Y-m-d', $time - $day * 86400);
+                        $friday_end = date('Y-m-d', $time + (4 - $day) * 86400);
+                        $url = site_url('arrangement/lists/29/' . $page[$i]);
                         ?>
-                        <?php if($i != count($kaibiao_result) - 1): ?>
-                        <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($kaibiao_result[$i]->name); ?></a></span><span class="list-date"><?php echo date('m-d', $kaibiao_result[$i]->time); ?></span></li>
+                        <?php if($i != count($page) - 1): ?>
+                        <li><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>"><?php echo $monday_start; ?> - <?php echo $friday_end; ?>开评标安排</a></span></li>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($kaibiao_result[$i]->name); ?></a></span><span class="list-date"><?php echo date('m-d', $kaibiao_result[$i]->time); ?></span></li>
+                        <li class="list-last"><span class="list-title" style="width:400px;"><a href="<?php echo $url; ?>"><?php echo $monday_start; ?> - <?php echo $friday_end; ?>开评标安排</a></span></li>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
-                    <?php else: ?>
-                    <p>没有可以显示的内容</p>
-                    <?php endif; ?>
                 </div>
             </div>
             <div class="clear"></div>

@@ -194,14 +194,14 @@ class Index extends CI_Controller
 		), 3);
 
 		//开标安排
-		$kaibiao_result = $this->mbiao->read(array(
-			'parent_id'		=>	29
-		), array(
-			'order_by'		=>	array(
-				'start_time',
-				'asc'
-			)
-		), 3);
+		// $kaibiao_result = $this->mbiao->read(array(
+		// 	'parent_id'		=>	29
+		// ), array(
+		// 	'order_by'		=>	array(
+		// 		'start_time',
+		// 		'asc'
+		// 	)
+		// ), 3);
 
 		$this->load->model('mlink');
 		//友情链接
@@ -231,7 +231,7 @@ class Index extends CI_Controller
 			'part4_3_result'		=>	$part4_3_result,
 			'part5_result'			=>	$part5_result,
 			'yuyue_result'			=>	$yuyue_result,
-			'kaibiao_result'		=>	$kaibiao_result,
+			// 'kaibiao_result'		=>	$kaibiao_result,
 			'link_result'			=>	$link_result
 		);
 

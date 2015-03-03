@@ -1,6 +1,6 @@
 		<link href="<?php echo base_url('resources/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css" />
-		<link href="<?php echo base_url('resources/css/article.css'); ?>" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url('resources/css/jquery-ui.css'); ?>" rel="stylesheet" type="text/css" />
+		<link href="<?php echo base_url('resources/css/article.css'); ?>" rel="stylesheet" type="text/css" />
 		<div class="row content">
 			<h1><?php echo date('Y年m月d日', $monday_time); ?> - <?php echo date('Y年m月d日', $friday_time); ?>开评标安排</h1>
 			<table class="table table-striped table-bordered">
@@ -26,13 +26,15 @@
 						if(!empty($row->url))
 						{
 							$url = $row->url;
+							$target = '_blank';
 						}
 						else
 						{
 							$url = site_url("bid/show/" . $row->id);
+							$target = '_self';
 						}
 						?>
-						<td><a href="<?php echo $url; ?>"><?php echo $row->name; ?></a></td>
+						<td><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo $row->name; ?></a></td>
 						<td><?php echo $row->number; ?></td>
 						<td><?php echo $row->category_name; ?></td>
 						<td><?php echo $row->unit_name; ?></td>

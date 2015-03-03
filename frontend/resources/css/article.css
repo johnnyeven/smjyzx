@@ -9,3 +9,4 @@
 	.content .content-table th {padding:5px;text-align:left;}
 	.content .content-table td {background:#fff;padding:5px;}
 	.content .content-table tfoot {text-align:right;}
+.table th, .table td {text-align: center;}
