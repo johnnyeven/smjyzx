@@ -1,7 +1,7 @@
 				<link rel="stylesheet" href="<?php echo base_url('resources/admin/css/jquery-ui.css'); ?>" type="text/css" />
 				<h1 class="page-title">
 					<i class="icon-home"></i>
-					采购单位管理
+					采购单位/场地使用单位管理
 				</h1>
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">

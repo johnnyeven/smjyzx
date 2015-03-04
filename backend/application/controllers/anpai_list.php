@@ -67,7 +67,7 @@ class Anpai_list extends CI_Controller
 		);
 		foreach($result as $row)
 		{
-			$week[date('w', $row->start_time)] = $row;
+			$week[date('w', $row->start_time)][] = $row;
 		}
 
 		$pagination = '<form action="" method="post" style="margin-bottom:0;">';

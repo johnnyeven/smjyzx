@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Arrangement extends CI_Controller
+class Order extends CI_Controller
 {
 	private $page_items = 15;
 	public function __construct()
@@ -64,7 +64,7 @@ class Arrangement extends CI_Controller
 			}
 
 			$pagination = '<form action="" method="post" style="margin-bottom:0;">';
-			$pagination .= '<a href="' . site_url('arrangement/lists/' . $category_id . '/' . (intval($page) - 1)) . '">上周</a> | <a href="' . site_url('arrangement/lists/' . $category_id . '/0') . '">本周</a> | <a href="' . site_url('arrangement/lists/' . $category_id . '/' . (intval($page) + 1)) . '">下周</a> | ';
+			$pagination .= '<a href="' . site_url('order/lists/' . $category_id . '/' . (intval($page) - 1)) . '">上周</a> | <a href="' . site_url('order/lists/' . $category_id . '/0') . '">本周</a> | <a href="' . site_url('order/lists/' . $category_id . '/' . (intval($page) + 1)) . '">下周</a> | ';
 			$pagination .= '<input style="margin-bottom:0;" type="text" class="input-small datepicker" name="searchTime" value="" />';
 			$pagination .= '<input type="hidden" name="' . $this->security->get_csrf_token_name() . '" value="' . $this->security->get_csrf_hash() . '" />';
 			$pagination .= ' <button type="submit" class="btn btn-primary">跳转</button>';
@@ -78,7 +78,7 @@ class Arrangement extends CI_Controller
 				'friday_time'		=>	$friday_endtime
 			);
 			$this->load->model('render');
-			$this->render->render('arrangement_list', $data);
+			$this->render->render('order_list', $data);
 		}
 		else
 		{

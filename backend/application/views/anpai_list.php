@@ -44,13 +44,14 @@
                                         <div class="control-group">											
                                             <label class="control-label" for="biaoUnit">采购单位</label>
                                             <div class="controls">
-                                                <select class="input-medium" id="biaoUnit" name="biaoUnit">
-                                                <?php foreach($units as $unit): ?>
-                                                    <option value="<?php echo $unit->id; ?>"<?php if($value->unit == $unit->id): ?> selected="selected"<?php endif; ?>><?php echo $unit->name; ?></option>
-                                                <?php endforeach; ?>
-                                                </select>
-                                                <a href="<?php echo site_url('biao_unit_list/show'); ?>" target="_blank">采购单位管理</a>
+                                                <input type="text" class="input-xlarge" id="biaoUnit" name="biaoUnit" value="<?php echo $value->unit; ?>" />
+                                                <a id="broswer" href="#" target="_blank">可选项</a> | <a href="<?php echo site_url('biao_unit_list/show'); ?>" target="_blank">采购单位管理</a>
                                             </div> <!-- /controls -->
+                                            <div class="controls" id="unit_container" style="display:none;margin-top:10px;">
+                                            <?php foreach($units as $unit): ?>
+                                            <button id="btnSubmit" type="button" class="btn btn-info"><?php echo $unit->name; ?></button>
+                                        	<?php endforeach; ?>
+                                            </div>
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
@@ -179,29 +180,71 @@
 								<tr>
 									<td><?php echo lang('day' . $key); ?></td>
 									<?php if(!empty($row)): ?>
-									<td><?php echo date('Y-m-d H:i:s', $row->start_time); ?></td>
+									<td>
+										<?php
+										for($i=0; $i<count($row); $i++)
+										{
+											echo date('Y-m-d H:i:s', $row[$i]->start_time) . '<br>';
+										}
+										?>
+									</td>
+									<td>
 									<?php
-									if(!empty($row->url))
+									for($i=0; $i<count($row); $i++)
 									{
-										$url = $row->url;
-									}
-									else
-									{
-										$url = out_url("bid/show/" . $row->id);
+										if(!empty($row[$i]->url))
+										{
+											$url = $row[$i]->url;
+										}
+										else
+										{
+											$url = out_url("bid/show/" . $row[$i]->id);
+										}
+										echo '<a href="' . $url . '" target="_blank">' . $row[$i]->name . '</a><br>';
 									}
 									?>
-									<td><a href="<?php echo $url; ?>" target="_blank"><?php echo $row->name; ?></a></td>
-									<td><?php echo $row->number; ?></td>
-									<td><?php echo $row->category_name; ?></td>
-									<td><?php echo $row->unit_name; ?></td>
-									<td><?php echo $row->location_name; ?></td>
+									</td>
+									<td>
+									<?php
+									for($i=0; $i<count($row); $i++)
+									{
+										echo $row[$i]->number . '<br>';
+									}
+									?>
+									</td>
+									<td>
+									<?php
+									for($i=0; $i<count($row); $i++)
+									{
+										echo $row[$i]->category_name . '<br>';
+									}
+									?>
+									</td>
+									<td>
+									<?php
+									for($i=0; $i<count($row); $i++)
+									{
+										echo $row[$i]->unit . '<br>';
+									}
+									?>
+									</td>
+									<td>
+									<?php
+									for($i=0; $i<count($row); $i++)
+									{
+										echo $row[$i]->location_name . '<br>';
+									}
+									?>
+									</td>
 									<td class="action-td">
-										<a href="<?php echo site_url('anpai_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+									<?php for($i=0; $i<count($row); $i++): ?>
+										<a href="<?php echo site_url('anpai_list/edit/' . $row[$i]->id); ?>" class="btn btn-small btn-warning">
 											<i class="icon-edit"></i>								
 										</a>					
-										<a href="<?php echo site_url('anpai_list/delete/' . $row->id); ?>" class="btn btn-small">
+										<a href="<?php echo site_url('anpai_list/delete/' . $row[$i]->id); ?>" class="btn btn-small">
 											<i class="icon-remove"></i>						
-										</a>
+										</a><br>
+									<?php endfor; ?>
 									</td>
 									<?php else: ?>
 									<td>&nbsp;</td>
@@ -279,6 +322,20 @@
 						if(url && !IsURL(url)) {
 							alert('链接格式不正确，请确保链接以http://或者是https://开头');
 							return false;
+						}
+					});
+
+					$("#broswer").click(function() {
+						$("#unit_container").slideToggle();
+						return false;
+					});
+
+					$("#unit_container > button").click(function() {
+						var text = $("#biaoUnit").val();
+						if(text) {
+							$("#biaoUnit").val(text + "," + $(this).text());
+						} else {
+							$("#biaoUnit").val($(this).text());
 						}
 					});
 				});

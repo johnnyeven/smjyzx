@@ -1,7 +1,7 @@
 				<link rel="stylesheet" href="<?php echo base_url('resources/admin/css/jquery-ui.css'); ?>" type="text/css" />
 				<h1 class="page-title">
 					<i class="icon-home"></i>
-					开标室管理
+					开标室/使用场地管理
 				</h1>
                 <?php if(empty($edit)): ?>
 				<div class="widget widget-table">
@@ -17,7 +17,7 @@
 							<thead>
 								<tr>
 									<th>编号</th>
-									<th>开标室名称</th>
+									<th>开标室/使用场地名称</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>

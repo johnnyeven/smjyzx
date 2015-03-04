@@ -34,7 +34,7 @@
                                             <div class="controls">
                                                 <select class="input-medium" id="biaoCategory" name="biaoCategory">
                                                 <?php foreach($categories as $category): ?>
-                                                    <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
+                                                    <option value="<?php echo $category->id; ?>"<?php if($value->category == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
                                                 <?php endforeach; ?>
                                                 </select>
                                                 <a href="<?php echo site_url('biao_category_list/show'); ?>" target="_blank">项目类别管理</a>
@@ -42,21 +42,34 @@
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
-                                            <label class="control-label" for="biaoLocation">开标室</label>
+                                            <label class="control-label" for="biaoUnit">场地使用单位</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-xlarge" id="biaoUnit" name="biaoUnit" value="<?php echo $value->unit; ?>" />
+                                                <a id="broswer" href="#" target="_blank">可选项</a> | <a href="<?php echo site_url('biao_unit_list/show'); ?>" target="_blank">场地使用单位管理</a>
+                                            </div> <!-- /controls -->
+                                            <div class="controls" id="unit_container" style="display:none;margin-top:10px;">
+                                            <?php foreach($units as $unit): ?>
+                                            <button id="btnSubmit" type="button" class="btn btn-info"><?php echo $unit->name; ?></button>
+                                        	<?php endforeach; ?>
+                                            </div>
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
+                                            <label class="control-label" for="biaoLocation">使用场地</label>
                                             <div class="controls">
                                                 <select class="input-medium" id="biaoLocation" name="biaoLocation">
-                                                <?php foreach($locations as $category): ?>
-                                                    <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
+                                                <?php foreach($locations as $location): ?>
+                                                    <option value="<?php echo $location->id; ?>"<?php if($value->location == $location->id): ?> selected="selected"<?php endif; ?>><?php echo $location->name; ?></option>
                                                 <?php endforeach; ?>
                                                 </select>
-                                                <a href="<?php echo site_url('biao_location_list/show'); ?>" target="_blank">开标室管理</a>
+                                                <a href="<?php echo site_url('biao_location_list/show'); ?>" target="_blank">使用场地</a>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
-                                            <label class="control-label" for="articleTime">开标时间</label>
+                                            <label class="control-label" for="articleTime">场地使用时间</label>
                                             <div class="controls">
-                                                <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d', $value->time); else echo date('Y-m-d', $time) ?>" />
+                                                <input type="text" class="input-medium datepicker" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d', $value->time); else echo date('Y-m-d', $time) ?>" />
                                             </div> <!-- /controls -->	
 				                            <div class="controls">
 				                            	<select id="startHours" name="startHours" style="width:60px;">
@@ -143,7 +156,7 @@
 				
 					<div class="widget-header">
 						<i class="icon-th-list"></i>
-						<h3>文章列表</h3>
+						<h3>文章列表(<?php echo $monday; ?> 至 <?php echo $friday; ?>)</h3>
 					</div> <!-- /widget-header -->
 					
 					<div class="widget-content">
@@ -151,52 +164,102 @@
 						<table class="table table-striped table-bordered" id="imgTable">
 							<thead>
 								<tr>
-									<th>编号</th>
+									<th>日期</th>
+									<th>场地使用时间</th>
 									<th>项目名称</th>
-									<th>项目类别</th>
-									<th>开标时间</th>
-									<th>开标室</th>
+									<th>项目编号</th>
+									<th>项目类型</th>
+									<th>场地使用单位</th>
+									<th>使用场地</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
 							
 							<tbody>
-                            <?php if(!empty($result)): ?>
-                            	<?php foreach($result as $row): ?>
+                            	<?php foreach($result as $key => $row): ?>
 								<tr>
-									<td><?php echo $row->number; ?></td>
+									<td><?php echo lang('day' . $key); ?></td>
+									<?php if(!empty($row)): ?>
+									<td>
+										<?php
+										for($i=0; $i<count($row); $i++)
+										{
+											echo date('Y-m-d H:i:s', $row[$i]->start_time) . '<br>';
+										}
+										?>
+									</td>
+									<td>
 									<?php
-									if(!empty($row->url))
+									for($i=0; $i<count($row); $i++)
 									{
-										$url = $row->url;
-									}
-									else
-									{
-										$url = out_url("bid/show/" . $row->id);
+										if(!empty($row[$i]->url))
+										{
+											$url = $row[$i]->url;
+										}
+										else
+										{
+											$url = out_url("bid/show/" . $row[$i]->id);
+										}
+										echo '<a href="' . $url . '" target="_blank">' . $row[$i]->name . '</a><br>';
 									}
 									?>
-									<td><a href="<?php echo $url; ?>" target="_blank"><?php echo $row->name; ?></a></td>
-									<td><?php echo $row->category_name; ?></td>
-									<td><?php echo date('Y-m-d H:i:s', $row->start_time); ?></td>
-									<td><?php echo $row->location_name; ?></td>
+									</td>
+									<td>
+									<?php
+									for($i=0; $i<count($row); $i++)
+									{
+										echo $row[$i]->number . '<br>';
+									}
+									?>
+									</td>
+									<td>
+									<?php
+									for($i=0; $i<count($row); $i++)
+									{
+										echo $row[$i]->category_name . '<br>';
+									}
+									?>
+									</td>
+									<td>
+									<?php
+									for($i=0; $i<count($row); $i++)
+									{
+										echo $row[$i]->unit . '<br>';
+									}
+									?>
+									</td>
+									<td>
+									<?php
+									for($i=0; $i<count($row); $i++)
+									{
+										echo $row[$i]->location_name . '<br>';
+									}
+									?>
+									</td>
 									<td class="action-td">
-										<a href="<?php echo site_url('yuyue_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
+									<?php for($i=0; $i<count($row); $i++): ?>
+										<a href="<?php echo site_url('yuyue_list/edit/' . $row[$i]->id); ?>" class="btn btn-small btn-warning">
 											<i class="icon-edit"></i>								
 										</a>					
-										<a href="<?php echo site_url('yuyue_list/delete/' . $row->id); ?>" class="btn btn-small">
+										<a href="<?php echo site_url('yuyue_list/delete/' . $row[$i]->id); ?>" class="btn btn-small">
 											<i class="icon-remove"></i>						
-										</a>
+										</a><br>
+									<?php endfor; ?>
 									</td>
+									<?php else: ?>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<?php endif; ?>
 								</tr>
                                 <?php endforeach; ?>
                             	<tr>
-                                	<td style="text-align:right;" colspan="6"><?php echo $pagination; ?></td>
+                                	<td style="text-align:right;" colspan="8"><?php echo $pagination; ?></td>
                                 </tr>
-                            <?php else: ?>
-                            	<tr>
-                                	<td colspan="6">没有文章</td>
-                                </tr>
-                            <?php endif; ?>
 							</tbody>
 						</table>
 					
@@ -259,6 +322,20 @@
 						if(url && !IsURL(url)) {
 							alert('链接格式不正确，请确保链接以http://或者是https://开头');
 							return false;
+						}
+					});
+
+					$("#broswer").click(function() {
+						$("#unit_container").slideToggle();
+						return false;
+					});
+
+					$("#unit_container > button").click(function() {
+						var text = $("#biaoUnit").val();
+						if(text) {
+							$("#biaoUnit").val(text + "," + $(this).text());
+						} else {
+							$("#biaoUnit").val($(this).text());
 						}
 					});
 				});

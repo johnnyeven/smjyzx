@@ -2,17 +2,17 @@
 		<link href="<?php echo base_url('resources/css/jquery-ui.css'); ?>" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url('resources/css/article.css'); ?>" rel="stylesheet" type="text/css" />
 		<div class="row content">
-			<h1><?php echo date('Y年m月d日', $monday_time); ?> - <?php echo date('Y年m月d日', $friday_time); ?>开评标安排</h1>
+			<h1><?php echo date('Y年m月d日', $monday_time); ?> - <?php echo date('Y年m月d日', $friday_time); ?>场地安排</h1>
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
 						<th>日期</th>
-						<th>开标时间</th>
+						<th>场地使用时间</th>
 						<th>项目名称</th>
 						<th>项目编号</th>
 						<th>项目类型</th>
-						<th>采购单位</th>
-						<th>开评标地点</th>
+						<th>场地使用单位</th>
+						<th>使用场地</th>
 					</tr>
 				</thead>
 				
