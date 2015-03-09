@@ -634,7 +634,7 @@
                                 <?php
                                 $pic_array = explode(';', $part5_result[$i]->pic);
                                 ?>
-                                <a href="<?php echo site_url('article/show/' . $part5_result[$i]->id); ?>"><img class="pictures-container" src="<?php echo $pic_array[0]; ?>" /></a>
+                                <a href="<?php echo site_url('article/pic/' . $part5_result[$i]->id); ?>"><img class="pictures-container" src="<?php echo $pic_array[0]; ?>" /></a>
                             </div>
                         <?php endfor; ?>
                             <div class="clear"></div>

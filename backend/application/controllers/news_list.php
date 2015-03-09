@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class News_list extends CI_Controller
+class news_list extends CI_Controller
 {
 	private $category_id = 6;
 	private $page_items = 10;
@@ -21,13 +21,9 @@ class News_list extends CI_Controller
 	{
 		$this->load->model('mrefer');
 		$this->load->model('marticle');
-		$this->load->model('mcategory');
 		
 		$refer_result = $this->mrefer->read();
-		$category_result = $this->mcategory->read(array(
-			'parent_id'		=>	$this->category_id
-		));
-		$result = $this->marticle->read_from_view(array(
+		$result = $this->marticle->read(array(
 			'category_id'	=>	$this->category_id
 		), array(
 			'order_by'		=>	array('time', 'desc')
@@ -47,7 +43,6 @@ class News_list extends CI_Controller
 			'admin'				=>	$this->user,
 			'page_name'			=>	$this->pageName,
 			'refers'			=>	$refer_result,
-			'categories'		=>	$category_result,
 			'result'			=>	$result,
 			'pagination'		=>	$this->pagination->create_links()
 		);
@@ -61,12 +56,8 @@ class News_list extends CI_Controller
 		{
 			$this->load->model('mrefer');
 			$this->load->model('marticle');
-			$this->load->model('mcategory');
-
+			
 			$refer_result = $this->mrefer->read();
-			$category_result = $this->mcategory->read(array(
-				'parent_id'		=>	$this->category_id
-			));
 			$result = $this->marticle->read(array(
 				'id'		=>	$sliderId
 			));
@@ -79,7 +70,6 @@ class News_list extends CI_Controller
 				'admin'				=>	$this->user,
 				'page_name'			=>	$this->pageName,
 				'refers'			=>	$refer_result,
-				'categories'		=>	$category_result,
 				'edit'				=>	'1',
 				'id'				=>	$sliderId,
 				'value'				=>	$result
@@ -111,19 +101,24 @@ class News_list extends CI_Controller
 		$refer = $this->input->post('newsRefer', TRUE);
 		$time = $this->input->post('articleTime', TRUE);
 		$content = $this->input->post('wysiwyg', TRUE);
+		$pic = $this->input->post('newsPicFilepath', TRUE);
+		$indexShow = $this->input->post('indexShow', TRUE);
 
-		if(empty($name) || empty($content))
+		if(empty($name) || empty($pic))
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'news_list/show', true, 5);
 		}
 		$refer = empty($refer) ? 0 : intval($refer);
 		$time = empty($time) ? time() : strtotime($time);
+		$content = empty($content) ? '' : $content;
 		
 		$row = array(
 			'category_id'	=>	empty($category) ? $this->category_id : intval($category),
 			'name'			=>	$name,
 			'refer'			=>	$refer,
-			'content'		=>	$content
+			'content'		=>	$content,
+			'pic'			=>	$pic,
+			'show_in_index'	=>	!empty($indexShow) ? 1 : 0
 		);
 		
 		if(!empty($edit))

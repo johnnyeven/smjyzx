@@ -22,18 +22,6 @@
                                                 <input type="text" class="input-medium" id="newsName" name="newsName" value="<?php echo $value->name; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
-                                        <?php if(!empty($categories)): ?>
-                                        <div class="control-group">											
-                                            <label class="control-label" for="newsCategory">分类</label>
-                                            <div class="controls">
-                                                <select class="input-medium" id="newsCategory" name="newsCategory">
-                                                <?php foreach($categories as $category): ?>
-                                                    <option value="<?php echo $category->id; ?>"<?php if($value->category_id == $category->id): ?> selected="selected"<?php endif; ?>><?php echo $category->name; ?></option>
-                                                <?php endforeach; ?>
-                                                </select>
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        <?php endif; ?>
                                         <div class="control-group">											
                                             <label class="control-label" for="newsRefer">来源</label>
                                             <div class="controls">
@@ -53,6 +41,34 @@
                                             </div> <!-- /controls -->				
                                         </div> <!-- /control-group -->
                                         
+                                        <div class="control-group">											
+                                            <label class="control-label" for="sliderUrl">上传图片</label>
+                                            <div class="controls">
+                                                <input name="picUpload" type="file" id="picUpload" size="20" class="input-medium" />
+                                                <input type="button" name="btnUpload" id="btnUpload" value="上传" onclick="javascript:contentPicUpload('<?php echo site_url('utils/doPicUpload'); ?>', 'picUpload', 'newsPicPathContent', 'newsPicFilepath', 'append', 5, true)" class="btn btn-primary" />
+                                                <input name="newsPicFilepath" type="hidden" id="newsPicFilepath" value="<?php echo $value->pic; ?>" />
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+                                        <div id="newsPicPathContent" class="control-group">
+										<?php if(!empty($edit)): ?>
+										<?php
+										$picArray = explode(';', $value->pic);
+										foreach($picArray as $path)
+										{
+											if(!empty($path)) echo "<div style='padding:10px;border:#CCC 1px solid;width:200px;height:220px;float:left;margin-right:10px;'><div><img src='" . $path . "' /></div><div><a class='insert' href='#'>插入文章</a> | <a class='delete' href='#'>删除</a></div></div>";
+										}
+										?>
+										<?php endif; ?>
+                                        </div>
+                                        
+                                        <div class="control-group">											
+                                            <label class="control-label" for="sliderUrl">固定展示</label>
+                                            <div class="controls">
+                                                <input type="checkbox" name="indexShow" value="1" <?php if($value->show_in_index == '1'): ?>checked="checked"<?php endif; ?> /> 是
+                                                <p class="help_block">勾选此项，表示将图片显示在首页左上方Flash动态展示里<p>
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+
                                         <div class="control-group">											
                                             <label class="control-label" for="wysisyg">新闻内容</label>
                                             <div class="controls">
@@ -87,7 +103,6 @@
 								<tr>
 									<th>编号</th>
 									<th>标题</th>
-									<th>分类</th>
 									<th>发布时间</th>
 									<th>&nbsp;</th>
 								</tr>
@@ -99,7 +114,6 @@
 								<tr>
 									<td><?php echo $row->id; ?></td>
 									<td><a href="<?php echo out_url("article/show/" . $row->id); ?>" target="_blank"><?php echo $row->name; ?></a></td>
-									<td><?php echo $row->category_name; ?></td>
 									<td><?php echo date('Y-m-d H:i:s', $row->time); ?></td>
 									<td class="action-td">
 										<a href="<?php echo site_url('news_list/edit/' . $row->id); ?>" class="btn btn-small btn-warning">
@@ -128,6 +142,9 @@
                 <?php endif; ?>
                 <script src="<?php echo base_url('resources/js/ckeditor/ckeditor.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/jquery-ui.js'); ?>" language="javascript"></script>
+                <script src="<?php echo base_url('resources/admin/js/jquery.resizeimg.js'); ?>" language="javascript"></script>
+                <script src="<?php echo base_url('resources/admin/js/uploader/ajaxfileupload.js'); ?>" language="javascript"></script>
+                <script src="<?php echo base_url('resources/admin/js/upload.js'); ?>" language="javascript"></script>
                 <script language="javascript">
 				$(function() {
 					CKEDITOR.replace( 'wysiwyg' );
@@ -164,5 +181,23 @@
 					};
 					$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
 					$("#articleTime").datepicker();
+					$("#imgTable img").resizeImg({w: 300, h: 150});
+					$("#newsPicPathContent img").resizeImg({w: 200, h: 200});
+					$(document).on('click', '#newsPicPathContent a.delete', function() {
+						var path = $(this).parent().prev().find('img').attr('src');
+						var value = $("#newsPicFilepath").val();
+						$("#newsPicFilepath").val(value.replace(path + ";", ""));
+						$(this).parent().parent().remove();
+						return false;
+					});
+					$(document).on('click', '#newsPicPathContent a.insert', function() {
+						var path = $(this).parent().prev().find('img').attr('src');
+						var editor = CKEDITOR.instances.wysiwyg;
+						if ( editor.mode == 'wysiwyg' )
+						{
+							editor.insertHtml( '<img src="' + path + '" />' );
+						}
+						return false;
+					});
 				});
 				</script>

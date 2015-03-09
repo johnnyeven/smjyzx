@@ -7,10 +7,10 @@
 				<thead>
 					<tr>
 						<th>日期</th>
-						<th>场地使用时间</th>
 						<th>项目名称</th>
 						<th>项目编号</th>
 						<th>项目类型</th>
+						<th>场地使用时间</th>
 						<th>场地使用单位</th>
 						<th>使用场地</th>
 					</tr>
@@ -21,14 +21,6 @@
 					<tr>
 						<td><?php echo lang('DAY' . $key); ?></td>
 						<?php if(!empty($row)): ?>
-						<td>
-							<?php
-							for($i=0; $i<count($row); $i++)
-							{
-								echo date('Y-m-d H:i:s', $row[$i]->start_time) . '<br>';
-							}
-							?>
-						</td>
 						<td>
 						<?php
 						for($i=0; $i<count($row); $i++)
@@ -62,6 +54,14 @@
 							echo $row[$i]->category_name . '<br>';
 						}
 						?>
+						</td>
+						<td>
+							<?php
+							for($i=0; $i<count($row); $i++)
+							{
+								echo date('Y-m-d H:i:s', $row[$i]->start_time) . '<br>';
+							}
+							?>
 						</td>
 						<td>
 						<?php

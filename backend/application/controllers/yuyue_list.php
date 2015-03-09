@@ -71,7 +71,7 @@ class Yuyue_list extends CI_Controller
 		}
 
 		$pagination = '<form action="" method="post" style="margin-bottom:0;">';
-		$pagination .= '<a href="' . site_url('anpai_list/show/' . (intval($page) - 1)) . '">上周</a> | <a href="' . site_url('anpai_list/show/0') . '">本周</a> | <a href="' . site_url('anpai_list/show/' . (intval($page) + 1)) . '">下周</a> | ';
+		$pagination .= '<a href="' . site_url('yuyue_list/show/' . (intval($page) - 1)) . '">上周</a> | <a href="' . site_url('yuyue_list/show/0') . '">本周</a> | <a href="' . site_url('yuyue_list/show/' . (intval($page) + 1)) . '">下周</a> | ';
 		$pagination .= '<input style="margin-bottom:0;" type="text" class="input-small datepicker" name="searchTime" value="" />';
 		$pagination .= ' <button type="submit" class="btn btn-primary">跳转</button>';
 		$pagination .= '</form>';

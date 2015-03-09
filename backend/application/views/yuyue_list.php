@@ -17,15 +17,16 @@
                                         <input type="hidden" id="edit" name="edit" value="<?php echo $edit; ?>" />
                                         <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" />
                                         <div class="control-group">											
-                                            <label class="control-label" for="biaoNumber">项目编号</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-medium" id="biaoNumber" name="biaoNumber" value="<?php echo $value->number; ?>" />
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        <div class="control-group">											
                                             <label class="control-label" for="biaoName">项目名称</label>
                                             <div class="controls">
                                                 <input type="text" class="input-medium" id="biaoName" name="biaoName" value="<?php echo $value->name; ?>" />
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+
+                                        <div class="control-group">											
+                                            <label class="control-label" for="biaoNumber">项目编号</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium" id="biaoNumber" name="biaoNumber" value="<?php echo $value->number; ?>" />
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
@@ -38,31 +39,6 @@
                                                 <?php endforeach; ?>
                                                 </select>
                                                 <a href="<?php echo site_url('biao_category_list/show'); ?>" target="_blank">项目类别管理</a>
-                                            </div> <!-- /controls -->
-                                        </div> <!-- /control-group -->
-                                        
-                                        <div class="control-group">											
-                                            <label class="control-label" for="biaoUnit">场地使用单位</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge" id="biaoUnit" name="biaoUnit" value="<?php echo $value->unit; ?>" />
-                                                <a id="broswer" href="#" target="_blank">可选项</a> | <a href="<?php echo site_url('biao_unit_list/show'); ?>" target="_blank">场地使用单位管理</a>
-                                            </div> <!-- /controls -->
-                                            <div class="controls" id="unit_container" style="display:none;margin-top:10px;">
-                                            <?php foreach($units as $unit): ?>
-                                            <button id="btnSubmit" type="button" class="btn btn-info"><?php echo $unit->name; ?></button>
-                                        	<?php endforeach; ?>
-                                            </div>
-                                        </div> <!-- /control-group -->
-                                        
-                                        <div class="control-group">											
-                                            <label class="control-label" for="biaoLocation">使用场地</label>
-                                            <div class="controls">
-                                                <select class="input-medium" id="biaoLocation" name="biaoLocation">
-                                                <?php foreach($locations as $location): ?>
-                                                    <option value="<?php echo $location->id; ?>"<?php if($value->location == $location->id): ?> selected="selected"<?php endif; ?>><?php echo $location->name; ?></option>
-                                                <?php endforeach; ?>
-                                                </select>
-                                                <a href="<?php echo site_url('biao_location_list/show'); ?>" target="_blank">使用场地</a>
                                             </div> <!-- /controls -->
                                         </div> <!-- /control-group -->
                                         
@@ -125,6 +101,31 @@
                                         </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
+                                            <label class="control-label" for="biaoUnit">场地使用单位</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-xlarge" id="biaoUnit" name="biaoUnit" value="<?php echo $value->unit; ?>" />
+                                                <a id="broswer" href="#" target="_blank">可选项</a> | <a href="<?php echo site_url('biao_unit_list/show'); ?>" target="_blank">场地使用单位管理</a>
+                                            </div> <!-- /controls -->
+                                            <div class="controls" id="unit_container" style="display:none;margin-top:10px;">
+                                            <?php foreach($units as $unit): ?>
+                                            <button id="btnSubmit" type="button" class="btn btn-info"><?php echo $unit->name; ?></button>
+                                        	<?php endforeach; ?>
+                                            </div>
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
+                                            <label class="control-label" for="biaoLocation">使用场地</label>
+                                            <div class="controls">
+                                                <select class="input-medium" id="biaoLocation" name="biaoLocation">
+                                                <?php foreach($locations as $location): ?>
+                                                    <option value="<?php echo $location->id; ?>"<?php if($value->location == $location->id): ?> selected="selected"<?php endif; ?>><?php echo $location->name; ?></option>
+                                                <?php endforeach; ?>
+                                                </select>
+                                                <a href="<?php echo site_url('biao_location_list/show'); ?>" target="_blank">使用场地</a>
+                                            </div> <!-- /controls -->
+                                        </div> <!-- /control-group -->
+                                        
+                                        <div class="control-group">											
                                             <label class="control-label" for="articleUrl">外部链接</label>
                                             <div class="controls">
                                                 <input type="text" class="input-xxlarge" id="articleUrl" name="articleUrl" value="<?php echo $value->url ?>" />
@@ -165,10 +166,10 @@
 							<thead>
 								<tr>
 									<th>日期</th>
-									<th>场地使用时间</th>
 									<th>项目名称</th>
 									<th>项目编号</th>
 									<th>项目类型</th>
+									<th>场地使用时间</th>
 									<th>场地使用单位</th>
 									<th>使用场地</th>
 									<th>&nbsp;</th>
@@ -180,14 +181,6 @@
 								<tr>
 									<td><?php echo lang('day' . $key); ?></td>
 									<?php if(!empty($row)): ?>
-									<td>
-										<?php
-										for($i=0; $i<count($row); $i++)
-										{
-											echo date('Y-m-d H:i:s', $row[$i]->start_time) . '<br>';
-										}
-										?>
-									</td>
 									<td>
 									<?php
 									for($i=0; $i<count($row); $i++)
@@ -219,6 +212,14 @@
 										echo $row[$i]->category_name . '<br>';
 									}
 									?>
+									</td>
+									<td>
+										<?php
+										for($i=0; $i<count($row); $i++)
+										{
+											echo date('Y-m-d H:i:s', $row[$i]->start_time) . '<br>';
+										}
+										?>
 									</td>
 									<td>
 									<?php

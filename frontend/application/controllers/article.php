@@ -80,6 +80,33 @@ class Article extends CI_Controller
 		}
 	}
 
+	public function pic($id)
+	{
+		if(!empty($id) && is_numeric($id))
+		{
+			$this->load->model('marticle');
+			$result = $this->marticle->read_from_view(array(
+				'id'	=>	intval($id)
+			));
+			if(!empty($result))
+			{
+				$data = array(
+					'result'	=>	$result[0]
+				);
+				$this->load->model('render');
+				$this->render->render('pic', $data);
+			}
+			else
+			{
+				showMessage(MESSAGE_TYPE_ERROR, 'EMPTY_RESULT', '', 'index', false, 5);
+			}
+		}
+		else
+		{
+			showMessage(MESSAGE_TYPE_ERROR, 'INVALID_PARAMS', '', 'index', true, 5);
+		}
+	}
+
 	public function single($category_id)
 	{
 		if(!empty($category_id) && is_numeric($category_id))

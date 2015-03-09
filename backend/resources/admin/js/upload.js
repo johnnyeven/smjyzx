@@ -50,7 +50,7 @@ function contentFileUpload(url, uploadId, contentId, valueId, mode, maxCount) {
 	return false;
 }
 
-function contentPicUpload(url, uploadId, contentId, valueId, mode, maxCount) {
+function contentPicUpload(url, uploadId, contentId, valueId, mode, maxCount, withInsert) {
 	$.ajaxFileUpload
 	(
 		{
@@ -83,12 +83,20 @@ function contentPicUpload(url, uploadId, contentId, valueId, mode, maxCount) {
 								url.push(data.data);
 								$("#" + valueId).val(url.join(";"));
 							}
-							$("#" + contentId).prepend("<div style='padding:10px;border:#CCC 1px solid;width:200px;height:200px;float:left;margin-right:10px;'><img src='" + data.data + "' /><a href='#'>删除</a></div>");
+							if(withInsert) {
+								$("#" + contentId).prepend("<div style='padding:10px;border:#CCC 1px solid;width:200px;height:220px;float:left;margin-right:10px;'><div><img src='" + data.data + "' /></div><div><a class='insert' href='#'>插入文章</a> | <a class='delete' href='#'>删除</a></div></div>");
+							} else {
+								$("#" + contentId).prepend("<div style='padding:10px;border:#CCC 1px solid;width:200px;height:220px;float:left;margin-right:10px;'><img src='" + data.data + "' /><a href='#'>删除</a></div>");
+							}
 						}
 						else
 						{
 							$("#" + contentId).empty();
-							$("#" + contentId).append("<div style='padding:10px;border:#CCC 1px solid;width:200px;height:200px;float:left;margin-right:10px;'><img src='" + data.data + "' /><a href='#'>删除</a></div>");
+							if(withInsert) {
+								$("#" + contentId).prepend("<div style='padding:10px;border:#CCC 1px solid;width:200px;height:220px;float:left;margin-right:10px;'><div><img src='" + data.data + "' /></div><div><a class='insert' href='#'>插入文章</a> | <a class='delete' href='#'>删除</a></div></div>");
+							} else {
+								$("#" + contentId).prepend("<div style='padding:10px;border:#CCC 1px solid;width:200px;height:220px;float:left;margin-right:10px;'><img src='" + data.data + "' /><a href='#'>删除</a></div>");
+							}
 							$("#" + valueId).val(data.data);
 						}
 						$("#" + contentId + " img").resizeImg({w: 200, h: 200});
