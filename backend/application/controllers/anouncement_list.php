@@ -110,6 +110,7 @@ class Anouncement_list extends CI_Controller
 		$category = $this->input->post('newsCategory', TRUE);
 		$refer = $this->input->post('newsRefer', TRUE);
 		$time = $this->input->post('articleTime', TRUE);
+		$downloadFilepath = $this->input->post('downloadFilepath');
 		$content = $this->input->post('wysiwyg', TRUE);
 
 		if(empty($name) || empty($content))
@@ -124,7 +125,8 @@ class Anouncement_list extends CI_Controller
 			'name'			=>	$name,
 			'refer'			=>	$refer,
 			'time'			=>	$time,
-			'content'		=>	$content
+			'content'		=>	$content,
+			'attatchment'	=>	$downloadFilepath
 		);
 		
 		if(!empty($edit))

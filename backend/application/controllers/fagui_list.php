@@ -110,6 +110,7 @@ class Fagui_list extends CI_Controller
 		$category = $this->input->post('newsCategory', TRUE);
 		$refer = $this->input->post('newsRefer', TRUE);
 		$time = $this->input->post('articleTime', TRUE);
+		$downloadFilepath = $this->input->post('downloadFilepath');
 		$content = $this->input->post('wysiwyg', TRUE);
 
 		if(empty($name) || empty($content))
@@ -123,7 +124,8 @@ class Fagui_list extends CI_Controller
 			'category_id'	=>	empty($category) ? $this->category_id : intval($category),
 			'name'			=>	$name,
 			'refer'			=>	$refer,
-			'content'		=>	$content
+			'content'		=>	$content,
+			'attatchment'	=>	$downloadFilepath
 		);
 		
 		if(!empty($edit))

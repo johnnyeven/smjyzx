@@ -100,17 +100,19 @@ class news_list extends CI_Controller
 		$category = $this->input->post('newsCategory', TRUE);
 		$refer = $this->input->post('newsRefer', TRUE);
 		$time = $this->input->post('articleTime', TRUE);
+		$downloadFilepath = $this->input->post('downloadFilepath');
 		$content = $this->input->post('wysiwyg', TRUE);
 		$pic = $this->input->post('newsPicFilepath', TRUE);
 		$indexShow = $this->input->post('indexShow', TRUE);
 
-		if(empty($name) || empty($pic))
+		if(empty($name))
 		{
 			showMessage(MESSAGE_TYPE_ERROR, 'NO_PARAM', '', 'news_list/show', true, 5);
 		}
 		$refer = empty($refer) ? 0 : intval($refer);
 		$time = empty($time) ? time() : strtotime($time);
 		$content = empty($content) ? '' : $content;
+		$pic = empty($pic) ? '' : $pic;
 		
 		$row = array(
 			'category_id'	=>	empty($category) ? $this->category_id : intval($category),
@@ -118,7 +120,8 @@ class news_list extends CI_Controller
 			'refer'			=>	$refer,
 			'content'		=>	$content,
 			'pic'			=>	$pic,
-			'show_in_index'	=>	!empty($indexShow) ? 1 : 0
+			'show_in_index'	=>	!empty($indexShow) ? 1 : 0,
+			'attatchment'	=>	$downloadFilepath
 		);
 		
 		if(!empty($edit))

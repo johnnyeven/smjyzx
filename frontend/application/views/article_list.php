@@ -4,11 +4,19 @@
 			<?php if(!empty($result)): ?>
 			<ul>
 				<?php for($i=0; $i<count($result); $i++): ?>
-				<?php if($i != count($result) - 1): ?>
-                <li><span class="list-title" style="width:700px;"><a href="<?php echo site_url('article/show/' . $result[$i]->id) ?>"><?php echo shorty_string($result[$i]->name, 96); ?></a></span><span class="list-date"><?php echo date('m月d日', $result[$i]->time); ?></span></li>
-                <?php else: ?>
-                <li class="list-last"><span class="list-title" style="width:700px;"><a href="<?php echo site_url('article/show/' . $result[$i]->id) ?>"><?php echo shorty_string($result[$i]->name, 96); ?></a></span><span class="list-date"><?php echo date('m月d日', $result[$i]->time); ?></span></li>
-                <?php endif; ?>
+				<?php if(empty($result[$i]->attatchment)): ?>
+					<?php if($i != count($result) - 1): ?>
+	                <li><span class="list-title" style="width:700px;"><a href="<?php echo site_url('article/show/' . $result[$i]->id) ?>"><?php echo shorty_string($result[$i]->name, 96); ?></a></span><span class="list-date"><?php echo date('m月d日', $result[$i]->time); ?></span></li>
+	                <?php else: ?>
+	                <li class="list-last"><span class="list-title" style="width:700px;"><a href="<?php echo site_url('article/show/' . $result[$i]->id) ?>"><?php echo shorty_string($result[$i]->name, 96); ?></a></span><span class="list-date"><?php echo date('m月d日', $result[$i]->time); ?></span></li>
+	                <?php endif; ?>
+	            <?php else: ?>
+					<?php if($i != count($result) - 1): ?>
+	                <li><span class="list-title" style="width:700px;"><a href="<?php echo $result[$i]->attatchment; ?>"><?php echo shorty_string($result[$i]->name, 96); ?></a></span><span class="list-date"><?php echo date('m月d日', $result[$i]->time); ?></span></li>
+	                <?php else: ?>
+	                <li class="list-last"><span class="list-title" style="width:700px;"><a href="<?php echo $result[$i]->attatchment; ?>"><?php echo shorty_string($result[$i]->name, 96); ?></a></span><span class="list-date"><?php echo date('m月d日', $result[$i]->time); ?></span></li>
+	                <?php endif; ?>
+	        	<?php endif; ?>
 				<?php endfor; ?>
 			</ul>
 			<?php if(!empty($pagination)): ?>

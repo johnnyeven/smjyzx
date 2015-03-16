@@ -29,10 +29,18 @@
                             $target = '_self';
                         }
                         ?>
-                        <?php if($i != count($news_result) - 1): ?>
-                        <li><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($news_result[$i]->name, 32); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                        <?php if(empty($news_result[$i]->attatchment)): ?>
+                            <?php if($i != count($news_result) - 1): ?>
+                            <li><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($news_result[$i]->name, 32); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                            <?php else: ?>
+                            <li class="list-last"><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($news_result[$i]->name, 32); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                            <?php endif; ?>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:270px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($news_result[$i]->name, 32); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                            <?php if($i != count($news_result) - 1): ?>
+                            <li><span class="list-title" style="width:270px;"><a href="<?php echo $news_result[$i]->attatchment; ?>"><?php echo shorty_string($news_result[$i]->name, 32); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                            <?php else: ?>
+                            <li class="list-last"><span class="list-title" style="width:270px;"><a href="<?php echo $news_result[$i]->attatchment; ?>"><?php echo shorty_string($news_result[$i]->name, 32); ?></a></span><span class="list-date"><?php echo date('m-d', $news_result[$i]->time); ?></span></li>
+                            <?php endif; ?>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -67,10 +75,18 @@
                             $target = '_self';
                         }
                         ?>
-                        <?php if($i != count($notification_result) - 1): ?>
-                        <li><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($notification_result[$i]->name, 24); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                        <?php if(empty($notification_result[$i]->attatchment)): ?>
+                            <?php if($i != count($notification_result) - 1): ?>
+                            <li><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($notification_result[$i]->name, 24); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                            <?php else: ?>
+                            <li class="list-last"><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($notification_result[$i]->name, 24); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                            <?php endif; ?>
                         <?php else: ?>
-                        <li class="list-last"><span class="list-title" style="width:200px;"><a href="<?php echo $url; ?>" target="<?php echo $target; ?>"><?php echo shorty_string($notification_result[$i]->name, 24); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                            <?php if($i != count($notification_result) - 1): ?>
+                            <li><span class="list-title" style="width:200px;"><a href="<?php echo $notification_result[$i]->attatchment; ?>"><?php echo shorty_string($notification_result[$i]->name, 24); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                            <?php else: ?>
+                            <li class="list-last"><span class="list-title" style="width:200px;"><a href="<?php echo $notification_result[$i]->attatchment; ?>"><?php echo shorty_string($notification_result[$i]->name, 24); ?></a></span><span class="list-date"><?php echo date('m-d', $notification_result[$i]->time); ?></span></li>
+                            <?php endif; ?>
                         <?php endif; ?>
                         <?php endfor; ?>
                     </ul>
@@ -728,14 +744,14 @@
             });
 
             var items = $("#picture_slider > div.pictures-item");
-            var width = (items.outerWidth() + 10) * items.length;
+            var width = (items.outerWidth() + 10);
             $("#picture_slider").width(width);
 
             var autoSlide = function() {
                 var l = $("#picture_slider").position().left;
                 if(l <= -width) {
                     $("#picture_slider").css({
-                        left: 903
+                        left: 0
                     });
                 } else {
                     $("#picture_slider").css({

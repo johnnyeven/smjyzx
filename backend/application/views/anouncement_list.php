@@ -52,6 +52,17 @@
                                                 <input type="text" class="input-medium" id="articleTime" name="articleTime" value="<?php if(!empty($value->time)) echo date('Y-m-d H:i:s', $value->time); else echo date('Y-m-d H:i:s') ?>" />
                                             </div> <!-- /controls -->				
                                         </div> <!-- /control-group -->
+
+                                        <div class="control-group">											
+                                            <label class="control-label" for="sliderUrl">上传资料</label>
+                                            <div class="controls">
+                                                <input name="picUpload" type="file" id="picUpload" size="20" class="input-medium" />
+                                                <input type="button" name="btnUpload" id="btnUpload" value="上传" onclick="javascript:contentFileUpload('<?php echo site_url('utils/doFileUpload'); ?>', 'picUpload', 'sliderPicPathContent', 'downloadFilepath')" class="btn btn-primary" />
+                                            </div> <!-- /controls -->
+                                            <div class="controls">
+                                                <input name="downloadFilepath" class="input-xxlarge" type="text" id="downloadFilepath" value="<?php echo $value->attatchment; ?>" />
+                                            </div>
+                                        </div> <!-- /control-group -->
                                         
                                         <div class="control-group">											
                                             <label class="control-label" for="wysisyg">新闻内容</label>
@@ -128,6 +139,8 @@
                 <?php endif; ?>
                 <script src="<?php echo base_url('resources/js/ckeditor/ckeditor.js'); ?>" language="javascript"></script>
                 <script src="<?php echo base_url('resources/admin/js/jquery-ui.js'); ?>" language="javascript"></script>
+                <script src="<?php echo base_url('resources/admin/js/uploader/ajaxfileupload.js'); ?>" language="javascript"></script>
+                <script src="<?php echo base_url('resources/admin/js/upload.js'); ?>" language="javascript"></script>
                 <script language="javascript">
 				$(function() {
 					CKEDITOR.replace( 'wysiwyg' );

@@ -70,6 +70,17 @@
                                         </div> <!-- /control-group -->
 
                                         <div class="control-group">											
+                                            <label class="control-label" for="sliderUrl">上传资料</label>
+                                            <div class="controls">
+                                                <input name="picUpload1" type="file" id="picUpload1" size="20" class="input-medium" />
+                                                <input type="button" name="btnUpload1" id="btnUpload1" value="上传" onclick="javascript:contentFileUpload('<?php echo site_url('utils/doFileUpload'); ?>', 'picUpload1', 'sliderPicPathContent', 'downloadFilepath')" class="btn btn-primary" />
+                                            </div> <!-- /controls -->
+                                            <div class="controls">
+                                                <input name="downloadFilepath" class="input-xxlarge" type="text" id="downloadFilepath" value="<?php echo $value->attatchment; ?>" />
+                                            </div>
+                                        </div> <!-- /control-group -->
+
+                                        <div class="control-group">											
                                             <label class="control-label" for="wysisyg">新闻内容</label>
                                             <div class="controls">
                                                 <textarea id="wysiwyg" name="wysiwyg" cols="50" rows="20" class="wysiwyg"><?php echo $value->content; ?></textarea>
