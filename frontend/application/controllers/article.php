@@ -20,7 +20,9 @@ class Article extends CI_Controller
 			));
 			$result = $this->marticle->read_from_view(array(
 				'category_id'	=>	intval($category_id)
-			), null, $this->page_items, $this->page_items * (intval($page) - 1));
+			), array(
+				'order_by'		=>	array('time', 'desc')
+			), $this->page_items, $this->page_items * (intval($page) - 1));
 			$count = $this->marticle->count(array(
 				'category_id'	=>	intval($category_id)
 			));
@@ -63,6 +65,11 @@ class Article extends CI_Controller
 			));
 			if(!empty($result))
 			{
+				$row = $result[0];
+				if(!empty($row->url))
+				{
+					header('location: ' . $row->url);
+				}
 				$data = array(
 					'result'	=>	$result[0]
 				);
